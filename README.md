@@ -1,37 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Inspire Next Global
 
-## Getting Started
+A modern web application built with Next.js, designed to inspire and connect people globally.
 
-First, run the development server:
+## 🚀 Features
+
+- **Modern Design**: Built with Next.js 15 and React 19
+- **Responsive UI**: Tailwind CSS for beautiful, mobile-first design
+- **Performance Optimized**: Turbopack for fast development and builds
+- **Font Optimization**: Geist font family integration
+- **Dark Mode Support**: Automatic theme switching based on user preference
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15.3.3
+- **Frontend**: React 19
+- **Styling**: Tailwind CSS 4
+- **Font**: Geist (Sans & Mono)
+- **Development**: Turbopack
+
+## 📦 Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/amurobrian/inspirenextglobal.git
+cd inspirenextglobal
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # Start development server with Turbopack
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
 
-## Learn More
+## 🎨 Development
 
-To learn more about Next.js, take a look at the following resources:
+You can start editing the page by modifying `src/app/page.js`. The page auto-updates as you edit the file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+inspirenextglobal/
+├── public/              # Static files
+├── src/
+│   └── app/
+│       ├── globals.css  # Global styles
+│       ├── layout.js    # Root layout
+│       └── page.js      # Home page
+├── jsconfig.json        # JavaScript configuration
+├── next.config.mjs      # Next.js configuration
+├── package.json         # Dependencies and scripts
+└── postcss.config.mjs   # PostCSS configuration
+```
 
-## Deploy on Vercel
+## 🚀 Deployment
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# inspirenextglobal
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📚 Learn More
+
+To learn more about the technologies used in this project:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
+- [React Documentation](https://react.dev/) - learn about React
+- [Tailwind CSS](https://tailwindcss.com/) - utility-first CSS framework
+- [Vercel Font](https://vercel.com/font) - about the Geist font family
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Built with ❤️ using Next.js
