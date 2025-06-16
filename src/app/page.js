@@ -1,103 +1,95 @@
-import Image from "next/image";
+"use client";
+import React, { useRef, useEffect, useState } from "react";
+import About from "./components/About";
 
-export default function Home() {
+// Helper for scroll-triggered animation
+function useScrollFadeIn() {
+  const ref = useRef();
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setShow(true);
+        else setShow(false);
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, show];
+}
+
+export default function Page() {
+  const [titleRef, showTitle] = useScrollFadeIn();
+  const [descRef, showDesc] = useScrollFadeIn();
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      {/* HERO SECTION */}
+      <main className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-white">
+        {/* White Background Layer */}
+        <div className="absolute inset-0 w-full h-full bg-white z-0" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Video Background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/eco.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/30 z-10"></div>
+        
+        {/* Animated Text */}
+        <div className="relative z-20 text-center w-full px-4 flex flex-col items-center justify-center">
+          <h1
+            ref={titleRef}
+            className={`text-white text-5xl md:text-7xl font-bold mb-6 transition-all duration-1000 
+              ${showTitle ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            WELCOME TO THE INSPIRE NEXT GLOBAL INC
+          </h1>
+          <p
+            ref={descRef}
+            className={`text-white text-2xl md:text-3xl font-medium transition-all duration-1000 delay-300
+              ${showDesc ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           >
-            Read our docs
-          </a>
+            Inspire Next Global Inc is a visionary management and company
+            with diverse interests spanning construction and development, healthcare and pharmaceuticals, gaming and entertainment, agriculture trading, and
+            specialized services - serving both private and public sector.
+          </p>
         </div>
+        
+        {/* Animation CSS */}
+        <style jsx global>{`
+          .opacity-0 { opacity: 0; }
+          .opacity-100 { opacity: 1; }
+          .translate-y-0 { transform: translateY(0); }
+          .translate-y-10 { transform: translateY(40px); }
+          .transition-all {
+            transition-property: opacity, transform;
+          }
+          .duration-1000 {
+            transition-duration: 1s;
+          }
+          .delay-300 {
+            transition-delay: 0.3s;
+          }
+        `}</style>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      {/* ABOUT SECTION */}
+      <section className="bg-[#ffffff] text-white py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <About />
+        </div>
+      </section>
+    </>
   );
 }
