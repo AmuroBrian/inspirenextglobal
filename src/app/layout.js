@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 // Define metadata if you need it, or remove this block entirely if not.
 export const metadata = {
-  title: "Your Site Title",
+  title: "Inspire Next Global Inc.",
   description: "Your site description",
 };
 
