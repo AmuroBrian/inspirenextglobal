@@ -7,6 +7,8 @@ import Bussec from "./components/Bussec";
 import Realestate from "./components/Realestate";
 import Companyunder from "./components/Companyunder";
 import Message from "./components/Message";
+import OrgChart from "./components/OrgChart";
+
 
 // Helper for scroll-triggered animation
 function useScrollFadeIn() {
@@ -192,7 +194,7 @@ export default function Page() {
         </section>
         
       {/* BUSINESS SECTION */}
-      <section className="relative  text-white py-16 overflow-hidden">
+      <section className="relative bg-[#667b6b] text-white py-16 overflow-hidden">
         <SectionShapes colorSet={1} />
         <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
           <Bussec />
@@ -204,14 +206,21 @@ export default function Page() {
         <SectionShapes colorSet={2} />
        <Realestate />
       </section>
-
+          {/* OrgChart Section */}
+      <section className="relative bg-[#ffffff] text-black py-16 overflow-hidden">
+        <SectionShapes colorSet={3} />  
+        <div className="relative max-w-15x9 w-[1660px] mx-auto px-6 z-20">
+          <OrgChart />
+        </div>
+      </section>
        {/* COMPANY UNDER SECTION */}
-      <section className="relative  bg-[#667b6b] text-white py-16 overflow-hidden">
+      <section className="relative  bg-[#b4d5bb] text-white py-16 overflow-hidden">
         <SectionShapes colorSet={1} />
         <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
           <Companyunder />
         </div>
       </section>
+      
     </>
   );
 }

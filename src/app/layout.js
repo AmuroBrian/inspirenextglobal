@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         {/* Header at the top */}
         <Header />
         {/* Main Content */}
-        <main className="flex-grow bg-white">
+        <main className="flex-grow bg-white w-full max-w-full mx-auto px-2 sm:px-4 md:px-6">
           {children}
         </main>
         {/* Footer at the bottom */}
