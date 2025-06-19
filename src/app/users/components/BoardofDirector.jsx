@@ -7,7 +7,8 @@ const executiveDirectors = [
     name: "Melody Santos",
     position: "President",
     img: "/president.png",
-    description: "Melody Santos is responsible for the overall leadership of the company, ensuring organizational direction and success.",
+    description:
+      "As President, Melody Santos provides visionary leadership and is responsible for the overall strategic direction, growth, and success of the company. She oversees all organizational operations, fosters innovation, and ensures Inspire Next Global remains aligned with its mission and values.",
     contact: {
       email: "melody.santos@company.com",
       phone: "+1 555-0101",
@@ -19,7 +20,8 @@ const executiveDirectors = [
     name: "Rhia Alberto",
     position: "Vice President",
     img: "/3.png",
-    description: "Rhia Alberto assists in managing the company's strategic operations and supporting executive initiatives.",
+    description:
+      "As Vice President, Rhia Alberto supports the President in implementing corporate strategies and managing key initiatives. She plays a pivotal role in operational oversight, strategic planning, and cross-departmental coordination to drive organizational success.",
     contact: {
       email: "rhia.alberto@company.com",
       phone: "+1 555-0102"
@@ -31,7 +33,8 @@ const executiveDirectors = [
     name: "Andrei Bergano",
     position: "Executive Director",
     img: "/5.png",
-    description: "Andrei Bergano oversees executive projects and supports the implementation of corporate policies.",
+    description:
+      "As Executive Director, Andrei Bergano leads key executive projects, ensures effective implementation of corporate policies, and collaborates with other executives to promote organizational efficiency and performance.",
     contact: {
       email: "andrei.bergano@company.com",
       phone: "+1 555-0103"
@@ -50,7 +53,8 @@ const nonExecutiveDirectors = [
     name: "Atty. Renato Pineda",
     position: "Non Executive Director",
     img: "/atty.png",
-    description: "Atty. Renato Pineda is in charge of strategic financial planning and investment decisions for the organization.",
+    description:
+      "As Non Executive Director, Atty. Renato Pineda provides independent oversight and guidance on financial strategy, investment decisions, and corporate governance, ensuring the company’s long-term sustainability and compliance.",
     contact: {
       email: "renato.pineda@company.com",
       phone: "+1 555-0104"
@@ -60,7 +64,8 @@ const nonExecutiveDirectors = [
     name: "Alfredo Reyes",
     position: "Non Executive Director",
     img: "/reyes.png",
-    description: "Alfredo Reyes advises on company governance and compliance.",
+    description:
+      "As Non Executive Director, Alfredo Reyes offers impartial advice on governance and compliance matters, supporting the board in maintaining high standards of accountability and ethical practice.",
     contact: {
       email: "alfredo.reyes@company.com",
       phone: "+1 555-0105"
@@ -70,7 +75,8 @@ const nonExecutiveDirectors = [
     name: "Ronaldo Castillo",
     position: "Non Executive Director",
     img: "/ronaldo.png",
-    description: "Ronaldo Castillo provides oversight and guidance on technology and operations.",
+    description:
+      "As Non Executive Director, Ronaldo Castillo provides expert oversight and independent guidance on technology initiatives and operations, helping to drive innovation and efficiency within the company.",
     contact: {
       email: "ronaldo.castillo@company.com",
       phone: "+1 555-0106"
@@ -81,9 +87,10 @@ const nonExecutiveDirectors = [
 const corporateOperationOffice = [
   {
     name: "Carlos Perez",
-    position: "Corporate Operations Head",
+    position: "Chief of Career Track Officer",
     img: "/13.png",
-    description: "Carlos Perez oversees all operational processes and ensures smooth corporate functions.",
+    description:
+      "As Chief of Career Track Officer, Carlos Perez designs, manages, and leads career development programs, ensuring employees have clear pathways for growth and advancement within the organization.",
     contact: {
       email: "carlos.perez@company.com",
       phone: "+1 555-0107"
@@ -93,7 +100,8 @@ const corporateOperationOffice = [
     name: "Girlie De Asis",
     position: "HR Administrator",
     img: "/9.png",
-    description: "Girlie manages all aspects of human resources, recruitment, and employee relations.",
+    description:
+      "As HR Administrator, Girlie De Asis manages all human resources functions, including recruitment, benefits, employee relations, and compliance, fostering a productive and supportive workplace.",
     contact: {
       email: "girlie.deasis@company.com",
       phone: "+1 555-0108"
@@ -103,7 +111,8 @@ const corporateOperationOffice = [
     name: "Anne Colinares",
     position: "HR Assistant",
     img: "/11.png",
-    description: "Anne is responsible for administrative support and office management.",
+    description:
+      "As HR Assistant, Anne Colinares provides essential support in HR operations, assisting with records management, employee onboarding, and daily administrative tasks.",
     contact: {
       email: "anne.colinares@company.com",
       phone: "+1 555-0109"
@@ -111,9 +120,10 @@ const corporateOperationOffice = [
   },
   {
     name: "Brian Perez",
-    position: "IT Supervisor",
+    position: "CHef of Technology Officer",
     img: "/7.png",
-    description: "Brian supervises all IT operations, infrastructure, and security.",
+    description:
+      "As Chief of Technology Officer, Brian Perez leads the technology strategy, oversees IT infrastructure, and ensures the secure and effective use of technological resources across the company.",
     contact: {
       email: "brian.perez@company.com",
       phone: "+1 555-0110"
@@ -126,7 +136,8 @@ const secretaryTeam = [
     name: "Shelah Reynaldo",
     position: "Secretary",
     img: "/17.png",
-    description: "Shelah handles all corporate secretarial duties and documentation.",
+    description:
+      "As Secretary, Shelah Reynaldo manages all corporate secretarial functions, including meeting documentation, legal filings, and effective communication between the board and stakeholders.",
     contact: {
       email: "shelah.reynaldo@company.com",
       phone: "+1 555-0115"
@@ -136,7 +147,8 @@ const secretaryTeam = [
     name: "Joanne Hermosura",
     position: "Secretary",
     img: "/19.png",
-    description: "Joanne assists in secretarial tasks and maintains records.",
+    description:
+      "As Secretary, Joanne Hermosura assists in maintaining meticulous records, coordinating meetings, and supporting the organization’s administrative needs.",
     contact: {
       email: "joanne.hermosura@company.com",
       phone: "+1 555-0116"
@@ -149,7 +161,8 @@ const auditTeam = [
     name: "Raphael Jheremy Reyes",
     position: "Chief Audit Officer",
     img: "/15.png",
-    description: "Raphael ensures compliance and oversees internal auditing processes.",
+    description:
+      "As Chief Audit Officer, Raphael Jheremy Reyes leads the internal audit function, ensuring regulatory compliance, identifying risks, and improving internal controls to support transparency and accountability.",
     contact: {
       email: "raphael.reyes@company.com",
       phone: "+1 555-0117"
@@ -162,7 +175,8 @@ const securityTeam = [
     name: "Neil Brion",
     position: "Security Officer",
     img: "/21.png",
-    description: "Neil oversees security protocols and ensures the safety of the organization.",
+    description:
+      "As Security Officer, Neil Brion manages and enforces security policies, oversees safety protocols, and ensures a secure environment for all employees and assets across the organization.",
     contact: {
       email: "neil.brion@company.com",
       phone: "+1 555-0118"
@@ -255,6 +269,25 @@ function DirectorCard({ member, expanded, onClick }) {
   );
 }
 
+// --- Company About Section ---
+function AboutInspireNextGlobal() {
+  return (
+    <section className="w-full bg-[#ecf7eb] py-12 px-2 border-b-2 border-[#d5e6c9]">
+      <div className="max-w-5xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#3ea96e] tracking-tight">
+          About Inspire Next Global Inc.
+        </h2>
+        <p className="text-lg text-gray-700 mb-5">
+          Inspire Next Global Inc. is a forward-thinking conglomerate with diverse portfolio interests, including construction & development, healthcare & pharmaceuticals, gaming & entertainment, agriculture trading, logistics, and specialized consultancy services. Serving both public and private sectors, the company operates under a strategic "conglomerate model," functioning as a central financial hub that aligns and capitalizes on its subsidiaries and affiliates to drive innovation, efficiency, and cross-sector synergy.
+        </p>
+        <p className="text-lg text-gray-700">
+          Dedicated to making a tangible impact, Inspire Next Global supports initiatives that improve people's lives and influence geopolitical landscapes—while also delivering sustainable returns to shareholders.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export default function BoardofDirector() {
   const [expandedExec, setExpandedExec] = useState(null);
   const [expandedNonExec, setExpandedNonExec] = useState(null);
@@ -280,6 +313,18 @@ export default function BoardofDirector() {
           <div className="w-16 h-1 bg-white mx-auto mb-2 rounded-full" />
         </div>
       </div>
+
+      {/* ABOUT SECTION */}
+      <AboutInspireNextGlobal />
+
+      {/* Meet Our Team Section */}
+      <section className="w-full bg-[#ffffff] py-8 px-2">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-[#3ea96e] tracking-tight">
+            Meet our Team
+          </h2>
+        </div>
+      </section>
 
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Executive Directors</h3>
