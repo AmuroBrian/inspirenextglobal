@@ -8,7 +8,8 @@ import Realestate from "./components/Realestate";
 import Companyunder from "./components/Companyunder";
 import Message from "./components/Message";
 import OrgChart from "./components/OrgChart";
-
+import Contact from "./components/Contact";
+import Corporate from "./components/Corporate";
 
 // Helper for scroll-triggered animation
 function useScrollFadeIn() {
@@ -178,7 +179,7 @@ export default function Page() {
         </div>
       </section>
       {/* MISSION SECTION */}
-      <section className="relative bg-[#667b6b] text-white py-16 overflow-hidden">
+      <section className="relative bg-[#b4d5bb] text-white py-16 overflow-hidden">
         <SectionShapes colorSet={3} />
         <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
           <Mission />
@@ -186,7 +187,7 @@ export default function Page() {
       </section>
 
       {/* Message Section */}
-      <section className="relative bg-[#ffffff] text-white py-16 overflow-hidden">
+      <section className="relative bg-[#f9f9f9] text-white py-16 overflow-hidden">
         <SectionShapes colorSet={2} />
         <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
           <Message />
@@ -194,7 +195,7 @@ export default function Page() {
         </section>
         
       {/* BUSINESS SECTION */}
-      <section className="relative bg-[#667b6b] text-white py-16 overflow-hidden">
+      <section className="relative bg-[#b4d5bb] text-white py-16 overflow-hidden">
         <SectionShapes colorSet={1} />
         <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
           <Bussec />
@@ -218,6 +219,20 @@ export default function Page() {
         <SectionShapes colorSet={1} />
         <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
           <Companyunder />
+        </div>
+      </section>
+      {/* CORPORATE SECTION */}
+      <section className="relative bg-[#ffffff] text-white py-16 overflow-hidden">
+        <SectionShapes colorSet={2} />
+        <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
+          <Corporate />
+        </div>
+      </section>
+      {/* CONTACT SECTION */}
+      <section className="relative bg-[#ffffff] text-white py-16 overflow-hidden">
+        <SectionShapes colorSet={2} />
+        <div className="relative max-w-11x4 w-[1660px] mx-auto px-6 z-20">
+          <Contact />
         </div>
       </section>
       

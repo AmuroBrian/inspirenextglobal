@@ -101,7 +101,7 @@ export default function OrgChartAndRealEstatePage() {
         {/* Image Side */}
         <div className="flex-shrink-0 w-full sm:w-[80%] md:w-[60%] lg:w-[44%] h-[200px] sm:h-[260px] md:h-[320px] rounded-lg overflow-hidden shadow-lg">
           <img
-            src="/realestate.png"
+            src="/board.png"
             alt="Real Estate Marketing"
             className="object-cover w-full h-full"
           />

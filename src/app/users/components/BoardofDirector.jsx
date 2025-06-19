@@ -1,17 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-// Data arrays (add your images as needed)
+// Eco-friendly/green card backgrounds for Executive Directors
 const executiveDirectors = [
   {
     name: "Melody Santos",
     position: "President",
-    img: "/pres.png",
+    img: "/president.png",
     description: "Bob is responsible for leading the creative vision of the company. He specializes in branding and marketing initiatives.",
     contact: {
       email: "bob.brown@company.com",
       phone: "+1 555-0101",
-    }
+    },
+    cardBg: "linear-gradient(135deg, #d7fbe8 60%, #b9e7ce 100%)",
+    imgBg: "url('/eco-bg.png'), linear-gradient(135deg, #b5e1c6 60%, #3ea96e 100%)"
   },
   {
     name: "Rhia Alberto",
@@ -21,7 +23,9 @@ const executiveDirectors = [
     contact: {
       email: "mary.smith@company.com",
       phone: "+1 555-0102"
-    }
+    },
+    cardBg: "linear-gradient(135deg, #d7fbe8 60%, #b9e7ce 100%)",
+    imgBg: "url('/eco-bg.png'), linear-gradient(135deg, #b5e1c6 60%, #3ea96e 100%)"
   },
   {
     name: "Andrei Bergano",
@@ -31,9 +35,15 @@ const executiveDirectors = [
     contact: {
       email: "nick.dark@company.com",
       phone: "+1 555-0103"
-    }
+    },
+    cardBg: "linear-gradient(135deg, #d7fbe8 60%, #b9e7ce 100%)",
+    imgBg: "url('/eco-bg.png'), linear-gradient(135deg, #b5e1c6 60%, #3ea96e 100%)"
   }
 ];
+
+// Default greenish background for other cards
+const defaultCardBg = "linear-gradient(135deg, #e7fbe7 60%, #e3f7db 100%)";
+const defaultImgBg = "repeating-linear-gradient(135deg, #e0f7e9 0 20px, #d4efdf 20px 40px)";
 
 const nonExecutiveDirectors = [
   {
@@ -179,9 +189,9 @@ const secretaryTeam = [
 
 const auditTeam = [
   {
-    name: "Sofia Ramos",
-    position: "Internal Auditor",
-    img: "/audit1.png",
+    name: "Raphael Jheremy Reyes",
+    position: "Chief Audit Officer",
+    img: "/15.png",
     description: "Sofia ensures compliance and oversees internal auditing processes.",
     contact: {
       email: "sofia.ramos@company.com",
@@ -192,9 +202,9 @@ const auditTeam = [
 
 const securityTeam = [
   {
-    name: "Luis Santiago",
-    position: "Chief Security Officer",
-    img: "/security.png",
+    name: "Neil Brion",
+    position: "Security Officer",
+    img: "/21.png",
     description: "Luis oversees security protocols and ensures the safety of the organization.",
     contact: {
       email: "luis.santiago@company.com",
@@ -205,23 +215,29 @@ const securityTeam = [
 
 // Card component
 function DirectorCard({ member, expanded, onClick }) {
+  const cardBg = member.cardBg || defaultCardBg;
+  const imgBg = member.imgBg || defaultImgBg;
+
   return (
     <div
-      className={`relative bg-white rounded-2xl shadow-xl flex flex-col items-center transition-all duration-300 cursor-pointer overflow-hidden border-2 border-[#f1f1f1] group hover:border-[#b99a5b] ${
-        expanded ? "z-20 scale-105 shadow-2xl border-[#b99a5b]" : ""
+      className={`relative rounded-2xl shadow-xl flex flex-col items-center transition-all duration-300 cursor-pointer overflow-hidden border-2 border-[#ffffff] group hover:border-[#5bbd7a] ${
+        expanded ? "z-20 scale-105 shadow-2xl border-[#3ea96e]" : ""
       }`}
       onClick={onClick}
       tabIndex={0}
       role="button"
       aria-expanded={expanded}
-      style={{ minHeight: 420 }}
+      style={{ minHeight: 420, background: cardBg }}
     >
       <div
-        className="w-full flex items-center justify-center bg-[#f6f6f6]"
+        className="w-full flex items-center justify-center"
         style={{
           height: "340px",
           padding: "0",
-          boxSizing: "border-box"
+          boxSizing: "border-box",
+          background: imgBg,
+          backgroundSize: "cover",
+          backgroundPosition: "center"
         }}
       >
         <img
@@ -235,12 +251,12 @@ function DirectorCard({ member, expanded, onClick }) {
             maxWidth: "100%",
             display: "block",
             margin: "0 auto",
-            background: "#f6f6f6"
+            background: "rgba(215,251,232,0.85)"
           }}
         />
       </div>
       <div className="w-full flex flex-col items-center px-6 py-5">
-        <div className="uppercase text-xs text-[#b99a5b] font-bold tracking-wider mb-1">
+        <div className="uppercase text-xs text-[#3ea96e] font-bold tracking-wider mb-1">
           {member.position}
         </div>
         <div className="font-extrabold text-lg text-gray-900 mb-1">
@@ -249,22 +265,17 @@ function DirectorCard({ member, expanded, onClick }) {
         <div className="flex gap-3 mb-1">
           <a
             href={`mailto:${member.contact.email}`}
-            className="text-[#b99a5b] hover:text-[#b18517]"
+            className="text-[#3ea96e] hover:text-[#208704]"
             title="Email"
           >
-            <svg
-              width="20"
-              height="20"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M2.01 4.84c-.01-.52.49-.89.99-.89h18c.5 0 1 .37.99.89l-.01 14.32c.01.53-.49.89-.99.89h-18c-.5 0-1-.36-.99-.89l.01-14.32zm2.18 1.16l7.81 7.01 7.78-7.01h-15.59zm15.81 1.41l-7.93 7.14a1 1 0 0 1-1.31 0l-7.95-7.14v11.01h17.19v-11.01z" />
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M2.01 4.84c-.01-.52.49-.89.99-.89h18c.5 0 1 .37.99.89l-.01 14.32c.01.53-.49.89-.99.89h-18c-.5 0-1-.36-.99-.89l.01-14.32zm2.18 1.16l7.81 7.01 7.78-7.01h-15.59zm15.81 1.41l-7.93 7.14a1 1 0 0 1-1.31 0l-7.95-7.14v11.01h17.19v-11.01z"/>
             </svg>
           </a>
         </div>
         <div className="text-xs text-gray-400">{member.contact.phone}</div>
         {expanded && (
-          <div className="mt-5 w-full bg-[#f6f2e7] p-4 rounded-xl animate-fadeIn border border-[#f5e2c2] shadow-inner">
+          <div className="mt-5 w-full bg-[#e8f7ed] p-4 rounded-xl animate-fadeIn border border-[#b7e7d1] shadow-inner">
             <div className="text-gray-700 text-center text-sm">
               {member.description}
             </div>
@@ -274,7 +285,7 @@ function DirectorCard({ member, expanded, onClick }) {
       {expanded && (
         <button
           tabIndex={-1}
-          className="absolute top-3 right-3 bg-[#b99a5b] text-white text-xs px-2 py-1 rounded focus:outline-none"
+          className="absolute top-3 right-3 bg-[#3ea96e] text-white text-xs px-2 py-1 rounded focus:outline-none"
           onClick={e => {
             e.stopPropagation();
             onClick();
@@ -296,11 +307,33 @@ export default function BoardofDirector() {
   const [expandedAudit, setExpandedAudit] = useState(null);
   const [expandedSecurity, setExpandedSecurity] = useState(null);
 
+  // Example useEffect - can be removed if you don't need it
+  useEffect(() => {
+    // This is just a placeholder for demonstration.
+    // Do NOT put setState here unless you want it to run ONCE after mount.
+    // Never put setState in a useEffect without [].
+  }, []); // <--- dependency array, SAFE!
+
   return (
-    <main className="py-16 px-2 min-h-screen" style={{ background: "linear-gradient(to bottom, #f8f8f9, #f6f2e7 60%, #f8f8f9 100%)" }}>
-      <div className="max-w-5xl mx-auto text-center mb-14">
-        <h2 className="text-4xl font-extrabold text-[#b99a5b] mb-2 tracking-wide">Our Board of Directors</h2>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+    <main className="py-0 px-0 min-h-screen bg-[#ffffff]">
+      {/* HERO TITLE SECTION FOR BOARD OF DIRECTORS */}
+      <div
+        className="w-full flex items-center justify-center"
+        style={{
+          minHeight: "260px",
+          background: "#8db249", // eco-friendly green
+        }}
+      >
+        <div className="w-full max-w-6xl mx-auto text-center pt-12 pb-10 px-4">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight" style={{letterSpacing: "-0.03em"}}>
+            Board of Directors
+          </h1>
+          <div className="w-16 h-1 bg-white mx-auto mb-2 rounded-full" />
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto text-center my-10">
+        <p className="text-gray-700 text-lg max-w-2xl mx-auto">
           Meet the talented professionals who guide and drive the vision of our organization.
         </p>
       </div>
@@ -318,7 +351,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Non-Executive Directors</h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -332,7 +364,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Corporate Operation Office</h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -346,7 +377,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Marketing</h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -360,8 +390,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
-      {/* --- Switch Audit and Secretary position --- */}
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Audit</h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -375,7 +403,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Secretary</h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -389,8 +416,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
-      {/* --- Security Section --- */}
       <div className="max-w-7xl mx-auto mb-10 px-2">
         <h3 className="text-xl font-semibold text-gray-800 mb-6">Security</h3>
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -404,7 +429,6 @@ export default function BoardofDirector() {
           ))}
         </section>
       </div>
-
       <style jsx>{`
         .animate-fadeIn {
           animation: fadeIn 0.3s;

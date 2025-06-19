@@ -2,21 +2,24 @@
 import React, { useState } from 'react';
 
 const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
-  { label: "Private Policy", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Home", value: "home" },
+  { label: "About", value: "about" },
+  { label: "Real Estate", value: "realestate" },
+  { label: "Contact", value: "contact" },
 ];
 
-const Header = () => {
+const Header = ({ currentSection, setCurrentSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // For highlighting active link
+  const isActive = (value) => currentSection === value;
 
   return (
     <nav className="bg-white border-2 border-[#ffffff] px-4 sm:px-6 md:px-8 py-5 flex items-center min-h-[72px] sticky top-0 z-50">
       {/* Logo Section */}
       <div className="flex items-center gap-4 sm:gap-5 min-w-[180px] sm:min-w-[260px] md:min-w-[360px]">
         <img
-          src="logo.png" // Replace with your logo path
+          src="logo.png"
           alt="Inspire Logo"
           className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#c2a050] object-cover"
         />
@@ -32,14 +35,15 @@ const Header = () => {
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center gap-8 xl:gap-12 ml-auto">
         {navLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
+          <button
+            key={link.value}
+            onClick={() => setCurrentSection(link.value)}
             className={
               `text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
-              relative
+              relative px-1
               before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
-              hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]`
+              hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
+              ${isActive(link.value) ? "font-bold text-[#208704]" : ""}`
             }
             style={{
               transitionProperty: 'color, background, border, box-shadow',
@@ -48,20 +52,8 @@ const Header = () => {
             }}
           >
             {link.label}
-          </a>
+          </button>
         ))}
-        <a
-          href="#"
-          className="bg-[#dfb112] text-white px-6 xl:px-10 py-2 xl:py-3 rounded-lg font-semibold text-lg xl:text-xl md:text-2xl no-underline hover:bg-[#f9e076] transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
-          style={{
-            boxShadow: "0 2px 16px 0 rgba(223,177,18,0.14)",
-            transitionProperty: 'background, box-shadow, transform',
-            transitionDuration: '300ms',
-            transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)'
-          }}
-        >
-          Real Estate
-        </a>
       </div>
       {/* Burger Menu Icon */}
       <button
@@ -82,32 +74,22 @@ const Header = () => {
         />
       </button>
       {/* Mobile Navigation Overlay */}
-      <div className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${menuOpen ? "block opacity-100" : "hidden opacity-0"}`} onClick={() => setMenuOpen(false)} />
+      <div
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${menuOpen ? "block opacity-100" : "hidden opacity-0"}`}
+        onClick={() => setMenuOpen(false)}
+      />
       <div className={`fixed top-0 right-0 w-3/4 max-w-xs h-full bg-white shadow-lg z-50 transition-transform duration-300 ${menuOpen ? "translate-x-0" : "translate-x-full"} flex flex-col py-10 px-6 gap-6`}>
         <button className="absolute top-4 right-4 text-3xl text-[#208704] font-bold focus:outline-none" onClick={() => setMenuOpen(false)} aria-label="Close Menu">&times;</button>
         {navLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            className="text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all"
-            onClick={() => setMenuOpen(false)}
+          <button
+            key={link.value}
+            onClick={() => { setMenuOpen(false); setCurrentSection(link.value); }}
+            className={`text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left
+              ${isActive(link.value) ? "font-bold text-[#208704]" : ""}`}
           >
             {link.label}
-          </a>
+          </button>
         ))}
-        <a
-          href="#"
-          className="bg-[#dfb112] text-white px-6 py-3 mt-4 rounded-lg font-semibold text-xl no-underline hover:bg-[#f9e076] transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
-          style={{
-            boxShadow: "0 2px 16px 0 rgba(223,177,18,0.14)",
-            transitionProperty: 'background, box-shadow, transform',
-            transitionDuration: '300ms',
-            transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)'
-          }}
-          onClick={() => setMenuOpen(false)}
-        >
-          Real Estate
-        </a>
       </div>
     </nav>
   );

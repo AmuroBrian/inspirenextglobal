@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -58,9 +59,9 @@ const About = () => (
         {/* Text - moved first on mobile */}
         <motion.div
           variants={slideVariant}
-          className="flex flex-col justify-center flex-1 px-4 sm:px-5 md:px-8 lg:px-10 py-4 sm:py-5 md:py-8 lg:py-10 order-2 md:order-1"
+          className="flex flex-col justify-center flex-1 px-3 xs:px-4 sm:px-5 md:px-8 lg:px-10 py-4 xs:py-5 md:py-8 lg:py-10 order-2 md:order-1"
         >
-          <div className="text-gray-700 text-xs sm:text-sm md:text-base leading-6 sm:leading-7 md:leading-8">
+          <div className="text-gray-700 text-xs xs:text-sm sm:text-base md:text-lg leading-6 xs:leading-7 sm:leading-7 md:leading-8">
             <b>Inspire Next Global Inc.</b> is a visionary management company
             with diverse interests spanning construction and development, healthcare and pharmaceuticals, gaming and entertainment, agriculture trading, and
             specialized services - serving both private and public sector.<br /><br />
@@ -75,7 +76,7 @@ const About = () => (
         {/* Image - moved second on mobile */}
         <motion.div
           variants={imageVariant}
-          className="flex-1 min-h-[200px] sm:min-h-[250px] md:min-h-[440px] max-h-[300px] sm:max-h-[350px] md:max-h-[none] w-full md:w-[48%] order-1 md:order-2"
+          className="flex-1 min-h-[180px] xs:min-h-[220px] sm:min-h-[250px] md:min-h-[440px] max-h-[320px] xs:max-h-[350px] md:max-h-none w-full md:w-[48%] order-1 md:order-2"
         >
           <img
             src={aboutImage}
@@ -86,6 +87,17 @@ const About = () => (
         </motion.div>
       </motion.div>
     </div>
+    <style jsx>{`
+      @media (max-width: 640px) {
+        .xs\\:text-sm { font-size: 0.95rem; }
+        .xs\\:py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+        .xs\\:px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .xs\\:leading-7 { line-height: 1.6; }
+        .xs\\:min-h-220px { min-height: 220px; }
+        .xs\\:max-h-350px { max-height: 350px; }
+        .xs\\:max-h-320px { max-height: 320px; }
+      }
+    `}</style>
   </section>
 );
 
