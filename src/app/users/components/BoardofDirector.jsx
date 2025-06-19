@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // Eco-friendly/green card backgrounds for Executive Directors
 const executiveDirectors = [
@@ -7,9 +7,9 @@ const executiveDirectors = [
     name: "Melody Santos",
     position: "President",
     img: "/president.png",
-    description: "Bob is responsible for leading the creative vision of the company. He specializes in branding and marketing initiatives.",
+    description: "Melody Santos is responsible for the overall leadership of the company, ensuring organizational direction and success.",
     contact: {
-      email: "bob.brown@company.com",
+      email: "melody.santos@company.com",
       phone: "+1 555-0101",
     },
     cardBg: "linear-gradient(135deg, #d7fbe8 60%, #b9e7ce 100%)",
@@ -19,9 +19,9 @@ const executiveDirectors = [
     name: "Rhia Alberto",
     position: "Vice President",
     img: "/3.png",
-    description: "Mary oversees all accounting operations and ensures accurate financial reporting for the company.",
+    description: "Rhia Alberto assists in managing the company's strategic operations and supporting executive initiatives.",
     contact: {
-      email: "mary.smith@company.com",
+      email: "rhia.alberto@company.com",
       phone: "+1 555-0102"
     },
     cardBg: "linear-gradient(135deg, #d7fbe8 60%, #b9e7ce 100%)",
@@ -31,9 +31,9 @@ const executiveDirectors = [
     name: "Andrei Bergano",
     position: "Executive Director",
     img: "/5.png",
-    description: "Nick manages the sales team and is dedicated to expanding the company’s client base and driving revenue growth.",
+    description: "Andrei Bergano oversees executive projects and supports the implementation of corporate policies.",
     contact: {
-      email: "nick.dark@company.com",
+      email: "andrei.bergano@company.com",
       phone: "+1 555-0103"
     },
     cardBg: "linear-gradient(135deg, #d7fbe8 60%, #b9e7ce 100%)",
@@ -60,7 +60,7 @@ const nonExecutiveDirectors = [
     name: "Alfredo Reyes",
     position: "Non Executive Director",
     img: "/reyes.png",
-    description: "Alfredo Reyes ensures the company’s branding is consistent and visually appealing.",
+    description: "Alfredo Reyes advises on company governance and compliance.",
     contact: {
       email: "alfredo.reyes@company.com",
       phone: "+1 555-0105"
@@ -70,7 +70,7 @@ const nonExecutiveDirectors = [
     name: "Ronaldo Castillo",
     position: "Non Executive Director",
     img: "/ronaldo.png",
-    description: "Ronaldo Castillo is responsible for software development and maintaining the company’s digital infrastructure.",
+    description: "Ronaldo Castillo provides oversight and guidance on technology and operations.",
     contact: {
       email: "ronaldo.castillo@company.com",
       phone: "+1 555-0106"
@@ -121,57 +121,14 @@ const corporateOperationOffice = [
   }
 ];
 
-const marketingTeam = [
-  {
-    name: "Jasmine Cruz",
-    position: "Marketing Head",
-    img: "/marketing1.png",
-    description: "Jasmine leads the marketing strategies and campaigns for the company.",
-    contact: {
-      email: "jasmine.cruz@company.com",
-      phone: "+1 555-0111"
-    }
-  },
-  {
-    name: "Marco Rivera",
-    position: "Marketing Associate",
-    img: "/marketing2.png",
-    description: "Marco supports the planning and execution of marketing initiatives.",
-    contact: {
-      email: "marco.rivera@company.com",
-      phone: "+1 555-0112"
-    }
-  },
-  {
-    name: "Lara Mendoza",
-    position: "Social Media Specialist",
-    img: "/marketing3.png",
-    description: "Lara manages social media campaigns and engagement.",
-    contact: {
-      email: "lara.mendoza@company.com",
-      phone: "+1 555-0113"
-    }
-  },
-  {
-    name: "Daniel Ong",
-    position: "Content Creator",
-    img: "/marketing4.png",
-    description: "Daniel develops creative content for various marketing channels.",
-    contact: {
-      email: "daniel.ong@company.com",
-      phone: "+1 555-0114"
-    }
-  }
-];
-
 const secretaryTeam = [
   {
     name: "Shelah Reynaldo",
     position: "Secretary",
     img: "/17.png",
-    description: "Mila handles all corporate secretarial duties and documentation.",
+    description: "Shelah handles all corporate secretarial duties and documentation.",
     contact: {
-      email: "mila.garcia@company.com",
+      email: "shelah.reynaldo@company.com",
       phone: "+1 555-0115"
     }
   },
@@ -179,9 +136,9 @@ const secretaryTeam = [
     name: "Joanne Hermosura",
     position: "Secretary",
     img: "/19.png",
-    description: "Paolo assists in secretarial tasks and maintains records.",
+    description: "Joanne assists in secretarial tasks and maintains records.",
     contact: {
-      email: "paolo.dizon@company.com",
+      email: "joanne.hermosura@company.com",
       phone: "+1 555-0116"
     }
   }
@@ -192,9 +149,9 @@ const auditTeam = [
     name: "Raphael Jheremy Reyes",
     position: "Chief Audit Officer",
     img: "/15.png",
-    description: "Sofia ensures compliance and oversees internal auditing processes.",
+    description: "Raphael ensures compliance and oversees internal auditing processes.",
     contact: {
-      email: "sofia.ramos@company.com",
+      email: "raphael.reyes@company.com",
       phone: "+1 555-0117"
     }
   }
@@ -205,9 +162,9 @@ const securityTeam = [
     name: "Neil Brion",
     position: "Security Officer",
     img: "/21.png",
-    description: "Luis oversees security protocols and ensures the safety of the organization.",
+    description: "Neil oversees security protocols and ensures the safety of the organization.",
     contact: {
-      email: "luis.santiago@company.com",
+      email: "neil.brion@company.com",
       phone: "+1 555-0118"
     }
   }
@@ -302,17 +259,9 @@ export default function BoardofDirector() {
   const [expandedExec, setExpandedExec] = useState(null);
   const [expandedNonExec, setExpandedNonExec] = useState(null);
   const [expandedCorpOps, setExpandedCorpOps] = useState(null);
-  const [expandedMarketing, setExpandedMarketing] = useState(null);
   const [expandedSecretary, setExpandedSecretary] = useState(null);
   const [expandedAudit, setExpandedAudit] = useState(null);
   const [expandedSecurity, setExpandedSecurity] = useState(null);
-
-  // Example useEffect - can be removed if you don't need it
-  useEffect(() => {
-    // This is just a placeholder for demonstration.
-    // Do NOT put setState here unless you want it to run ONCE after mount.
-    // Never put setState in a useEffect without [].
-  }, []); // <--- dependency array, SAFE!
 
   return (
     <main className="py-0 px-0 min-h-screen bg-[#ffffff]">
@@ -330,12 +279,6 @@ export default function BoardofDirector() {
           </h1>
           <div className="w-16 h-1 bg-white mx-auto mb-2 rounded-full" />
         </div>
-      </div>
-
-      <div className="max-w-5xl mx-auto text-center my-10">
-        <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-          Meet the talented professionals who guide and drive the vision of our organization.
-        </p>
       </div>
 
       <div className="max-w-7xl mx-auto mb-10 px-2">
@@ -373,19 +316,6 @@ export default function BoardofDirector() {
               member={member}
               expanded={expandedCorpOps === i}
               onClick={() => setExpandedCorpOps(expandedCorpOps === i ? null : i)}
-            />
-          ))}
-        </section>
-      </div>
-      <div className="max-w-7xl mx-auto mb-10 px-2">
-        <h3 className="text-xl font-semibold text-gray-800 mb-6">Marketing</h3>
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {marketingTeam.map((member, i) => (
-            <DirectorCard
-              key={member.name}
-              member={member}
-              expanded={expandedMarketing === i}
-              onClick={() => setExpandedMarketing(expandedMarketing === i ? null : i)}
             />
           ))}
         </section>
