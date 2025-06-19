@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const companies = [
   {
     name: "Desknet's Neo",
-    img: "/neo.png",
+    img: "/desk.png",
     desc: "Desknet's NEO is a cloud-based groupware popular in Japan, offering businesses a customizable platform for collaboration, communication, and workflow management.",
   },
   {
@@ -24,12 +24,12 @@ const companies = [
   },
   {
     name: "Alpha-HT",
-    img: "/alpha.png",
+    img: "/aplha.png",
     desc: "Alpha-HT is committed to transforming the way we power our world. By integrating a-HT technology, our air coolers provide a sustainable, cost-effective solution for a more comfortable and ecofriendly future, while reducing your energy consumption.",
   },
   {
     name: "Inspire Cosmetics",
-    img: "/images/inspire-logistics.jpg",
+    img: "/ibeauty.png",
     desc: "Focuses on making your skin glowy and bright while still having a natural skin moisture will also have products that make your skin younger and healthier. Our products are made with natural ingredients that are safe for all skin types, including sensitive skin.  We believe that everyone deserves to feel confident and beautiful in their own skin, and our products are designed to help you achieve that.",
   },
 ];

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const structureData = {
   parent: {
     name: "Inspire Holdings Incorporated",
-    img: "/inspire.jpg",
+    img: "/inspireholding.png",
   },
   group: [
     {
@@ -23,7 +23,7 @@ const structureData = {
     },
     {
       name: "Inspire BPI Advisory",
-      img: "/structure/inspire-bpi-advisory.png",
+      img: "/bpi.png",
     },
     {
       name: "Inspire Holdings LLC (USA)",
@@ -35,19 +35,19 @@ const structureData = {
     },
     {
       name: "Inspire GMS Finance Corporation",
-      img: "/structure/inspire-gms-finance.png",
+      img: "/gmsl.png",
     },
     {
       name: "GMFastCash Lending Corporation",
-      img: "/structure/gmfastcash-lending.png",
+      img: "/gmfast.png",
     },
     {
       name: "XANA LLC (Philippines)",
-      img: "/structure/xana-llc-ph.png",
+      img: "/xana.png",
     },
     {
       name: "Clinica de Bereza beauty clinic",
-      img: "/structure/clinica-de-bereza.png",
+      img: "/beauty.png",
     },
   ],
 };
@@ -75,16 +75,8 @@ function LogoImg({ src, alt, style, ...props }) {
       src={error ? placeholder : src}
       alt={alt}
       onError={() => setError(true)}
-      style={{
-        objectFit: "contain",
-        width: "100%",
-        height: "100%",
-        maxHeight: "100%",
-        maxWidth: "100%",
-        background: "#f5f7eb",
-        display: "block",
-        ...style,
-      }}
+      className="object-contain w-full h-full bg-white"
+      style={style}
       {...props}
     />
   );
@@ -94,7 +86,7 @@ export default function CorporateStructure() {
   const [zoomed, setZoomed] = useState(false);
 
   return (
-    <main className="min-h-screen  py-12 px-2 sm:px-4">
+    <main className="min-h-screen py-12 px-2 sm:px-4 bg-[#ffffff]">
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -120,9 +112,9 @@ export default function CorporateStructure() {
           className="bg-white rounded-2xl shadow-xl p-4 xs:p-6 md:p-10 flex flex-col items-center relative"
         >
           <motion.div
-            className="w-full max-w-[500px] h-[160px] xs:h-[180px] md:h-[230px] mb-6 shadow-sm cursor-zoom-in flex items-center justify-center"
+            className="w-full max-w-[500px] h-[180px] sm:h-[230px] mb-6 shadow-sm cursor-zoom-in flex items-center justify-center"
             style={{
-              background: "#f7fdf3",
+              background: "#fff",
               border: "1px solid #e5f2d6",
               borderRadius: 16,
               overflow: "hidden",
@@ -144,7 +136,6 @@ export default function CorporateStructure() {
               }}
             />
           </motion.div>
-
           <AnimatePresence>
             {zoomed && (
               <motion.div
@@ -157,7 +148,7 @@ export default function CorporateStructure() {
                 <motion.img
                   src={structureData.parent.img}
                   alt={structureData.parent.name}
-                  className="max-w-[96vw] max-h-[90vh] rounded-2xl border-4 border-white shadow-2xl cursor-zoom-out"
+                  className="max-w-[96vw] max-h-[90vh]  border-4 border-white shadow-2xl cursor-zoom-out bg-white"
                   initial={{ scale: 0.7, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.7, opacity: 0 }}
@@ -170,7 +161,7 @@ export default function CorporateStructure() {
                   style={{ background: "#fff" }}
                 />
                 <button
-                  className="absolute top-8 right-8 bg-white/90 text-[#8db249] font-bold text-lg rounded-full px-4 py-2 shadow hover:bg-white/100 transition-colors"
+                  className="absolute top-8 right-8 bg-white/90 text-[#8db249] font-bold text-lg  px-4 py-2 shadow hover:bg-white/100 transition-colors"
                   onClick={() => setZoomed(false)}
                   tabIndex={0}
                 >
@@ -179,7 +170,6 @@ export default function CorporateStructure() {
               </motion.div>
             )}
           </AnimatePresence>
-
           <h2 className="text-lg xs:text-xl font-bold text-[#6a9732] uppercase tracking-wide mb-2 text-center">
             Parent Company / Major Shareholder
           </h2>
@@ -209,13 +199,14 @@ export default function CorporateStructure() {
                 variants={fadeInUp}
                 viewport={{ once: true, amount: 0.3 }}
                 className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 xs:p-6 hover:scale-105 hover:shadow-2xl transition-all duration-300 justify-center"
-                style={{ minHeight: 210 }}
+                style={{ minHeight: 280 }} // Increased card height
               >
+                {/* Expanded group logo container */}
                 <div
+                  className="w-full"
                   style={{
-                    width: "100%",
-                    height: 120,
-                    background: "#f7fdf3",
+                    height: 180, // Increased logo container height
+                    background: "#fff",
                     borderRadius: 12,
                     border: "1px solid #e5f2d6",
                     display: "flex",
@@ -229,8 +220,8 @@ export default function CorporateStructure() {
                     src={company.img}
                     alt={company.name}
                     style={{
-                      maxHeight: "90%",
-                      maxWidth: "90%",
+                      maxHeight: "95%",
+                      maxWidth: "95%",
                       objectFit: "contain",
                       margin: "auto",
                     }}

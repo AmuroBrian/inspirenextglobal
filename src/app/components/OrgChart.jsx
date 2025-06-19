@@ -112,11 +112,8 @@ export default function OrgChartAndRealEstatePage() {
           <h2 className="text-[#b99a5b] text-2xl sm:text-3xl md:text-4xl font-extrabold mb-2 sm:mb-3 md:mb-4 tracking-tight">
             Inspire Board of Directors
           </h2>
-          <h3 className="text-gray-800 text-lg sm:text-xl md:text-2xl font-bold mb-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          </h3>
           <p className="text-gray-700 text-base sm:text-lg mb-4 max-w-xl leading-6 sm:leading-7">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Our Board of Directors is composed of visionary leaders committed to guiding Inspire toward continued innovation and impact. With diverse expertise across technology, strategy, and operations, they provide invaluable oversight and direction. Their dedication ensures that our mission, values, and long-term goals align with the needs of our stakeholders and the communities we serve.
           </p>
           <motion.div
             variants={buttonVariants}
