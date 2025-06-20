@@ -28,6 +28,10 @@ export default function OrganizationalChart() {
       }}
       className="max-w-6xl mx-auto px-4 py-12"
     >
+      {/* Company Chart Image */}
+      <div className="flex justify-center mb-8">
+      
+      </div>
       <motion.h1 
         className="text-4xl font-bold text-center mb-12 text-[#3ea96e]"
         variants={{
@@ -65,6 +69,7 @@ function ChartSection({ title, items, defaultColor }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
   const controls = useAnimation();
+  const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
     if (isInView) {
@@ -101,7 +106,21 @@ function ChartSection({ title, items, defaultColor }) {
       >
         {title}
       </motion.h2>
-      
+      {/* Show the image only in the Business Model Chart section and only if an FAQ is open */}
+      {title === "Business Model Chart" && openIndex !== null && (
+        <div className="flex justify-center my-6">
+        </div>
+      )}
+      {/* Show the image only in the Workflow Chart section and only if an FAQ is open */}
+      {title === "Workflow Chart" && openIndex !== null && (
+        <div className="flex justify-center my-6 px-2">
+          <img 
+            src="/companychart.jpg" 
+            alt="Company Chart" 
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto rounded-xl shadow-md mx-auto" 
+          />
+        </div>
+      )}
       <div className="divide-y divide-gray-200">
         {items.map((item, index) => (
           <FAQItem 
@@ -110,6 +129,8 @@ function ChartSection({ title, items, defaultColor }) {
             answer={item.answer}
             color={defaultColor}
             index={index}
+            isOpen={openIndex === index}
+            onToggle={() => setOpenIndex(openIndex === index ? null : index)}
           />
         ))}
       </div>
@@ -117,8 +138,7 @@ function ChartSection({ title, items, defaultColor }) {
   );
 }
 
-function FAQItem({ question, answer, color, index }) {
-  const [isOpen, setIsOpen] = useState(false);
+function FAQItem({ question, answer, color, index, isOpen, onToggle }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
   const controls = useAnimation();
@@ -152,7 +172,7 @@ function FAQItem({ question, answer, color, index }) {
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
         className={`w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors ${isOpen ? 'font-semibold' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={onToggle}
         style={isOpen ? { color } : {}}
       >
         <span className="text-lg">{question}</span>

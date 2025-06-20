@@ -58,10 +58,10 @@ const slideInVariants = {
 };
 
 const Features = () => (
-  <section className="bg-white min-h-screen pb-12 sm:pb-16 md:pb-20">
+  <section className="bg-white min-h-screen pb-12 sm:pb-16 md:pb-20 lg:pb-24">
     {/* Section Header */}
     <motion.div
-      className="pt-8 sm:pt-10 md:pt-12 px-4 sm:px-6 md:px-8 lg:px-12"
+      className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16"
       variants={slideInVariants}
       initial="hidden"
       whileInView="visible"
@@ -76,22 +76,22 @@ const Features = () => (
     </motion.div>
 
     {/* Features Grid */}
-    <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center px-4 sm:px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full max-w-7xl">
+    <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex justify-center px-4 sm:px-6 md:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full max-w-7xl">
         {features.map(({ title, img, desc }) => (
           <motion.div
             key={title}
-            className="bg-white rounded-lg shadow-md sm:shadow-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+            className="bg-white rounded-lg shadow-md sm:shadow-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300 h-full"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: false, amount: 0.25 }}
             variants={cardVariants}
           >
-            <div className="aspect-w-16 aspect-h-9 w-full">
+            <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] overflow-hidden">
               <img
                 src={img}
                 alt={title}
-                className="object-cover w-full h-full min-h-[180px] sm:min-h-[200px] md:min-h-[224px]"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
             </div>
@@ -99,7 +99,7 @@ const Features = () => (
               <h3 className="text-black text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">
                 {title}
               </h3>
-              <p className="text-gray-700 text-sm sm:text-base leading-relaxed sm:leading-loose">
+              <p className="text-gray-700 text-sm sm:text-base md:text-[15px] leading-relaxed sm:leading-loose">
                 {desc}
               </p>
             </div>

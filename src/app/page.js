@@ -198,7 +198,7 @@ export default function Page() {
       {/* COMPANY UNDER SECTION */}
       <section className="relative bg-[#b4d5bb] text-black py-10 sm:py-14 md:py-16 overflow-hidden">
         <SectionShapes colorSet={1} />
-        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 z-20">
+        <div className="relative max-w-7x6 w-full mx-auto px-4 sm:px-6 z-20">
           <Companyunder />
         </div>
       </section>
