@@ -10,8 +10,8 @@ import Message from "./components/Message";
 import OrgChart from "./components/OrgChart";
 import Contact from "./components/Contact";
 import Corporate from "./components/Corporate";
-
-
+import Policy from "./components/Policy";
+import Chart from "./components/Chart";
 // Helper for scroll-triggered animation
 function useScrollFadeIn() {
   const ref = useRef();
@@ -163,6 +163,13 @@ export default function Page() {
         <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 z-20">
           <Mission />
         </div>
+      </section>  
+      {/* OrgChart Section */}
+      <section className="relative bg-white text-black py-10 sm:py-14 md:py-16 overflow-hidden">
+        <SectionShapes colorSet={3} />
+        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 z-20">
+          <OrgChart />
+        </div>
       </section>
       {/* Message Section */}
       <section className="relative bg-[#f9f9f9] text-black py-10 sm:py-14 md:py-16 overflow-hidden">
@@ -170,6 +177,9 @@ export default function Page() {
         <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 z-20">
           <Message />
         </div>
+      </section>
+      <section className="relative bg-white text-black py-10 sm:py-14 md:py-16 overflow-hidden">
+        <Chart />
       </section>
       {/* BUSINESS SECTION */}
       <section className="relative bg-[#b4d5bb] text-black py-10 sm:py-14 md:py-16 overflow-hidden">
@@ -183,13 +193,6 @@ export default function Page() {
         <SectionShapes colorSet={2} />
         <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 z-20">
           <Realestate />
-        </div>
-      </section>
-      {/* OrgChart Section */}
-      <section className="relative bg-white text-black py-10 sm:py-14 md:py-16 overflow-hidden">
-        <SectionShapes colorSet={3} />
-        <div className="relative max-w-7xl w-full mx-auto px-4 sm:px-6 z-20">
-          <OrgChart />
         </div>
       </section>
       {/* COMPANY UNDER SECTION */}
@@ -214,6 +217,9 @@ export default function Page() {
         </div>
       </section>
   
+  <section className="relative bg-white text-black py-10 sm:py-14 md:py-16 overflow-hidden">
+    <Policy />
+  </section>
     </>
   );
 }
