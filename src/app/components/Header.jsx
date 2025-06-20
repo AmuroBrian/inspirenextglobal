@@ -1,24 +1,31 @@
 "use client";
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const navLinks = [
-  { label: "Home", value: "home" },
-  { label: "About", value: "about" },
-  { label: "Real Estate", value: "realestate" },
-  { label: "Contact", value: "contact" },
+  { label: "Home", value: "home", href: "/" },
+  { label: "About", value: "about", href: "/#about" },
+  { label: "Real Estate", value: "realestate", href: "/#realestate" },
+  { label: "Contact", value: "contact", href: "/#contact" },
+  { label: "Board of Directors", value: "board", href: "/users" },
 ];
 
 const Header = ({ currentSection, setCurrentSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Detect if we are on the main page
+  const isMainPage = typeof window !== 'undefined' && window.location.pathname === '/';
+
   const isActive = (value) => currentSection === value;
 
   const handleNavigation = (value) => {
-    const section = document.getElementById(value);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+    if (isMainPage && value !== 'board') {
+      const section = document.getElementById(value);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+      setCurrentSection && setCurrentSection(value);
     }
-    setCurrentSection(value);
   };
 
   return (
@@ -43,24 +50,64 @@ const Header = ({ currentSection, setCurrentSection }) => {
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center gap-8 xl:gap-12 ml-auto">
         {navLinks.map((link) => (
-          <button
-            key={link.value}
-            onClick={() => handleNavigation(link.value)}
-            className={`
-              text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
-              relative px-1
-              before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
-              hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
-              ${isActive(link.value) ? "font-bold text-[#208704]" : ""}
-            `}
-            style={{
-              transitionProperty: 'color, background, border, box-shadow',
-              transitionDuration: '300ms',
-              transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-            }}
-          >
-            {link.label}
-          </button>
+          link.value === 'board' ? (
+            <Link
+              key={link.value}
+              href={link.href}
+              className={`
+                text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
+                relative px-1
+                before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
+                hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
+              `}
+              style={{
+                transitionProperty: 'color, background, border, box-shadow',
+                transitionDuration: '300ms',
+                transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+              }}
+            >
+              {link.label}
+            </Link>
+          ) : (
+            isMainPage ? (
+              <button
+                key={link.value}
+                onClick={() => handleNavigation(link.value)}
+                className={`
+                  text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
+                  relative px-1
+                  before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
+                  hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
+                  ${isActive(link.value) ? "font-bold text-[#208704]" : ""}
+                `}
+                style={{
+                  transitionProperty: 'color, background, border, box-shadow',
+                  transitionDuration: '300ms',
+                  transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+                }}
+              >
+                {link.label}
+              </button>
+            ) : (
+              <Link
+                key={link.value}
+                href={link.href}
+                className={`
+                  text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
+                  relative px-1
+                  before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
+                  hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
+                `}
+                style={{
+                  transitionProperty: 'color, background, border, box-shadow',
+                  transitionDuration: '300ms',
+                  transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+                }}
+              >
+                {link.label}
+              </Link>
+            )
+          )
         ))}
       </div>
 
@@ -99,19 +146,41 @@ const Header = ({ currentSection, setCurrentSection }) => {
           &times;
         </button>
         {navLinks.map((link) => (
-          <button
-            key={link.value}
-            onClick={() => {
-              handleNavigation(link.value);
-              setMenuOpen(false);
-            }}
-            className={`
-              text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left
-              ${isActive(link.value) ? "font-bold text-[#208704]" : ""}
-            `}
-          >
-            {link.label}
-          </button>
+          link.value === 'board' ? (
+            <Link
+              key={link.value}
+              href={link.href}
+              className="text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ) : (
+            isMainPage ? (
+              <button
+                key={link.value}
+                onClick={() => {
+                  handleNavigation(link.value);
+                  setMenuOpen(false);
+                }}
+                className={`
+                  text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left
+                  ${isActive(link.value) ? "font-bold text-[#208704]" : ""}
+                `}
+              >
+                {link.label}
+              </button>
+            ) : (
+              <Link
+                key={link.value}
+                href={link.href}
+                className="text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            )
+          )
         ))}
       </div>
     </nav>
