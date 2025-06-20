@@ -26,9 +26,9 @@ function AboutInspireNextGlobal() {
 }
 
 // Section Header Component
-function SectionHeader({ title, subtitle, color = "#3ea96e" }) {
+function SectionHeader({ title, subtitle, color = "#3ea96e", className = "" }) {
   return (
-    <div className="text-center mb-12 px-4">
+    <div className={`text-center mb-12 px-4 ${className}`}>
       <h2 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight" style={{ color }}>
         {title}
       </h2>
@@ -40,7 +40,7 @@ function SectionHeader({ title, subtitle, color = "#3ea96e" }) {
   );
 }
 
-// Card Component
+// Optimized Card Component with Centered Text
 function DirectorCard({ member, expanded, onClick }) {
   const cardBg = member.cardBg || "linear-gradient(135deg, rgba(231,251,231,0.9) 0%, rgba(227,247,219,0.95) 100%)";
   const imgBg = member.imgBg || "repeating-linear-gradient(135deg, #e0f7e9 0 20px, #d4efdf 20px 40px)";
@@ -48,20 +48,20 @@ function DirectorCard({ member, expanded, onClick }) {
 
   return (
     <div
-      className={`relative rounded-2xl shadow-lg flex flex-col items-center transition-all duration-300 cursor-pointer overflow-hidden border-2 group hover:shadow-xl ${
+      className={`relative rounded-2xl shadow-lg flex flex-col transition-all duration-300 cursor-pointer overflow-hidden border-2 group hover:shadow-xl ${
         expanded ? "z-20 scale-[1.02] shadow-xl" : ""
       } ${member.position === "President" ? "lg:col-span-3" : ""}`}
       onClick={onClick}
       style={{ 
-        minHeight: 420, 
+        height: expanded ? 'auto' : '420px',
         background: cardBg,
         borderColor: expanded ? accentColor : '#ffffff'
       }}
     >
       <div
-        className="w-full flex items-center justify-center relative"
+        className="w-full flex items-center justify-center relative aspect-square"
         style={{
-          height: "240px",
+          height: "320px",
           background: imgBg,
           backgroundSize: "cover",
           backgroundPosition: "center"
@@ -71,30 +71,34 @@ function DirectorCard({ member, expanded, onClick }) {
         <img
           src={member.img}
           alt={member.name}
-          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 m-0 p-0"
           style={{
-            objectFit: "contain",
-            maxHeight: "240px",
+            objectFit: "cover",
+            height: "100%",
+            width: "100%",
             backgroundColor: "rgba(215,251,232,0.85)"
           }}
         />
       </div>
-      <div className="w-full flex flex-col items-center px-6 py-5">
-        <div className="uppercase text-xs font-bold tracking-wider mb-1" style={{ color: accentColor }}>
+      <div className="w-full flex flex-col items-center justify-center px-4 py-4 text-center">
+        <div 
+          className="uppercase text-xs font-bold tracking-wider mb-1 w-full"
+          style={{ color: accentColor }}
+        >
           {member.position}
         </div>
-        <h3 className="font-extrabold text-lg text-gray-900 mb-1 text-center">
+        <h3 className="font-extrabold text-lg text-gray-900 w-full">
           {member.name}
         </h3>
         {expanded && (
           <div 
-            className="mt-5 w-full p-4 rounded-xl animate-fadeIn shadow-inner"
+            className="mt-3 w-full p-4 rounded-xl animate-fadeIn shadow-inner"
             style={{
               backgroundColor: `${accentColor}10`,
               border: `1px solid ${accentColor}30`
             }}
           >
-            <div className="text-gray-700 text-center text-sm">
+            <div className="text-gray-700 text-sm text-center">
               {member.description}
             </div>
           </div>
@@ -132,9 +136,9 @@ function TeamSection({ title, members, expandedIndex, setExpandedIndex, cols = "
   };
 
   return (
-    <div className="max-w-7xl mx-auto mb-16 px-4">
+    <div className="max-w-7xl mx-auto mb-16 px-0">
       <h3 
-        className="text-2xl font-semibold mb-8 pb-2 border-b"
+        className="text-2xl font-semibold mb-8 pb-2 border-b text-center"
         style={{ 
           color: accentColor,
           borderColor: `${accentColor}30`
@@ -142,7 +146,7 @@ function TeamSection({ title, members, expandedIndex, setExpandedIndex, cols = "
       >
         {title}
       </h3>
-      <div className={`grid ${gridClasses[cols]} gap-6`}>
+      <div className={`grid ${gridClasses[cols]} gap-4 px-4`}>
         {members.map((member, i) => (
           <div key={member.name} className="h-full">
             <DirectorCard
@@ -157,11 +161,11 @@ function TeamSection({ title, members, expandedIndex, setExpandedIndex, cols = "
   );
 }
 
-// Data (unchanged from your original)
+// Data
 const president = {
   name: "Melody Santos",
   position: "President",
-  img: "/president.png",
+  img: "/presi.png",
   description: "As President, Melody Santos provides visionary leadership and is responsible for the overall strategic direction, growth, and success of the company. She oversees all organizational operations, fosters innovation, and ensures Inspire Next Global remains aligned with its mission and values.",
   cardBg: "linear-gradient(135deg, rgba(215,251,232,0.9) 0%, rgba(185,231,206,0.95) 100%)",
   imgBg: "url('/eco-bg.png'), linear-gradient(135deg, #b5e1c6 60%, #3ea96e 100%)",
@@ -311,9 +315,10 @@ export default function BoardofDirector() {
         title="Meet Our Leadership Team" 
         subtitle="Dedicated professionals guiding Inspire Next Global to new heights"
         color="#3ea96e"
+        className="mt-10"
       />
 
-      {/* President Section - Now matching other cards */}
+      {/* President Section */}
       <TeamSection
         title="President"
         members={[president]}
