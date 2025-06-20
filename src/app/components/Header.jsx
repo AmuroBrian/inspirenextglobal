@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { label: "Home", value: "home", href: "/" },
@@ -10,23 +11,9 @@ const navLinks = [
   { label: "Board of Directors", value: "board", href: "/users" },
 ];
 
-const Header = ({ currentSection, setCurrentSection }) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Detect if we are on the main page
-  const isMainPage = typeof window !== 'undefined' && window.location.pathname === '/';
-
-  const isActive = (value) => currentSection === value;
-
-  const handleNavigation = (value) => {
-    if (isMainPage && value !== 'board') {
-      const section = document.getElementById(value);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
-      }
-      setCurrentSection && setCurrentSection(value);
-    }
-  };
+  const pathname = usePathname();
 
   return (
     <nav className="bg-white border-2 border-[#ffffff] px-4 sm:px-6 md:px-8 py-5 flex items-center min-h-[72px] sticky top-0 z-50">
@@ -50,64 +37,29 @@ const Header = ({ currentSection, setCurrentSection }) => {
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center gap-8 xl:gap-12 ml-auto">
         {navLinks.map((link) => (
-          link.value === 'board' ? (
-            <Link
-              key={link.value}
-              href={link.href}
-              className={`
-                text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
-                relative px-1
-                before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
-                hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
-              `}
-              style={{
-                transitionProperty: 'color, background, border, box-shadow',
-                transitionDuration: '300ms',
-                transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-              }}
-            >
-              {link.label}
-            </Link>
-          ) : (
-            isMainPage ? (
-              <button
-                key={link.value}
-                onClick={() => handleNavigation(link.value)}
-                className={`
-                  text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
-                  relative px-1
-                  before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
-                  hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
-                  ${isActive(link.value) ? "font-bold text-[#208704]" : ""}
-                `}
-                style={{
-                  transitionProperty: 'color, background, border, box-shadow',
-                  transitionDuration: '300ms',
-                  transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-                }}
-              >
-                {link.label}
-              </button>
-            ) : (
-              <Link
-                key={link.value}
-                href={link.href}
-                className={`
-                  text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
-                  relative px-1
-                  before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
-                  hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
-                `}
-                style={{
-                  transitionProperty: 'color, background, border, box-shadow',
-                  transitionDuration: '300ms',
-                  transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-                }}
-              >
-                {link.label}
-              </Link>
-            )
-          )
+          <Link
+            key={link.value}
+            href={link.href}
+            className={`
+              text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
+              relative px-1
+              before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
+              hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
+              ${
+                (link.href === '/' && pathname === '/') ||
+                (link.href === '/users' && pathname.startsWith('/users'))
+                  ? 'font-bold text-[#208704]' : ''
+              }
+            `}
+            style={{
+              transitionProperty: 'color, background, border, box-shadow',
+              transitionDuration: '300ms',
+              transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+            }}
+            onClick={() => setMenuOpen(false)}
+          >
+            {link.label}
+          </Link>
         ))}
       </div>
 
@@ -146,41 +98,20 @@ const Header = ({ currentSection, setCurrentSection }) => {
           &times;
         </button>
         {navLinks.map((link) => (
-          link.value === 'board' ? (
-            <Link
-              key={link.value}
-              href={link.href}
-              className="text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left"
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ) : (
-            isMainPage ? (
-              <button
-                key={link.value}
-                onClick={() => {
-                  handleNavigation(link.value);
-                  setMenuOpen(false);
-                }}
-                className={`
-                  text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left
-                  ${isActive(link.value) ? "font-bold text-[#208704]" : ""}
-                `}
-              >
-                {link.label}
-              </button>
-            ) : (
-              <Link
-                key={link.value}
-                href={link.href}
-                className="text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            )
-          )
+          <Link
+            key={link.value}
+            href={link.href}
+            className={`text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left
+              ${
+                (link.href === '/' && pathname === '/') ||
+                (link.href === '/users' && pathname.startsWith('/users'))
+                  ? 'font-bold text-[#208704]' : ''
+              }
+            `}
+            onClick={() => setMenuOpen(false)}
+          >
+            {link.label}
+          </Link>
         ))}
       </div>
     </nav>

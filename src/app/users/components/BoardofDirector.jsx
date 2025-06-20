@@ -10,12 +10,12 @@ function AboutInspireNextGlobal() {
           About <span className="text-[#2c774b]">Inspire Next Global</span> Inc.
         </h2>
         <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#3ea96e] to-[#8db249] mx-auto mb-8" />
-        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+        <p className="text-lg text-gray-700 mb-6 leading-relaxed text-justify">
           Inspire Next Global Inc. is a forward-thinking conglomerate with diverse portfolio interests, 
           including construction & development, healthcare & pharmaceuticals, gaming & entertainment, 
           agriculture trading, logistics, and specialized consultancy services.
         </p>
-        <p className="text-lg text-gray-700 leading-relaxed">
+        <p className="text-lg text-gray-700 leading-relaxed text-justify">
           Serving both public and private sectors, the company operates under a strategic "conglomerate model," 
           functioning as a central financial hub that aligns and capitalizes on its subsidiaries and affiliates 
           to drive innovation, efficiency, and cross-sector synergy.
@@ -293,13 +293,13 @@ export default function BoardofDirector() {
   return (
     <main className="min-h-screen bg-[#f5fcf6] bg-[url('/green-texture.png')] bg-fixed bg-cover bg-no-repeat bg-blend-overlay">
       {/* Hero Section */}
-      <div className="w-full flex items-center justify-center relative overflow-hidden min-h-[320px] bg-gradient-to-br from-[#3ea96e] to-[#8db249]">
+      <div className="w-full flex items-center justify-center relative overflow-hidden min-h-[320px] bg-gradient-to-br from-[#3ea96e] to-[#8db249] mb-10">
         <div className="w-full max-w-6xl mx-auto text-center py-16 px-4 relative">
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-            Board of Directors
+           Inspire Insights
           </h1>
-          <div className="w-24 h-1.5 bg-white/80 mx-auto mb-2 rounded-full" />
-          <p className="text-xl text-white/90 mt-6 max-w-2xl mx-auto">
+          <div className="w-24 h-1.5 bg-white/80 mt-10 mx-auto mb-2 rounded-full" />
+          <p className="text-xl text-white/90 mt-15 max-w-2xl mx-auto">
             Meet the leadership team driving innovation and excellence
           </p>
         </div>

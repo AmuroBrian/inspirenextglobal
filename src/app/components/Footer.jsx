@@ -15,7 +15,7 @@ const Footer = () => {
             healthcare and pharmaceuticals, gaming and entertainment, agriculture trading, and
             specialized services - serving both private and public sector.
           </p>
-          <Link href="/about" className="text-[#e3b877] font-medium hover:underline inline-flex items-center">
+          <Link href="/users" className="text-[#e3b877] font-medium hover:underline inline-flex items-center">
             read more <span className="ml-1">→</span>
           </Link>
         </div>
