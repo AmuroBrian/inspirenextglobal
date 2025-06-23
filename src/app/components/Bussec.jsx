@@ -58,30 +58,31 @@ const slideInVariants = {
 };
 
 const Features = () => (
-  <section className="bg-white min-h-screen pb-12 sm:pb-16 md:pb-20 lg:pb-24">
+  <section className="min-h-screen pb-12 sm:pb-16 md:pb-20 lg:pb-24">
     {/* Section Header */}
     <motion.div
-      className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16"
+      className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center"
       variants={slideInVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.25 }}
     >
-      <span
-        className="inline-block bg-[#039c00] text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold px-4 sm:px-5 md:px-6 lg:px-7 py-1 sm:py-1.5 md:py-2 rounded-sm shadow"
-        style={{ letterSpacing: "-1px" }}
-      >
-        Business Sections
-      </span>
+      <h2 className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight" style={{ color: '#2F3E46', letterSpacing: '-0.03em' }}>
+        <span>Business </span>
+        <span style={{ color: '#D4AF37' }}>Sections</span>
+      </h2>
+      <div className="flex justify-center mt-2 mb-6">
+        <span className="inline-block w-24 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #D4AF37 0%, #2F3E46 100%)' }} />
+      </div>
     </motion.div>
 
     {/* Features Grid */}
     <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex justify-center px-4 sm:px-6 md:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full max-w-7xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 md:gap-10 w-full max-w-7xl">
         {features.map(({ title, img, desc }) => (
           <motion.div
             key={title}
-            className="bg-white rounded-lg shadow-md sm:shadow-xl overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300 h-full"
+            className="bg-[#F5F5F5] rounded-2xl shadow-2xl overflow-hidden flex flex-col hover:scale-[1.025] hover:shadow-2xl transition-all duration-300 h-full"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: false, amount: 0.25 }}
@@ -95,11 +96,11 @@ const Features = () => (
                 loading="lazy"
               />
             </div>
-            <div className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
-              <h3 className="text-black text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">
+            <div className="p-6 sm:p-7 md:p-8 flex-1 flex flex-col">
+              <h3 className="text-[#2F3E46] text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-center">
                 {title}
               </h3>
-              <p className="text-gray-700 text-sm sm:text-base md:text-[15px] leading-relaxed sm:leading-loose">
+              <p className="text-[#2F3E46]/90 text-base md:text-lg leading-relaxed text-center">
                 {desc}
               </p>
             </div>

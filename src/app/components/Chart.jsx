@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
 
 export default function OrganizationalChart() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const isInView = useInView(ref, { once: false, amount: 0.1 });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -26,14 +25,11 @@ export default function OrganizationalChart() {
           transition: { duration: 0.5 }
         }
       }}
-      className="max-w-6xl mx-auto px-4 py-12"
+      className="max-w-6xl mx-auto px-4 py-16"
     >
-      {/* Company Chart Image */}
-      <div className="flex justify-center mb-8">
-      
-      </div>
       <motion.h1 
-        className="text-4xl font-bold text-center mb-12 text-[#3ea96e]"
+        className="text-5xl font-extrabold text-center mb-16 tracking-tight"
+        style={{ color: '#2F3E46', letterSpacing: '-0.03em' }}
         variants={{
           hidden: { y: 20, opacity: 0 },
           visible: { 
@@ -43,22 +39,20 @@ export default function OrganizationalChart() {
           }
         }}
       >
-        Organizational Charts
+        <span>Organizational </span>
+        <span style={{ color: '#D4AF37' }}>Charts</span>
       </motion.h1>
       
-      <div className="space-y-16">
-        {/* Business Model Chart */}
+      <div className="space-y-20">
         <ChartSection 
           title="Business Model Chart" 
           items={businessModelItems} 
-          defaultColor="#3ea96e"
+          defaultColor="#D4AF37"
         />
-        
-        {/* Workflow Chart */}
         <ChartSection 
           title="Workflow Chart" 
           items={workflowItems} 
-          defaultColor="#4a8cbf"
+          defaultColor="#2F3E46"
         />
       </div>
     </motion.div>
@@ -67,7 +61,7 @@ export default function OrganizationalChart() {
 
 function ChartSection({ title, items, defaultColor }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
+  const isInView = useInView(ref, { once: false, margin: "0px 0px -100px 0px" });
   const controls = useAnimation();
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -90,27 +84,31 @@ function ChartSection({ title, items, defaultColor }) {
           transition: { duration: 0.6, ease: "easeOut" }
         }
       }}
-      className="bg-white rounded-xl shadow-md overflow-hidden"
+      className="rounded-2xl shadow-2xl overflow-hidden bg-white/60 border-2"
+      style={{
+        borderColor: defaultColor,
+        backdropFilter: 'blur(8px)'
+      }}
     >
-      <motion.h2 
-        className="text-2xl font-bold p-6 text-white" 
-        style={{ backgroundColor: defaultColor }}
-        variants={{
-          hidden: { x: -20, opacity: 0 },
-          visible: { 
-            x: 0, 
-            opacity: 1,
-            transition: { duration: 0.5, delay: 0.2 }
-          }
-        }}
-      >
-        {title}
-      </motion.h2>
-      {/* Show the image only in the Business Model Chart section and only if an FAQ is open */}
-      {title === "Business Model Chart" && openIndex !== null && (
-        <div className="flex justify-center my-6">
+      <motion.div className="p-8 pb-4">
+        <motion.h2 
+          className="text-3xl font-bold mb-2"
+          style={{ color: defaultColor }}
+          variants={{
+            hidden: { x: -20, opacity: 0 },
+            visible: { 
+              x: 0, 
+              opacity: 1,
+              transition: { duration: 0.5, delay: 0.2 }
+            }
+          }}
+        >
+          {title}
+        </motion.h2>
+        <div className="flex justify-start mb-6">
+          <span className="inline-block w-20 h-1 rounded-full" style={{ background: `linear-gradient(90deg, ${defaultColor} 0%, #2F3E46 100%)` }} />
         </div>
-      )}
+      </motion.div>
       {/* Show the image only in the Workflow Chart section and only if an FAQ is open */}
       {title === "Workflow Chart" && openIndex !== null && (
         <div className="flex justify-center my-6 px-2">
@@ -140,7 +138,7 @@ function ChartSection({ title, items, defaultColor }) {
 
 function FAQItem({ question, answer, color, index, isOpen, onToggle }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -50px 0px" });
+  const isInView = useInView(ref, { once: false, margin: "0px 0px -50px 0px" });
   const controls = useAnimation();
 
   useEffect(() => {
@@ -169,11 +167,11 @@ function FAQItem({ question, answer, color, index, isOpen, onToggle }) {
       className="transition-all duration-200"
     >
       <motion.button
-        whileHover={{ scale: 1.01 }}
+        whileHover={{ scale: 1.01, backgroundColor: '#F9F6EF' }}
         whileTap={{ scale: 0.99 }}
-        className={`w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors ${isOpen ? 'font-semibold' : ''}`}
+        className={`w-full text-left p-6 flex justify-between items-center transition-colors rounded-xl ${isOpen ? 'font-semibold' : ''}`}
         onClick={onToggle}
-        style={isOpen ? { color } : {}}
+        style={isOpen ? { color, backgroundColor: '#F9F6EF' } : { color: '#2F3E46', backgroundColor: 'transparent' }}
       >
         <span className="text-lg">{question}</span>
         <motion.svg
@@ -197,9 +195,9 @@ function FAQItem({ question, answer, color, index, isOpen, onToggle }) {
             transition: { duration: 0.3 }
           }}
           exit={{ opacity: 0, height: 0 }}
-          className="px-6 pb-6 pt-2 bg-gray-50 overflow-hidden"
+          className="px-6 pb-6 pt-2 bg-white/80 rounded-b-xl overflow-hidden"
         >
-          <p className="text-gray-700 whitespace-pre-line">{answer}</p>
+          <p className="text-gray-800 whitespace-pre-line">{answer}</p>
         </motion.div>
       )}
     </motion.div>

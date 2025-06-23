@@ -52,192 +52,150 @@ const structureData = {
   ],
 };
 
+const Lightbox = ({ src, alt, onClose }) => (
+    <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+    >
+        <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative"
+        >
+            <img
+                src={src}
+                alt={alt}
+                className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain rounded-lg bg-white"
+            />
+            <button
+                onClick={onClose}
+                className="absolute -top-3 -right-3 bg-white rounded-full p-2 text-black shadow-lg"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </motion.div>
+    </motion.div>
+);
+
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.08,
-      duration: 0.7,
-      type: "spring",
-      stiffness: 80,
-    },
+    transition: { delay: i * 0.05, duration: 0.6, type: "spring", stiffness: 90 },
   }),
 };
 
-const placeholder = "/placeholder-logo.svg"; // You should provide a simple SVG/PNG here
-
-function LogoImg({ src, alt, style, ...props }) {
-  const [error, setError] = useState(false);
-  return (
-    <img
-      src={error ? placeholder : src}
-      alt={alt}
-      onError={() => setError(true)}
-      className="object-contain w-full h-full bg-white"
-      style={style}
-      {...props}
-    />
-  );
-}
-
 export default function CorporateStructure() {
-  const [zoomed, setZoomed] = useState(false);
+  const [zoomedImage, setZoomedImage] = useState(null);
 
   return (
-    <main className="min-h-screen py-12 px-2 sm:px-4 bg-[#ffffff]">
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, type: "spring" }}
-        viewport={{ once: true }}
-        className="max-w-4xl mx-auto text-center mb-12"
-      >
-        <h1 className="text-3xl xs:text-4xl md:text-5xl font-extrabold text-[#8db249] mb-4 tracking-tight">
-          Corporate Structure of Inspire Next Global Inc.
-        </h1>
-        <p className="text-base xs:text-lg text-gray-700 max-w-2xl mx-auto">
-          See our parent company and group companies below.
-        </p>
-      </motion.div>
+    <>
+      <AnimatePresence>
+        {zoomedImage && <Lightbox src={zoomedImage} alt="Corporate Logo" onClose={() => setZoomedImage(null)} />}
+      </AnimatePresence>
 
-      <div className="max-w-7xl mx-auto flex flex-col gap-12 sm:gap-16">
-        {/* Parent Company */}
-        <motion.section
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, type: "spring" }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="bg-white rounded-2xl shadow-xl p-4 xs:p-6 md:p-10 flex flex-col items-center relative"
+      <main className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-white-">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUp}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center mb-12 md:mb-16"
         >
-          <motion.div
-            className="w-full max-w-[500px] h-[180px] sm:h-[230px] mb-6 shadow-sm cursor-zoom-in flex items-center justify-center"
-            style={{
-              background: "#fff",
-              border: "1px solid #e5f2d6",
-              borderRadius: 16,
-              overflow: "hidden",
-            }}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, type: "spring" }}
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight" style={{ color: '#2F3E46', letterSpacing: '-0.03em' }}>
+            <span>Our </span>
+            <span style={{ color: '#D4AF37' }}>Corporate Structure</span>
+          </h1>
+          <div className="flex justify-center mt-2 mb-6">
+            <span className="inline-block w-24 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #D4AF37 0%, #2F3E46 100%)' }} />
+          </div>
+          <p className="text-lg text-[#2F3E46]/90 max-w-3xl mx-auto">
+            Inspire Next Global Inc. is supported by a robust network of holding and group companies, driving innovation and growth across diverse sectors.
+          </p>
+        </motion.div>
+
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-16">
+          {/* Parent Company */}
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUp}
             viewport={{ once: true, amount: 0.3 }}
-            onClick={() => setZoomed(true)}
-            title="Click to zoom"
+            className="w-full max-w-3xl"
           >
-            <LogoImg
-              src={structureData.parent.img}
-              alt={structureData.parent.name}
-              style={{
-                maxHeight: "90%",
-                maxWidth: "90%",
-                margin: "auto",
-              }}
-            />
-          </motion.div>
-          <AnimatePresence>
-            {zoomed && (
-              <motion.div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setZoomed(false)}
-              >
-                <motion.img
+            <h2 className="text-xl font-bold text-[#2F3E46] uppercase tracking-wider mb-4 text-center">
+              Parent Company & Major Shareholder
+            </h2>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeInUp}
+              viewport={{ once: true, amount: 0.3 }}
+              className="bg-[#F5F5F5] rounded-2xl shadow-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.025] max-w-3xl mx-auto"
+              onClick={() => setZoomedImage(structureData.parent.img)}
+            >
+              <div className="w-52 h-52 flex-shrink-0 bg-white rounded-lg flex items-center justify-center p-2">
+                <img
                   src={structureData.parent.img}
                   alt={structureData.parent.name}
-                  className="max-w-[96vw] max-h-[90vh]  border-4 border-white shadow-2xl cursor-zoom-out bg-white"
-                  initial={{ scale: 0.7, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.7, opacity: 0 }}
-                  transition={{ type: "spring", duration: 0.5 }}
-                  onClick={e => {
-                    e.stopPropagation();
-                    setZoomed(false);
-                  }}
-                  title="Click to close"
-                  style={{ background: "#fff" }}
+                  className="object-contain max-w-full max-h-full"
                 />
-                <button
-                  className="absolute top-8 right-8 bg-white/90 text-[#8db249] font-bold text-lg  px-4 py-2 shadow hover:bg-white/100 transition-colors"
-                  onClick={() => setZoomed(false)}
-                  tabIndex={0}
-                >
-                  Close
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <h2 className="text-lg xs:text-xl font-bold text-[#6a9732] uppercase tracking-wide mb-2 text-center">
-            Parent Company / Major Shareholder
-          </h2>
-          <div className="text-[#466324] font-semibold text-lg xs:text-2xl text-center">
-            {structureData.parent.name}
-          </div>
-        </motion.section>
+              </div>
+              <div className="text-center sm:text-left">
+                <h3 className="text-2xl font-bold text-[#2F3E46]">
+                  {structureData.parent.name}
+                </h3>
+                <p className="text-[#2F3E46]/70 mt-1">Click to see logo</p>
+              </div>
+            </motion.div>
+          </motion.section>
 
-        {/* Group Companies */}
-        <section>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, type: "spring", delay: 0.15 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="text-lg xs:text-xl font-bold text-[#6a9732] uppercase tracking-wide mb-6 md:mb-8 text-center"
-          >
-            Group Companies
-          </motion.h2>
-          <ul className="grid gap-6 xs:gap-8 md:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {structureData.group.map((company, idx) => (
-              <motion.li
-                key={company.name}
-                custom={idx}
-                initial="hidden"
-                whileInView="visible"
-                variants={fadeInUp}
-                viewport={{ once: true, amount: 0.3 }}
-                className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-4 xs:p-6 hover:scale-105 hover:shadow-2xl transition-all duration-300 justify-center"
-                style={{ minHeight: 280 }} // Increased card height
-              >
-                {/* Expanded group logo container */}
-                <div
-                  className="w-full"
-                  style={{
-                    height: 180, // Increased logo container height
-                    background: "#fff",
-                    borderRadius: 12,
-                    border: "1px solid #e5f2d6",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: 16,
-                    overflow: "hidden",
-                  }}
+          {/* Group Companies */}
+          <section className="w-full">
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeInUp}
+              viewport={{ once: true, amount: 0.5 }}
+              className="text-xl font-bold text-[#2F3E46] uppercase tracking-wider mb-8 text-center"
+            >
+              Group Companies
+            </motion.h2>
+            <ul className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+              {structureData.group.map((company, idx) => (
+                <motion.li
+                  key={company.name}
+                  custom={idx}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={fadeInUp}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="bg-[#F5F5F5] rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-start h-72 transition-all duration-300 hover:shadow-2xl hover:scale-[1.025]"
                 >
-                  <LogoImg
-                    src={company.img}
-                    alt={company.name}
-                    style={{
-                      maxHeight: "95%",
-                      maxWidth: "95%",
-                      objectFit: "contain",
-                      margin: "auto",
-                    }}
-                  />
-                </div>
-                <span className="text-[#3e5e18] text-base xs:text-lg font-semibold text-center break-words">{company.name}</span>
-              </motion.li>
-            ))}
-          </ul>
-        </section>
-      </div>
-      <style jsx>{`
-        main {
-          font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-        }
-      `}</style>
-    </main>
+                  <div className="w-full h-40 mb-4 bg-white rounded-lg flex items-center justify-center p-2">
+                    <img
+                      src={company.img}
+                      alt={company.name}
+                      className="object-contain max-w-full max-h-full"
+                    />
+                  </div>
+                  <span className="text-[#2F3E46] font-semibold text-center text-md flex-grow flex items-center">
+                    {company.name}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </main>
+    </>
   );
 }

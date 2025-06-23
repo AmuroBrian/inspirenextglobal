@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { label: "Home", value: "home", href: "/" },
@@ -13,108 +14,188 @@ const navLinks = [
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+      if (window.innerWidth >= 1024) {
+        setMenuOpen(false);
+      }
+    };
+
+    // Initial check
+    checkMobile();
+    handleScroll();
+
+    // Event listeners
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   return (
-    <nav className="bg-white border-2 border-[#ffffff] px-4 sm:px-6 md:px-8 py-5 flex items-center min-h-[72px] sticky top-0 z-50">
+    <header className="sticky top-0 z-50">
+      <nav className={`
+        bg-white/60 backdrop-blur-lg border-b border-[#D4AF37]/20 
+        px-4 sm:px-6 md:px-8 lg:px-10 py-3 md:py-4
+        flex items-center justify-between
+        transition-all duration-300
+        shadow-2xl rounded-b-2xl
+        min-h-[70px] md:min-h-[80px] lg:min-h-[90px]
+      `}>
       {/* Logo Section */}
-      <div className="flex items-center gap-4 sm:gap-5 min-w-[180px] sm:min-w-[260px] md:min-w-[360px]">
-        <img
-          src="logo.png"
-          alt="Inspire Logo"
-          className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#c2a050] object-cover"
-        />
-        <div className="text-white">
-          <div className="text-[1.3rem] sm:text-[1.8rem] md:text-[2.2rem] lg:text-[2.5rem] text-black font-bold leading-none font-serif">
-            INSPIRE
-          </div>
-          <div className="text-xs sm:text-base md:text-lg font-normal text-black leading-none font-serif mt-1">
-            NEXT GLOBAL INC
-          </div>
+        <div className="flex-shrink-0 z-50">
+          <Link href="/">
+            <img
+              src="LOGOINGI.jpg"
+              alt="Inspire Logo"
+              className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 transition-all duration-300 cursor-pointer"
+              style={{ borderRadius: '0.75rem', boxShadow: '0 2px 16px 0 rgba(47,62,70,0.10)' }}
+            />
+          </Link>
         </div>
-      </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex items-center gap-8 xl:gap-12 ml-auto">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10">
         {navLinks.map((link) => (
           <Link
             key={link.value}
             href={link.href}
             className={`
-              text-black no-underline font-normal text-lg xl:text-xl md:text-2xl font-inherit transition-all duration-300
-              relative px-1
-              before:absolute before:bottom-0 before:left-0 before:w-0 before:h-[3px] before:bg-gradient-to-r before:from-[#00c853] before:to-[#00b8d4] before:transition-all before:duration-300
-              hover:before:w-full hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#00c853] hover:to-[#00b8d4]
+                text-[#2F3E46] hover:text-[#D4AF37] no-underline font-semibold 
+                text-base md:text-lg xl:text-xl 
+                relative px-1 md:px-2 py-1 md:py-2
+                after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] 
+                after:bg-gradient-to-r after:from-[#D4AF37] after:to-[#2F3E46] 
+                after:transition-all after:duration-300 hover:after:w-full
+                transition-colors duration-200
               ${
                 (link.href === '/' && pathname === '/') ||
-                (link.href === '/users' && pathname.startsWith('/users'))
-                  ? 'font-bold text-[#208704]' : ''
-              }
-            `}
-            style={{
-              transitionProperty: 'color, background, border, box-shadow',
-              transitionDuration: '300ms',
-              transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-            }}
-            onClick={() => setMenuOpen(false)}
+                  (link.href !== '/' && pathname.startsWith(link.href))
+                    ? 'font-bold text-[#D4AF37] after:w-full' 
+                    : ''
+                }
+              `}
           >
             {link.label}
           </Link>
         ))}
       </div>
 
-      {/* Burger Menu Icon */}
+        {/* Mobile Menu Button */}
       <button
-        className="lg:hidden ml-auto focus:outline-none z-50"
+          className="lg:hidden focus:outline-none z-50 p-2 -mr-2"
         aria-label="Toggle Menu"
-        onClick={() => setMenuOpen((v) => !v)}
-      >
-        <span
-          className="block w-8 h-1 bg-[#208704] my-1 rounded transition-all duration-300"
-          style={{ transform: menuOpen ? "rotate(45deg) translateY(10px)" : "none" }}
-        />
-        <span
-          className={`block w-8 h-1 bg-[#208704] my-1 rounded transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
-        />
-        <span
-          className="block w-8 h-1 bg-[#208704] my-1 rounded transition-all duration-300"
-          style={{ transform: menuOpen ? "rotate(-45deg) translateY(-10px)" : "none" }}
-        />
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <div className="space-y-1.5 sm:space-y-2">
+            <motion.span
+              className={`block w-6 sm:w-7 md:w-8 h-0.5 sm:h-1 bg-[#2F3E46]`}
+              animate={{
+                rotate: menuOpen ? 45 : 0,
+                y: menuOpen ? 8 : 0,
+                width: menuOpen ? '1.75rem' : '1.5rem'
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span
+              className={`block w-6 sm:w-7 md:w-8 h-0.5 sm:h-1 bg-[#2F3E46]`}
+              animate={{
+                opacity: menuOpen ? 0 : 1,
+                width: menuOpen ? 0 : '1.5rem'
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span
+              className={`block w-6 sm:w-7 md:w-8 h-0.5 sm:h-1 bg-[#2F3E46]`}
+              animate={{
+                rotate: menuOpen ? -45 : 0,
+                y: menuOpen ? -8 : 0,
+                width: menuOpen ? '1.75rem' : '1.5rem'
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
       </button>
 
-      {/* Mobile Overlay */}
-      <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${menuOpen ? "block opacity-100" : "hidden opacity-0"}`}
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/30 z-40"
         onClick={() => setMenuOpen(false)}
       />
 
-      {/* Mobile Menu */}
-      <div className={`fixed top-0 right-0 w-3/4 max-w-xs h-full bg-white shadow-lg z-50 transition-transform duration-300 ${menuOpen ? "translate-x-0" : "translate-x-full"} flex flex-col py-10 px-6 gap-6`}>
+              <motion.div 
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
+                className={`
+                  fixed top-0 right-0 w-4/5 max-w-sm h-full 
+                  bg-white/90 backdrop-blur-lg shadow-2xl z-50 
+                  flex flex-col pt-24 px-6 gap-4 rounded-l-2xl
+                `}
+              >
+                <div className="absolute top-4 right-4">
         <button
-          className="absolute top-4 right-4 text-3xl text-[#208704] font-bold focus:outline-none"
+                    className="text-3xl text-[#2F3E46] focus:outline-none"
           onClick={() => setMenuOpen(false)}
           aria-label="Close Menu"
         >
           &times;
         </button>
+                </div>
+                
+                <div className="flex flex-col gap-2 mt-4">
         {navLinks.map((link) => (
+                    <motion.div
+                      key={link.value}
+                      initial={{ x: 20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
           <Link
-            key={link.value}
             href={link.href}
-            className={`text-black no-underline font-medium text-xl py-2 px-1 border-l-4 border-transparent hover:border-[#00c853] transition-all text-left
+                        className={`
+                          block text-[#2F3E46] no-underline font-semibold 
+                          text-lg py-3 px-4 rounded-lg
+                          transition-all duration-200 hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]
               ${
                 (link.href === '/' && pathname === '/') ||
-                (link.href === '/users' && pathname.startsWith('/users'))
-                  ? 'font-bold text-[#208704]' : ''
+                            (link.href !== '/' && pathname.startsWith(link.href))
+                              ? 'font-bold text-[#D4AF37] bg-[#D4AF37]/10' 
+                              : ''
               }
             `}
             onClick={() => setMenuOpen(false)}
           >
             {link.label}
           </Link>
+                    </motion.div>
         ))}
       </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
     </nav>
+    </header>
   );
 };
 

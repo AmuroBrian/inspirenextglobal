@@ -34,18 +34,59 @@ const companies = [
   },
 ];
 
+const titleVariants = {
+  offscreen: { opacity: 0, y: -40 },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.2,
+      duration: 0.8,
+    },
+  },
+};
+
+const subtitleVariants = {
+  ...titleVariants,
+  onscreen: {
+    ...titleVariants.onscreen,
+    transition: { ...titleVariants.onscreen.transition, delay: 0.2 },
+  },
+};
+
 const cardVariants = {
-  offscreen: { opacity: 0, y: 60 },
+  offscreen: { opacity: 0, y: 50, scale: 0.95 },
   onscreen: (idx) => ({
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: { 
       type: "spring", 
       bounce: 0.18, 
       duration: 0.7, 
-      delay: idx * 0.07 
-    }
-  })
+      delay: idx * 0.1,
+      staggerChildren: 0.15,
+    },
+  }),
+};
+
+const imageVariants = {
+  offscreen: { opacity: 0, scale: 0.8 },
+  onscreen: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+const textContentVariants = {
+  offscreen: { opacity: 0, y: 20 },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
 };
 
 const InspireCompaniesGrid = () => (
@@ -54,17 +95,33 @@ const InspireCompaniesGrid = () => (
     <div className="absolute top-0 left-0 w-40 h-40 bg-[#e3b877]/30 rounded-full blur-2xl pointer-events-none z-0"></div>
     <div className="absolute bottom-10 right-10 w-52 h-52 bg-[#208704]/20 rounded-full blur-2xl pointer-events-none z-0"></div>
     <div className="max-w-7xl mx-auto px-6 relative z-10">
-      <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-[#ffffff] text-center drop-shadow-xl tracking-tight">
-        Companies Under Inspire
-      </h1>
-      <h2 className="text-3xl md:text-4xl font-bold mb-10 text-[#fefefe] text-center">
+      <motion.h1
+        className="text-4xl md:text-5xl font-extrabold mb-2 text-[#2F3E46] text-center drop-shadow-xl tracking-tight"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={titleVariants}
+      >
+        <span>Companies Under </span>
+        <span style={{ color: '#D4AF37' }}>Inspire</span>
+      </motion.h1>
+      <div className="flex justify-center mt-2 mb-8">
+        <span className="inline-block w-24 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #D4AF37 0%, #2F3E46 100%)' }} />
+      </div>
+      <motion.h2
+        className="text-3xl md:text-4xl font-bold mb-10 text-[#2F3E46] text-center"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={subtitleVariants}
+      >
         J-TECH
-      </h2>
+      </motion.h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {companies.map((company, idx) => (
           <motion.div
             key={company.name}
-            className="bg-white/80 rounded-xl shadow-2xl border border-[#000000] p-0 flex flex-col items-center hover:scale-105 hover:shadow-yellow-400/40 transition-all duration-300"
+            className="bg-[#F5F5F5] rounded-2xl shadow-2xl p-0 flex flex-col items-center hover:scale-[1.025] hover:shadow-2xl transition-all duration-300"
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ once: false, amount: 0.2 }}
@@ -74,16 +131,29 @@ const InspireCompaniesGrid = () => (
             <motion.img
               src={company.img}
               alt={company.name}
-              className="w-full h-44 object-cover rounded-t-xl"
+              className="w-full h-44 object-cover rounded-t-2xl"
               style={{ minHeight: "176px", background: "#eee" }}
-              initial={{ scale: 0.96, opacity: 0.85 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.7, delay: idx * 0.07 + 0.15, type: "spring" }}
+              variants={imageVariants}
             />
-            <div className="p-5 flex-1 flex flex-col items-center text-center">
-              <h3 className="font-bold text-xl text-[#208704] mb-2">{company.name}</h3>
-              <p className="text-gray-700 text-base">{company.desc}</p>
-            </div>
+            <motion.div
+              className="p-6 flex-1 flex flex-col items-center text-center"
+              variants={{
+                onscreen: { transition: { staggerChildren: 0.1 } },
+              }}
+            >
+              <motion.h3
+                className="font-bold text-xl text-[#2F3E46] mb-2"
+                variants={textContentVariants}
+              >
+                {company.name}
+              </motion.h3>
+              <motion.p
+                className="text-[#2F3E46]/90 text-base"
+                variants={textContentVariants}
+              >
+                {company.desc}
+              </motion.p>
+            </motion.div>
           </motion.div>
         ))}
       </div>
