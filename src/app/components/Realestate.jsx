@@ -22,7 +22,7 @@ const RealEstateMarketingFeature = () => {
 
   return (
     <motion.section
-      className="relative flex flex-col lg:flex-row items-center justify-between w-full min-h-[400px] bg-white px-2 sm:px-4 lg:px-24 py-8 lg:py-12 gap-8 lg:gap-12"
+      className="relative flex flex-col lg:flex-row items-center justify-between w-full min-h-[400px] px-2 sm:px-4 lg:px-24 py-8 lg:py-12 gap-8 lg:gap-12"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
