@@ -9,7 +9,6 @@ const navLinks = [
   { label: "About", value: "about", href: "/#about" },
   { label: "Real Estate", value: "realestate", href: "/#realestate" },
   { label: "Contact", value: "contact", href: "/#contact" },
-  { label: "Board of Directors", value: "board", href: "/users" },
 ];
 
 const Header = () => {
@@ -47,21 +46,19 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50">
       <nav className={`
-        bg-white/60 backdrop-blur-lg border-b border-[#D4AF37]/20 
+        bg-white lg:bg-white border-b border-[#D4AF37]/20 
         px-4 sm:px-6 md:px-8 lg:px-10 py-3 md:py-4
         flex items-center justify-between
         transition-all duration-300
-        shadow-2xl rounded-b-2xl
         min-h-[70px] md:min-h-[80px] lg:min-h-[90px]
       `}>
       {/* Logo Section */}
         <div className="flex-shrink-0 z-50">
           <Link href="/">
             <img
-              src="LOGOINGI.jpg"
+              src="LOGOINGI.png"
               alt="Inspire Logo"
               className="h-10 sm:h-12 md:h-14 lg:h-16 xl:h-18 transition-all duration-300 cursor-pointer"
-              style={{ borderRadius: '0.75rem', boxShadow: '0 2px 16px 0 rgba(47,62,70,0.10)' }}
             />
           </Link>
         </div>
@@ -148,7 +145,7 @@ const Header = () => {
                 transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                 className={`
                   fixed top-0 right-0 w-4/5 max-w-sm h-full 
-                  bg-white/90 backdrop-blur-lg shadow-2xl z-50 
+                  bg-white backdrop-blur-lg shadow-2xl z-50 
                   flex flex-col pt-24 px-6 gap-4 rounded-l-2xl
                 `}
               >

@@ -12,6 +12,7 @@ import Contact from "./components/Contact";
 import Corporate from "./components/Corporate";
 import Policy from "./components/Policy";
 import Chart from "./components/Chart";
+import LiveNews from "./components/LiveNews";
 
 const AnimatedSection = ({ children, id, className, fullWidth = false }) => {
   const ref = useRef(null);
@@ -343,59 +344,74 @@ export default function Page() {
           </motion.div>
         </div>
       </main>
-
+          
       {/* ABOUT SECTION */}
-      <section id="about" className="bg-gray-100">
-          <About />
+      <section id="about" className="relative bg-gray-100">
+        <SectionShapes colorSet={1} />
+        <About />
       </section>
       
       {/* MISSION SECTION */}
-      <section className="bg-white">
-          <Mission />
+      <section className="relative bg-white">
+        <SectionShapes colorSet={2} />
+        <Mission />
       </section>  
       
       {/* OrgChart Section */}
-      <section className="bg-gray-100">
-          <OrgChart />
+      <section className="relative bg-gray-100">
+        <SectionShapes colorSet={3} />
+        <OrgChart />
       </section>
       
       {/* Message Section */}
-      <section className="bg-white">
-          <Message />
+      <section className="relative bg-white">
+        <SectionShapes colorSet={1} />
+        <Message />
       </section>
       
-      <section className="bg-gray-100">
+      <section className="relative bg-gray-100">
+        <SectionShapes colorSet={2} />
         <Chart />
       </section>
 
       {/* BUSINESS SECTION */}
-      <section className="bg-gray-100">
-          <Bussec />
+      <section className="relative bg-gray-100">
+        <SectionShapes colorSet={3} />
+        <Bussec />
       </section>
 
       {/* Real Estate Section */}
-      <section id="realestate" className="bg-gray-100">
-          <Realestate />
+      <section id="realestate" className="relative bg-gray-100">
+        <SectionShapes colorSet={1} />
+        <Realestate />
       </section>
 
       {/* COMPANY UNDER SECTION */}
-      <section className="bg-white">
-          <Companyunder />
+      <section className="relative bg-white">
+        <SectionShapes colorSet={2} />
+        <Companyunder />
       </section>
 
       {/* CORPORATE SECTION */}
-      <section className="bg-gray-100">
-          <Corporate />
+      <section className="relative bg-gray-100">
+        <SectionShapes colorSet={3} />
+        <Corporate />
       </section>
 
+      <section className="relative bg--100 mt-10">
+      <LiveNews />
+      </section>
+      
       {/* CONTACT SECTION */}
-      <section id="contact" className="bg-white">
-          <Contact />
+      <section id="contact" className="relative bg-white">
+        <SectionShapes colorSet={1} />
+        <Contact />
       </section>
   
-      <section className="bg-gray-100">
-    <Policy />
-  </section>
+      <section className="relative bg-gray-100">
+        <SectionShapes colorSet={2} />
+        <Policy />
+      </section>
     </>
   );
 }
