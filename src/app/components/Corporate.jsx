@@ -74,7 +74,7 @@ const Lightbox = ({ src, alt, onClose }) => (
             />
             <button
                 onClick={onClose}
-                className="absolute -top-3 -right-3 bg-white rounded-full p-2 text-black shadow-lg"
+                className="absolute -top-3 -right-3 bg-white rounded-full p-2 text-black "
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -139,7 +139,7 @@ export default function CorporateStructure() {
               whileInView="visible"
               variants={fadeInUp}
               viewport={{ once: true, amount: 0.3 }}
-              className="bg-[#F5F5F5] rounded-2xl shadow-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:scale-[1.025] max-w-3xl mx-auto"
+              className="bg-[#F5F5F5] border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto"
               onClick={() => setZoomedImage(structureData.parent.img)}
             >
               <div className="w-52 h-52 flex-shrink-0 bg-white rounded-lg flex items-center justify-center p-2">
@@ -178,7 +178,7 @@ export default function CorporateStructure() {
                   whileInView="visible"
                   variants={fadeInUp}
                   viewport={{ once: true, amount: 0.3 }}
-                  className="bg-[#F5F5F5] rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-start h-72 transition-all duration-300 hover:shadow-2xl hover:scale-[1.025]"
+                  className="bg-[#F5F5F5] border border-[#E0E0E0] rounded-2xl p-6 flex flex-col items-center justify-start h-72 transition-all duration-300 hover:bg-[#ececec] hover:scale-[1.02]"
                 >
                   <div className="w-full h-40 mb-4 bg-white rounded-lg flex items-center justify-center p-2">
                     <img

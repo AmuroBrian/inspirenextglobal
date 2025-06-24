@@ -42,32 +42,18 @@ function SectionHeader({ title, subtitle, color = "#3ea96e", className = "" }) {
 
 // Optimized Card Component with Centered Text
 function DirectorCard({ member, expanded, onClick }) {
-  const cardBg = member.cardBg || "linear-gradient(135deg, rgba(231,251,231,0.9) 0%, rgba(227,247,219,0.95) 100%)";
-  const imgBg = member.imgBg || "repeating-linear-gradient(135deg, #e0f7e9 0 20px, #d4efdf 20px 40px)";
   const accentColor = member.accentColor || "#5bbd7a";
 
   return (
     <div
-      className={`relative rounded-2xl shadow-lg flex flex-col transition-all duration-300 cursor-pointer overflow-hidden border-2 group hover:shadow-xl ${
-        expanded ? "z-20 scale-[1.02] shadow-xl" : ""
+      className={`relative rounded-2xl border-2 flex flex-col transition-all duration-300 cursor-pointer overflow-hidden group bg-white ${
+        expanded ? "z-20 scale-[1.02] border-[" + accentColor + "]" : "border-[#e0e0e0]"
       } ${member.position === "President" ? "lg:col-span-3" : ""}`}
       onClick={onClick}
-      style={{ 
-        height: expanded ? 'auto' : '420px',
-        background: cardBg,
-        borderColor: expanded ? accentColor : '#ffffff'
-      }}
+      style={{ height: expanded ? 'auto' : '420px' }}
     >
-      <div
-        className="w-full flex items-center justify-center relative aspect-square"
-        style={{
-          height: "320px",
-          background: imgBg,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white opacity-10" />
+      {/* IMAGE SECTION */}
+      <div className="w-full flex items-center justify-center relative aspect-square" style={{ height: "320px", background: "#f0f9ee" }}>
         <img
           src={member.img}
           alt={member.name}
@@ -80,23 +66,20 @@ function DirectorCard({ member, expanded, onClick }) {
           }}
         />
       </div>
+      {/* TEXT SECTION */}
       <div className="w-full flex flex-col items-center justify-center px-4 py-4 text-center">
-        <div 
-          className="uppercase text-xs font-bold tracking-wider mb-1 w-full"
+        <div
+          className="uppercase text-xs font-bold tracking-wider mb-1 w-full text-gray-500"
           style={{ color: accentColor }}
         >
           {member.position}
         </div>
-        <h3 className="font-extrabold text-lg text-gray-900 w-full">
+        <h3 className="font-extrabold text-lg text-gray-900 w-full mb-2">
           {member.name}
         </h3>
         {expanded && (
-          <div 
-            className="mt-3 w-full p-4 rounded-xl animate-fadeIn shadow-inner"
-            style={{
-              backgroundColor: `${accentColor}10`,
-              border: `1px solid ${accentColor}30`
-            }}
+          <div
+            className="mt-3 w-full p-4 rounded-xl animate-fadeIn shadow-inner bg-gray-50 border border-gray-200"
           >
             <div className="text-gray-700 text-sm text-center">
               {member.description}
@@ -117,7 +100,7 @@ function DirectorCard({ member, expanded, onClick }) {
         </button>
       )}
       {!expanded && (
-        <div 
+        <div
           className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-current transition-all duration-300"
           style={{ color: accentColor }}
         />
