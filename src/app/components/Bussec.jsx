@@ -5,102 +5,102 @@ const features = [
   {
     title: "AI & TECHNOLOGY",
     img: "/ai.jpg",
-    desc: "Harness advanced artificial intelligence and technology solutions tailored to optimize and transform your business processes, decision-making, and customer engagement."
+    desc: "Harness advanced artificial intelligence and technology solutions tailored to optimize and transform your business processes."
   },
   {
     title: "BUSINESS CONSULTATION",
     img: "/business.png",
-    desc: "Receive expert guidance for your business growth, market entry, strategic planning, and operational efficiency from our experienced consultants."
+    desc: "Receive expert guidance for your business growth, market entry, and operational efficiency."
   },
   {
-    title: "PERSONAL APTITUDE ASSESSMENT",
+    title: "PERSONAL ASSESSMENT",
     img: "/test.png",
-    desc: "Discover individual strengths and talents through scientifically designed assessments that help guide personal and career development."
+    desc: "Discover individual strengths through scientifically designed assessments."
   },
   {
     title: "OFFICE & COMMERCIAL",
     img: "/office.jpg",
-    desc: "Find ideal office and commercial spaces with our comprehensive property listings and tailored real estate solutions for your business."
+    desc: "Find ideal office and commercial spaces with our tailored real estate solutions."
   },
   {
     title: "PROPERTY MANAGEMENT",
     img: "/property.png",
-    desc: "Enjoy hassle-free property management with our end-to-end services, including tenant relations, maintenance, and financial administration."
+    desc: "Enjoy hassle-free property management with our end-to-end services."
   },
   {
     title: "CONSTRUCTION",
     img: "/construction.png",
-    desc: "Benefit from quality-driven construction solutions, from project planning and design to execution and delivery, ensuring your vision is realized on time and on budget."
+    desc: "Quality-driven construction solutions from planning to execution."
   },
   {
     title: "LOGISTICS",
     img: "/logistic.png",
-    desc: "Streamline your supply chain and distribution with our reliable logistics services, offering efficiency, transparency, and scalability for your business needs."
+    desc: "Streamline your supply chain with our reliable logistics services."
   }
 ];
 
 const cardVariants = {
-  offscreen: { opacity: 0, y: 60 },
+  offscreen: { opacity: 0, y: 40 },
   onscreen: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", bounce: 0.18, duration: 0.9 }
+    transition: { type: "spring", bounce: 0.2, duration: 0.6 }
   }
 };
 
 const slideInVariants = {
-  hidden: { opacity: 0, x: -60 },
+  hidden: { opacity: 0, x: -40 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", bounce: 0.18, duration: 0.9 }
+    transition: { type: "spring", bounce: 0.2, duration: 0.6 }
   }
 };
 
 const Features = () => (
-  <section className="min-h-screen pb-12 sm:pb-16 md:pb-20 lg:pb-24">
-    {/* Section Header */}
+  <section className="py-12 sm:py-16 bg-white">
+    {/* Section Header - Slim */}
     <motion.div
-      className="pt-8 sm:pt-10 md:pt-12 lg:pt-16 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 text-center"
+      className="pt-8 px-4 sm:px-6 text-center"
       variants={slideInVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.2 }}
     >
-      <h2 className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight" style={{ color: '#2F3E46', letterSpacing: '-0.03em' }}>
-        <span>Business </span>
-        <span style={{ color: '#D4AF37' }}>Sections</span>
+      <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-800">
+        Business <span className="text-yellow-600">Sections</span>
       </h2>
-      <div className="flex justify-center mt-2 mb-6">
-        <span className="inline-block w-24 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #D4AF37 0%, #2F3E46 100%)' }} />
+      <div className="flex justify-center mb-6">
+        <span className="inline-block w-16 h-1 rounded-full bg-gradient-to-r from-amber-500 to-gray-700" />
       </div>
     </motion.div>
 
-    {/* Features Grid */}
-    <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex justify-center px-4 sm:px-6 md:px-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 md:gap-10 w-full max-w-7xl">
+    {/* Features Grid - Compact */}
+    <div className="mt-8 px-4 sm:px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
         {features.map(({ title, img, desc }) => (
           <motion.div
             key={title}
-            className="bg-[#F5F5F5] rounded-2xl shadow-2xl overflow-hidden flex flex-col hover:scale-[1.025] hover:shadow-2xl transition-all duration-300 h-full"
+            className="bg-gray-50 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200 border border-gray-100"
             initial="offscreen"
             whileInView="onscreen"
-            viewport={{ once: false, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={cardVariants}
+            whileHover={{ y: -4 }}
           >
-            <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] overflow-hidden">
+            <div className="w-full h-40 sm:h-44 overflow-hidden">
               <img
                 src={img}
                 alt={title}
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
-            <div className="p-6 sm:p-7 md:p-8 flex-1 flex flex-col">
-              <h3 className="text-[#2F3E46] text-xl sm:text-2xl md:text-3xl font-bold mb-3 text-center">
+            <div className="p-4 sm:p-5">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
                 {title}
               </h3>
-              <p className="text-[#2F3E46]/90 text-base md:text-lg leading-relaxed text-center">
+              <p className="text-sm sm:text-base text-gray-600">
                 {desc}
               </p>
             </div>
@@ -108,6 +108,8 @@ const Features = () => (
         ))}
       </div>
     </div>
+
+
   </section>
 );
 

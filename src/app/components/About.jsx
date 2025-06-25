@@ -104,10 +104,10 @@ const AboutPage = () => {
   };
 
   return (
-    <div className="relative overflow-hidden" ref={containerRef}>
+    <div className="relative overflow-visible" ref={containerRef}>
       {/* Modern shapes outside container */}
       <motion.div 
-        className="fixed -left-40 -top-40 w-96 h-96 -z-20"
+        className="fixed -left-40 -top-40 w-96 h-96 -z-30"
         style={shape1Transform}
       >
         <svg viewBox="0 0 500 500" className="w-full h-full">
@@ -123,7 +123,7 @@ const AboutPage = () => {
       </motion.div>
 
       <motion.div 
-        className="fixed -right-20 top-1/4 w-64 h-64 -z-20"
+        className="fixed -right-20 top-1/4 w-64 h-64 -z-30"
         style={shape2Transform}
       >
         <svg viewBox="0 0 400 400" className="w-full h-full">
@@ -141,7 +141,7 @@ const AboutPage = () => {
       </motion.div>
 
       <motion.div 
-        className="fixed left-1/4 -bottom-40 w-80 h-80 -z-20"
+        className="fixed left-1/4 -bottom-40 w-80 h-80 -z-30"
         style={shape3Transform}
       >
         <svg viewBox="0 0 400 400" className="w-full h-full">
@@ -158,7 +158,7 @@ const AboutPage = () => {
 
       {/* Animated gradient background */}
       <motion.div 
-        className="fixed inset-0 -z-10"
+        className="fixed inset-0 -z-20"
         style={{
           background: 'linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 50%, #F5F5F5 100%)',
           backgroundSize: '400% 400%',
@@ -177,7 +177,7 @@ const AboutPage = () => {
 
       {/* Subtle grid pattern */}
       <motion.div 
-        className="fixed inset-0 -z-10 opacity-10"
+        className="fixed inset-0 -z-20 opacity-10"
         style={{
           backgroundImage: 'linear-gradient(to right, #2F3E46 1px, transparent 1px), linear-gradient(to bottom, #2F3E46 1px, transparent 1px)',
           backgroundSize: '40px 40px',
@@ -188,7 +188,7 @@ const AboutPage = () => {
       {/* Background leaves */}
       {isMounted && (
         <motion.div 
-          className="absolute top-0 left-0 w-full h-full pointer-events-none"
+          className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
@@ -227,7 +227,7 @@ const AboutPage = () => {
 
       {/* Floating particles */}
       {isMounted && (
-        <motion.div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <motion.div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
           {PARTICLES.map(particle => (
             <motion.div
               key={`particle-${particle.id}`}
@@ -258,7 +258,7 @@ const AboutPage = () => {
       )}
 
       <motion.div 
-        className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 relative"
+        className="min-h-screen py-8 px-2 sm:py-16 sm:px-4 lg:px-8 relative z-10"
         style={{
           backgroundColor: 'rgba(245, 245, 245, 0.85)'
         }}
@@ -370,7 +370,6 @@ const AboutPage = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: false }}
-              transition={{ delay: 0.2 }}
             >
               YOU WANT TO LEARN MORE ABOUT US?
             </motion.h2>
@@ -380,7 +379,6 @@ const AboutPage = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: false }}
-              transition={{ delay: 0.3 }}
             >
               EVERY SMALL ACTION CONTRIBUTES TO A LARGER CHANGE. LET'S WORK TOGETHER TO CREATE A SUSTAINABLE FUTURE FOR GENERATIONS TO COME.
             </motion.p>
@@ -401,7 +399,6 @@ const AboutPage = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: false }}
-                transition={{ delay: 0.4 }}
               >
                 LEARN MORE ABOUT US
               </motion.button>

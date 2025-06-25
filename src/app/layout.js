@@ -14,6 +14,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className="flex flex-col min-h-screen bg-[#18191b]">
         {/* Header at the top */}
         <Header />

@@ -25,10 +25,10 @@ export default function OrganizationalChart() {
           transition: { duration: 0.5 }
         }
       }}
-      className="max-w-6xl mx-auto px-4 py-16"
+      className="max-w-6xl mx-auto px-2 sm:px-4 py-8 sm:py-12 md:py-16"
     >
       <motion.h1 
-        className="text-5xl font-extrabold text-center mb-16 tracking-tight"
+        className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-center mb-8 sm:mb-12 md:mb-16 tracking-tight"
         style={{ color: '#2F3E46', letterSpacing: '-0.03em' }}
         variants={{
           hidden: { y: 20, opacity: 0 },
@@ -43,7 +43,7 @@ export default function OrganizationalChart() {
         <span style={{ color: '#D4AF37' }}>Charts</span>
       </motion.h1>
       
-      <div className="space-y-20">
+      <div className="space-y-8 sm:space-y-12 md:space-y-20">
         <ChartSection 
           title="Business Model Chart" 
           items={businessModelItems} 
@@ -90,9 +90,9 @@ function ChartSection({ title, items, defaultColor }) {
         backdropFilter: 'blur(8px)'
       }}
     >
-      <motion.div className="p-8 pb-4">
+      <motion.div className="p-4 sm:p-8 pb-2 sm:pb-4">
         <motion.h2 
-          className="text-3xl font-bold mb-2"
+          className="text-lg sm:text-xl md:text-3xl font-bold mb-1 sm:mb-2"
           style={{ color: defaultColor }}
           variants={{
             hidden: { x: -20, opacity: 0 },
@@ -105,17 +105,17 @@ function ChartSection({ title, items, defaultColor }) {
         >
           {title}
         </motion.h2>
-        <div className="flex justify-start mb-6">
-          <span className="inline-block w-20 h-1 rounded-full" style={{ background: `linear-gradient(90deg, ${defaultColor} 0%, #2F3E46 100%)` }} />
+        <div className="flex justify-start mb-4 sm:mb-6">
+          <span className="inline-block w-12 sm:w-20 h-1 rounded-full" style={{ background: `linear-gradient(90deg, ${defaultColor} 0%, #2F3E46 100%)` }} />
         </div>
       </motion.div>
       {/* Show the image only in the Workflow Chart section and only if an FAQ is open */}
       {title === "Workflow Chart" && openIndex !== null && (
-        <div className="flex justify-center my-6 px-2">
+        <div className="flex justify-center my-4 sm:my-6 px-1 sm:px-2">
           <img 
             src="/companychart.jpg" 
             alt="Company Chart" 
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto rounded-xl shadow-md mx-auto" 
+            className="w-full max-w-[220px] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto rounded-xl shadow-md mx-auto" 
           />
         </div>
       )}
@@ -169,11 +169,11 @@ function FAQItem({ question, answer, color, index, isOpen, onToggle }) {
       <motion.button
         whileHover={{ scale: 1.01, backgroundColor: '#F9F6EF' }}
         whileTap={{ scale: 0.99 }}
-        className={`w-full text-left p-6 flex justify-between items-center transition-colors rounded-xl ${isOpen ? 'font-semibold' : ''}`}
+        className={`w-full text-left p-4 sm:p-6 flex justify-between items-center transition-colors rounded-xl ${isOpen ? 'font-semibold' : ''}`}
         onClick={onToggle}
         style={isOpen ? { color, backgroundColor: '#F9F6EF' } : { color: '#2F3E46', backgroundColor: 'transparent' }}
       >
-        <span className="text-lg">{question}</span>
+        <span className="text-base sm:text-lg">{question}</span>
         <motion.svg
           animate={{ rotate: isOpen ? 180 : 0 }}
           className="w-5 h-5"
@@ -195,7 +195,7 @@ function FAQItem({ question, answer, color, index, isOpen, onToggle }) {
             transition: { duration: 0.3 }
           }}
           exit={{ opacity: 0, height: 0 }}
-          className="px-6 pb-6 pt-2 bg-white/80 rounded-b-xl overflow-hidden"
+          className="px-4 sm:px-6 pb-4 sm:pb-6 pt-2 bg-white/80 rounded-b-xl overflow-hidden"
         >
           <p className="text-gray-800 whitespace-pre-line">{answer}</p>
         </motion.div>
