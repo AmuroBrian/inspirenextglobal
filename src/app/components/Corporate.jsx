@@ -159,7 +159,7 @@ export default function CorporateStructure() {
           </motion.section>
 
           {/* Group Companies */}
-          <section className="w-full">
+          <section className="w-full max-w-full">
             <motion.h2
               initial="hidden"
               whileInView="visible"
@@ -169,7 +169,7 @@ export default function CorporateStructure() {
             >
               Group Companies
             </motion.h2>
-            <ul className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <ul className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 px-2 sm:px-4 md:px-8">
               {structureData.group.map((company, idx) => (
                 <motion.li
                   key={company.name}
@@ -178,16 +178,16 @@ export default function CorporateStructure() {
                   whileInView="visible"
                   variants={fadeInUp}
                   viewport={{ once: true, amount: 0.3 }}
-                  className="bg-[#F5F5F5] border border-[#E0E0E0] rounded-2xl p-6 flex flex-col items-center justify-start h-72 transition-all duration-300 hover:bg-[#ececec] hover:scale-[1.02]"
+                  className="bg-[#F5F5F5] border border-[#E0E0E0] rounded-2xl p-10 flex flex-col items-center justify-start h-96 transition-all duration-300 hover:bg-[#ececec] hover:scale-[1.04] shadow-lg"
                 >
-                  <div className="w-full h-40 mb-4 bg-white rounded-lg flex items-center justify-center p-2">
+                  <div className="w-full h-48 mb-6 bg-white rounded-lg flex items-center justify-center">
                     <img
                       src={company.img}
                       alt={company.name}
-                      className="object-contain max-w-full max-h-full"
+                      className="object-contain max-h-40 max-w-40"
                     />
                   </div>
-                  <span className="text-[#2F3E46] font-semibold text-center text-md flex-grow flex items-center">
+                  <span className="text-[#2F3E46] font-bold text-center text-lg flex-grow flex items-center">
                     {company.name}
                   </span>
                 </motion.li>

@@ -47,7 +47,7 @@ export default function BoardOfDirectorsPage() {
       {/* Sliding decorative rectangles */}
       <SlidingRectangleLeft />
       <SlidingRectangleRight />
-      <div className="relative w-full max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl px-4 sm:px-6 md:px-8 z-10">
+      <div className="relative w-full max-w-7xl px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24 z-10">
         <BoardofDirector />
       </div>
     </section>
