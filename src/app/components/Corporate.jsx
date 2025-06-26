@@ -139,7 +139,7 @@ export default function CorporateStructure() {
               whileInView="visible"
               variants={fadeInUp}
               viewport={{ once: true, amount: 0.3 }}
-              className="bg-[#F5F5F5] border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto"
+              className="bg-white border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto"
               onClick={() => setZoomedImage(structureData.parent.img)}
             >
               <div className="w-52 h-52 flex-shrink-0 bg-white rounded-lg flex items-center justify-center p-2">
@@ -159,40 +159,44 @@ export default function CorporateStructure() {
           </motion.section>
 
           {/* Group Companies */}
-          <section className="w-full max-w-full">
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              variants={fadeInUp}
-              viewport={{ once: true, amount: 0.5 }}
-              className="text-xl font-bold text-[#2F3E46] uppercase tracking-wider mb-8 text-center"
-            >
-              Group Companies
-            </motion.h2>
-            <ul className="grid gap-8 sm:gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 px-2 sm:px-4 md:px-8">
-              {structureData.group.map((company, idx) => (
-                <motion.li
-                  key={company.name}
-                  custom={idx}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={fadeInUp}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="bg-[#F5F5F5] border border-[#E0E0E0] rounded-2xl p-10 flex flex-col items-center justify-start h-96 transition-all duration-300 hover:bg-[#ececec] hover:scale-[1.04] shadow-lg"
-                >
-                  <div className="w-full h-48 mb-6 bg-white rounded-lg flex items-center justify-center">
-                    <img
-                      src={company.img}
-                      alt={company.name}
-                      className="object-contain max-h-40 max-w-40"
-                    />
-                  </div>
-                  <span className="text-[#2F3E46] font-bold text-center text-lg flex-grow flex items-center">
-                    {company.name}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+          <section className="py-16">
+            {/* Minimal Header */}
+            <div className="max-w-4xl mx-auto text-center px-4 mb-12">
+              <h2 className="text-3xl font-light text-gray-900 mb-3">
+                Our <span className="font-medium text-yellow-60">Group Companies</span>
+              </h2>
+              <div className="w-12 h-0.5 bg-amber-400 mx-auto"/>
+            </div>
+
+            {/* Clean Card Grid */}
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {structureData.group.map((company, idx) => (
+                  <motion.div
+                    key={company.name}
+                    className="bg-white rounded-none overflow-hidden border border-gray-100 hover:border-amber-100 transition-colors duration-200"
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={fadeInUp}
+                  >
+                    <div className="w-full h-48 overflow-hidden flex items-center justify-center bg-white">
+                      <img
+                        src={company.img}
+                        alt={company.name}
+                        className="w-full h-full object-contain p-6"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-normal text-gray-800 mb-3">
+                        {company.name}
+                      </h3>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </section>
         </div>
       </main>

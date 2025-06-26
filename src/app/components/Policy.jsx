@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
             <ul className="list-disc list-inside mt-2 space-y-1">
               <li><strong>Items:</strong> Name, address, email, phone, gender, age, birth date, and all customer info</li>
               <li><strong>Purpose:</strong> As stated in the purpose of use</li>
-              <li><strong>Manager:</strong> Inspire Next Global Inc., 26th High Street Corporate Plaza, BGC Taguig</li>
+              <li><strong>Manager:</strong> Inspire Next Global Inc.,  6F Alliance Global Tower, 11th Avenue, corner 36th St, Taguig, Metro Manila</li>
             </ul>
           </div>
 
