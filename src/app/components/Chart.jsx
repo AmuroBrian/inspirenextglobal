@@ -113,7 +113,7 @@ function ChartSection({ title, items, defaultColor }) {
       {title === "Workflow Chart" && openIndex !== null && (
         <div className="flex justify-center my-4 sm:my-6 px-1 sm:px-2">
           <img 
-            src="/companychart.jpg" 
+            src="/companychrat.png" 
             alt="Company Chart" 
             className="w-full max-w-[220px] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto rounded-xl shadow-md mx-auto" 
           />
