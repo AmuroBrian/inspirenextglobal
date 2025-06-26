@@ -9,16 +9,21 @@ function AboutInspireNextGlobal() {
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#3ea96e] tracking-tight">
           About <span className="text-[#2c774b]">Inspire Next Global</span> Inc.
         </h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#3ea96e] tracking-tight">
+        Bringing Japan Closer to  <span className="text-[#2c774b]">Every Filipino Home and Business</span>
+        </h2>
         <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#3ea96e] to-[#8db249] mx-auto mb-8" />
         <p className="text-lg text-gray-700 mb-6 leading-relaxed text-justify">
-          Inspire Next Global Inc. is a forward-thinking conglomerate with diverse portfolio interests, 
-          including construction & development, healthcare & pharmaceuticals, gaming & entertainment, 
-          agriculture trading, logistics, and specialized consultancy services.
+        Guided by a visionary Board of Directors, Inspire Next Global Inc. was founded with a clear mission: to bring Japan’s trusted innovation closer to the lives of Filipino families and businesses. Under the board’s strategic leadership, we are driven by a deep belief that innovation should be inspiring, attainable, and life-enhancing.
+
+Our directors uphold a commitment to excellence, ensuring that every product we offer—whether it’s skincare backed by science, digital tools that boost productivity, or energy-saving technologies—is thoughtfully selected to meet the evolving needs of the Philippine market. Each decision reflects Japan’s legacy of precision, simplicity, and durability, while staying grounded in the realities of everyday Filipino life.
         </p>
         <p className="text-lg text-gray-700 leading-relaxed text-justify">
-          Serving both public and private sectors, the company operates under a strategic "conglomerate model," 
-          functioning as a central financial hub that aligns and capitalizes on its subsidiaries and affiliates 
-          to drive innovation, efficiency, and cross-sector synergy.
+        More than overseeing operations, our board sets the tone for a company culture built on trust, fairness, and purpose. They champion our mission to provide not just products, but solutions that make a difference—empowering individuals to feel confident, enabling businesses to grow smarter, and supporting a more sustainable future for all.
+
+At Inspire Next, premium meets practical. Under the guidance of our board, we continue to deliver purposeful innovation—where Japan’s global excellence finds a meaningful home in the Philippines.
+
+
         </p>
       </div>
     </section>

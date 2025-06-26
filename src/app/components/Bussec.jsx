@@ -3,92 +3,74 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    title: "AI & TECHNOLOGY",
+    title: "AI & Technology",
     img: "/ai.jpg",
-    desc: "Harness advanced artificial intelligence and technology solutions tailored to optimize and transform your business processes."
+    desc: "Advanced AI solutions to transform your business processes."
   },
   {
-    title: "BUSINESS CONSULTATION",
+    title: "Business Consultation",
     img: "/business.png",
-    desc: "Receive expert guidance for your business growth, market entry, and operational efficiency."
+    desc: "Expert guidance for growth and operational efficiency."
   },
   {
-    title: "PERSONAL ASSESSMENT",
+    title: "Personal Assessment",
     img: "/test.png",
-    desc: "Discover individual strengths through scientifically designed assessments."
+    desc: "Discover strengths through scientific assessments."
   },
   {
-    title: "OFFICE & COMMERCIAL",
+    title: "Office & Commercial",
     img: "/office.jpg",
-    desc: "Find ideal office and commercial spaces with our tailored real estate solutions."
+    desc: "Tailored real estate solutions for your business."
   },
   {
-    title: "PROPERTY MANAGEMENT",
+    title: "Property Management",
     img: "/property.png",
-    desc: "Enjoy hassle-free property management with our end-to-end services."
+    desc: "End-to-end property management services."
   },
   {
-    title: "CONSTRUCTION",
+    title: "Construction",
     img: "/construction.png",
-    desc: "Quality-driven construction solutions from planning to execution."
+    desc: "Quality-driven planning to execution."
   },
   {
-    title: "LOGISTICS",
+    title: "Logistics",
     img: "/logistic.png",
-    desc: "Streamline your supply chain with our reliable logistics services."
+    desc: "Streamline your supply chain operations."
   }
 ];
 
 const cardVariants = {
-  offscreen: { opacity: 0, y: 40 },
+  offscreen: { opacity: 0, y: 20 },
   onscreen: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", bounce: 0.2, duration: 0.6 }
-  }
-};
-
-const slideInVariants = {
-  hidden: { opacity: 0, x: -40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring", bounce: 0.2, duration: 0.6 }
+    transition: { duration: 0.4 }
   }
 };
 
 const Features = () => (
-  <section className="py-12 sm:py-16 bg-white">
-    {/* Section Header - Slim */}
-    <motion.div
-      className="pt-8 px-4 sm:px-6 text-center"
-      variants={slideInVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      <h2 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-800">
-        Business <span className="text-yellow-600">Sections</span>
+  <section className="py-16">
+    {/* Minimal Header */}
+    <div className="max-w-4xl mx-auto text-center px-4 mb-12">
+      <h2 className="text-3xl font-light text-gray-900 mb-3">
+        Our <span className="font-medium text-yellow-60">Services</span>
       </h2>
-      <div className="flex justify-center mb-6">
-        <span className="inline-block w-16 h-1 rounded-full bg-gradient-to-r from-amber-500 to-gray-700" />
-      </div>
-    </motion.div>
+      <div className="w-12 h-0.5 bg-amber-400 mx-auto"/>
+    </div>
 
-    {/* Features Grid - Compact */}
-    <div className="mt-8 px-4 sm:px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+    {/* Clean Card Grid */}
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map(({ title, img, desc }) => (
           <motion.div
             key={title}
-            className="bg-gray-50 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200 border border-gray-100"
+            className="bg-white rounded-none overflow-hidden border border-gray-100 hover:border-amber-100 transition-colors duration-200"
             initial="offscreen"
             whileInView="onscreen"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={cardVariants}
-            whileHover={{ y: -4 }}
           >
-            <div className="w-full h-40 sm:h-44 overflow-hidden">
+            <div className="w-full h-48 overflow-hidden">
               <img
                 src={img}
                 alt={title}
@@ -96,11 +78,11 @@ const Features = () => (
                 loading="lazy"
               />
             </div>
-            <div className="p-4 sm:p-5">
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
+            <div className="p-6">
+              <h3 className="text-xl font-normal text-gray-800 mb-3">
                 {title}
               </h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <p className="text-gray-500 font-light leading-relaxed">
                 {desc}
               </p>
             </div>
@@ -108,8 +90,6 @@ const Features = () => (
         ))}
       </div>
     </div>
-
-
   </section>
 );
 
