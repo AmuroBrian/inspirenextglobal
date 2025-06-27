@@ -63,7 +63,7 @@ const AboutInspireNext = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           variants={{
             hidden: { opacity: 0, y: 60 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+            visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
           }}
         >
           {/* Mission Section */}
@@ -73,7 +73,7 @@ const AboutInspireNext = () => {
             viewport={{ once: false, margin: "-100px" }}
             variants={{
               hidden: { opacity: 0, y: 60 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+              visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
             }}
             className="mb-28"
           >
@@ -89,7 +89,7 @@ const AboutInspireNext = () => {
                 <motion.h2
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+                  transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
                   viewport={{ once: false }}
                   className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"
                   style={{ color: '#2F3E46' }}
@@ -99,7 +99,7 @@ const AboutInspireNext = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                  transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
                   viewport={{ once: false }}
                   className="text-base sm:text-lg md:text-xl space-y-6 leading-relaxed"
                   style={{ color: '#2F3E46' }}
@@ -113,14 +113,14 @@ const AboutInspireNext = () => {
                   <p>
                     We collaborate closely with our Japanese partners to ensure everything we offer is not just high-quality, but also meaningful and relevant here in the Philippines. With a focus on localization and a heart for service, we don't just deliver systems—we build connections that truly inspire what's next.
                   </p>
-      </motion.div>
+                </motion.div>
               </div>
             </div>
 
-      <motion.div
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
+              transition={{ delay: 0.3, duration: 0.3, ease: "easeOut" }}
               viewport={{ once: false }}
               className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8"
             >
@@ -136,12 +136,12 @@ const AboutInspireNext = () => {
 
           {/* Vision Section */}
           <motion.section
-        initial="hidden"
-        whileInView="visible"
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: false, margin: "-100px" }}
             variants={{
               hidden: { opacity: 0, y: 60 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+              visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
             }}
             className="py-16"
           >
@@ -150,7 +150,7 @@ const AboutInspireNext = () => {
                 <motion.h2
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+                  transition={{ delay: 0.1, duration: 0.3, ease: "easeOut" }}
                   viewport={{ once: false }}
                   className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
                   style={{ color: '#2F3E46' }}
@@ -160,7 +160,7 @@ const AboutInspireNext = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                  transition={{ delay: 0.2, duration: 0.3, ease: "easeOut" }}
                   viewport={{ once: false }}
                   className="text-base sm:text-lg md:text-xl space-y-6 leading-relaxed"
                   style={{ color: '#2F3E46' }}
@@ -173,14 +173,14 @@ const AboutInspireNext = () => {
                   </p>
                   <p>
                     Whether it's helping businesses work more efficiently or supporting individuals in caring for themselves better, we believe trusted systems from Japan can uplift the way Filipinos live, work, and connect with one another.
-        </p>
-      </motion.div>
+                  </p>
+                </motion.div>
               </div>
 
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 40 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
                 viewport={{ once: false }}
                 className="md:w-1/2 relative"
               >

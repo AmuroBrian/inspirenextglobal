@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 // About Section Component
 function AboutInspireNextGlobal() {
@@ -10,18 +11,18 @@ function AboutInspireNextGlobal() {
           About <span className="text-[#2c774b]">Inspire Next Global</span> Inc.
         </h2>
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#3ea96e] tracking-tight">
-        Bringing Japan Closer to  <span className="text-[#2c774b]">Every Filipino Home and Business</span>
+        Bringing Japan Closer to  <span className="text-[#2c774b]">Every Filipino Home and Business</span> Inc.
         </h2>
         <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#3ea96e] to-[#8db249] mx-auto mb-8" />
         <p className="text-lg text-gray-700 mb-6 leading-relaxed text-justify">
-        Guided by a visionary Board of Directors, Inspire Next Global Inc. was founded with a clear mission: to bring Japan’s trusted innovation closer to the lives of Filipino families and businesses. Under the board’s strategic leadership, we are driven by a deep belief that innovation should be inspiring, attainable, and life-enhancing.
+        Guided by a visionary Board of Directors, Inspire Next Global Inc. was founded with a clear mission: to bring Japan's trusted innovation closer to the lives of Filipino families and businesses. Under the board's strategic leadership, we are driven by a deep belief that innovation should be inspiring, attainable, and life-enhancing.
 
-Our directors uphold a commitment to excellence, ensuring that every product we offer—whether it’s skincare backed by science, digital tools that boost productivity, or energy-saving technologies—is thoughtfully selected to meet the evolving needs of the Philippine market. Each decision reflects Japan’s legacy of precision, simplicity, and durability, while staying grounded in the realities of everyday Filipino life.
+Our directors uphold a commitment to excellence, ensuring that every product we offer—whether it's skincare backed by science, digital tools that boost productivity, or energy-saving technologies—is thoughtfully selected to meet the evolving needs of the Philippine market. Each decision reflects Japan's legacy of precision, simplicity, and durability, while staying grounded in the realities of everyday Filipino life.
         </p>
         <p className="text-lg text-gray-700 leading-relaxed text-justify">
         More than overseeing operations, our board sets the tone for a company culture built on trust, fairness, and purpose. They champion our mission to provide not just products, but solutions that make a difference—empowering individuals to feel confident, enabling businesses to grow smarter, and supporting a more sustainable future for all.
 
-At Inspire Next, premium meets practical. Under the guidance of our board, we continue to deliver purposeful innovation—where Japan’s global excellence finds a meaningful home in the Philippines.
+At Inspire Next, premium meets practical. Under the guidance of our board, we continue to deliver purposeful innovation—where Japan's global excellence finds a meaningful home in the Philippines.
 
 
         </p>
@@ -48,27 +49,22 @@ function SectionHeader({ title, subtitle, color = "#3ea96e", className = "" }) {
 // Optimized Card Component with Centered Text
 function DirectorCard({ member, expanded, onClick }) {
   const accentColor = member.accentColor || "#5bbd7a";
-
   return (
-    <div
-      className={`relative rounded-2xl border-2 flex flex-col transition-all duration-300 cursor-pointer overflow-hidden group bg-white ${
-        expanded ? "z-20 scale-[1.02] border-[" + accentColor + "]" : "border-[#e0e0e0]"
-      } ${member.position === "President" ? "lg:col-span-3" : ""}`}
+    <motion.div
+      className={`relative border bg-white flex flex-col transition-all duration-200 cursor-pointer overflow-hidden group ${expanded ? "z-20 scale-[1.01] border-amber-400" : "border-gray-100 hover:border-amber-200"}`}
+      style={{ borderRadius: 12, minHeight: 420 }}
+      whileHover={!expanded ? { scale: 1.015, boxShadow: "0 4px 24px 0 rgba(212,175,55,0.07)" } : {}}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       onClick={onClick}
-      style={{ height: expanded ? 'auto' : '420px' }}
     >
       {/* IMAGE SECTION */}
-      <div className="w-full flex items-center justify-center relative aspect-square" style={{ height: "320px", background: "#f0f9ee" }}>
+      <div className="w-full flex items-center justify-center relative aspect-square bg-[#f8fafb]" style={{ height: 300 }}>
         <img
           src={member.img}
           alt={member.name}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 m-0 p-0"
-          style={{
-            objectFit: "cover",
-            height: "100%",
-            width: "100%",
-            backgroundColor: "rgba(215,251,232,0.85)"
-          }}
+          className="w-full h-full object-contain p-2 sm:p-6 transition-transform duration-200 group-hover:scale-105"
         />
       </div>
       {/* TEXT SECTION */}
@@ -83,9 +79,7 @@ function DirectorCard({ member, expanded, onClick }) {
           {member.name}
         </h3>
         {expanded && (
-          <div
-            className="mt-3 w-full p-4 rounded-xl animate-fadeIn shadow-inner bg-gray-50 border border-gray-200"
-          >
+          <div className="mt-3 w-full p-4 rounded-xl bg-gray-50 border border-gray-100 animate-fadeIn">
             <div className="text-gray-700 text-sm text-center">
               {member.description}
             </div>
@@ -104,13 +98,7 @@ function DirectorCard({ member, expanded, onClick }) {
           ✕
         </button>
       )}
-      {!expanded && (
-        <div
-          className="absolute bottom-0 left-0 right-0 h-1 bg-transparent group-hover:bg-current transition-all duration-300"
-          style={{ color: accentColor }}
-        />
-      )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -122,7 +110,6 @@ function TeamSection({ title, members, expandedIndex, setExpandedIndex, cols = "
     "3": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
     "4": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
   };
-
   return (
     <div className="max-w-7xl mx-auto mb-16 px-0">
       <h3 
@@ -134,15 +121,14 @@ function TeamSection({ title, members, expandedIndex, setExpandedIndex, cols = "
       >
         {title}
       </h3>
-      <div className={`grid ${gridClasses[cols]} gap-4 px-4`}>
+      <div className={`grid ${gridClasses[cols]} gap-6 px-4`}>
         {members.map((member, i) => (
-          <div key={member.name} className="h-full">
-            <DirectorCard
-              member={member}
-              expanded={expandedIndex === i}
-              onClick={() => setExpandedIndex(expandedIndex === i ? null : i)}
-            />
-          </div>
+          <DirectorCard
+            key={member.name}
+            member={member}
+            expanded={expandedIndex === i}
+            onClick={() => setExpandedIndex(expandedIndex === i ? null : i)}
+          />
         ))}
       </div>
     </div>

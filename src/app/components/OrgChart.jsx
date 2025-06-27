@@ -24,7 +24,7 @@ const Lightbox = ({ src, alt, onClose }) => (
                 alt={alt}
                 width={1200}
                 height={900}
-                className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain rounded-lg"
+                className="w-full h-auto max-w-[98vw] max-h-[70vh] object-contain rounded-lg"
             />
             <button
                 onClick={onClose}
@@ -122,15 +122,15 @@ export default function OrgChart() {
                 >
                     <div className="max-w-7xl mx-auto relative">
                         <motion.header
-                            className="text-center mb-16 relative"
+                            className="text-center mb-6 sm:mb-12 relative w-full px-2"
         initial="hidden"
         whileInView="visible"
                             viewport={{ once: false, margin: "-100px" }}
                             variants={containerVariants}
                         >
                             <motion.h1 
-                                className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight text-[#2F3E46]"
-                                style={{ letterSpacing: '-0.03em' }}
+                                className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight text-[#2F3E46] break-words w-full"
+                                style={{ letterSpacing: '-0.03em', wordBreak: 'break-word' }}
                                 variants={itemVariants}
                             >
                                 Organizational <span style={{ color: '#D4AF37' }}>Structure</span>
@@ -139,7 +139,7 @@ export default function OrgChart() {
                               <span className="inline-block w-24 h-1 rounded-full" style={{ background: 'linear-gradient(90deg, #D4AF37 0%, #2F3E46 100%)' }} />
                             </div>
                             <motion.p 
-                                className="text-2xl font-semibold text-[#2F3E46]/80"
+                                className="text-base sm:text-lg md:text-2xl font-semibold text-[#2F3E46]/80 break-words"
                                 variants={itemVariants}
                             >
                                 Designed for efficiency, collaboration, and sustainable growth.
@@ -147,14 +147,14 @@ export default function OrgChart() {
                         </motion.header>
 
                         <motion.main
-                            className="grid md:grid-cols-2 gap-12 mb-20"
+                            className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-10 mb-8 w-full"
           initial="hidden"
           whileInView="visible"
                             viewport={{ once: false, margin: '-100px' }}
                             variants={containerVariants}
                         >
                             <motion.section
-                                className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-2xl p-10 border-2 border-[#D4AF37] flex flex-col transition-all duration-300 hover:scale-[1.025] hover:shadow-2xl"
+                                className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-2xl p-2 sm:p-4 md:p-8 border-2 border-[#D4AF37] flex flex-col transition-all duration-300 hover:scale-[1.025] hover:shadow-2xl w-full"
                                 variants={itemVariants}
                                 whileHover={{ y: -5 }}
                             >
@@ -171,7 +171,7 @@ export default function OrgChart() {
                                 </motion.div>
                                 <h2 className="text-2xl font-semibold text-[#2F3E46] mb-4 text-center">Corporate Governance Structure</h2>
                                 <div 
-                                    className="w-full h-auto rounded-lg overflow-hidden my-4 cursor-pointer" 
+                                    className="w-full aspect-[4/3] rounded-lg overflow-hidden my-3 sm:my-4 cursor-pointer bg-white flex items-center justify-center"
                                     onClick={() => setLightboxImage('/1.png')}
                                 >
             <Image
@@ -179,7 +179,7 @@ export default function OrgChart() {
                                         alt="Corporate Governance Structure" 
               width={600}
               height={450}
-                                        className="w-full h-auto object-contain transition-transform duration-300 hover:scale-105" 
+                                        className="w-full h-full object-contain transition-transform duration-300 hover:scale-105 max-h-[180px] sm:max-h-[260px] md:max-h-[320px]"
             />
           </div>
                                 <button 
@@ -191,7 +191,7 @@ export default function OrgChart() {
                             </motion.section>
 
                             <motion.section
-                                className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-2xl p-10 border-2 border-[#D4AF37] flex flex-col transition-all duration-300 hover:scale-[1.025] hover:shadow-2xl"
+                                className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-2xl p-2 sm:p-4 md:p-8 border-2 border-[#D4AF37] flex flex-col transition-all duration-300 hover:scale-[1.025] hover:shadow-2xl w-full"
                                 variants={itemVariants}
                                 whileHover={{ y: -5 }}
                             >
@@ -208,7 +208,7 @@ export default function OrgChart() {
         </motion.div>
                                 <h2 className="text-2xl font-semibold text-[#2F3E46] mb-4 text-center">Marketing & Operations Structure</h2>
                                 <div 
-                                    className="w-full h-auto rounded-lg overflow-hidden my-4 cursor-pointer" 
+                                    className="w-full aspect-[4/3] rounded-lg overflow-hidden my-3 sm:my-4 cursor-pointer bg-white flex items-center justify-center"
                                     onClick={() => setLightboxImage('/ORGCHART1.jpg')}
                                 >
             <Image
@@ -216,7 +216,7 @@ export default function OrgChart() {
                                         alt="Marketing & Operations Structure" 
               width={600}
               height={450}
-                                        className="w-full h-auto object-contain transition-transform duration-300 hover:scale-105" 
+                                        className="w-full h-full object-contain transition-transform duration-300 hover:scale-105 max-h-[180px] sm:max-h-[260px] md:max-h-[320px]"
             />
           </div>
                                 <button 
@@ -229,20 +229,22 @@ export default function OrgChart() {
                         </motion.main>
 
       <motion.section
-                            className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-2xl p-10 md:p-12 border-2 border-[#D4AF37] flex flex-col lg:flex-row items-center gap-8 mt-8"
+                            className="bg-white/60 backdrop-blur-lg rounded-2xl shadow-2xl p-2 sm:p-6 md:p-10 border-2 border-[#D4AF37] flex flex-col lg:flex-row items-center gap-4 sm:gap-8 mt-8 w-full"
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: false, margin: '-100px' }}
                             variants={itemVariants}
                         >
                             <div className="flex-shrink-0 w-full lg:w-2/5 rounded-lg overflow-hidden shadow-md">
-                                <Image 
+                                <div className="aspect-[4/3] w-full h-full flex items-center justify-center bg-white">
+                                  <Image 
             src="/board.png"
                                     alt="Board of Directors" 
                                     width={500} 
                                     height={500} 
-            className="object-cover w-full h-full"
-          />
+                                    className="object-contain w-full h-full max-h-[140px] sm:max-h-[220px] md:max-h-[320px]"
+                                  />
+                                </div>
         </div>
                             <div className="flex-1">
                                 <h2 className="text-3xl md:text-4xl font-bold text-[#2F3E46] mb-4">
