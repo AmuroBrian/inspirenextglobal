@@ -2,10 +2,27 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
+function ImageModal({ src, alt, open, onClose }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="relative max-w-full max-h-full" onClick={e => e.stopPropagation()}>
+        <img src={src} alt={alt} className="max-w-[95vw] max-h-[80vh] rounded-lg shadow-lg" />
+        <button onClick={onClose} className="absolute -top-4 -right-4 bg-white rounded-full p-2 text-gray-800 shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function OrganizationalChart() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
   const controls = useAnimation();
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (isInView) {
@@ -53,13 +70,15 @@ export default function OrganizationalChart() {
           title="Workflow Chart" 
           items={workflowItems} 
           defaultColor="#2F3E46"
+          onViewImage={() => setModalOpen(true)}
         />
+        <ImageModal src="/companychrat.png" alt="Company Chart" open={modalOpen} onClose={() => setModalOpen(false)} />
       </div>
     </motion.div>
   );
 }
 
-function ChartSection({ title, items, defaultColor }) {
+function ChartSection({ title, items, defaultColor, onViewImage }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "0px 0px -100px 0px" });
   const controls = useAnimation();
@@ -111,12 +130,18 @@ function ChartSection({ title, items, defaultColor }) {
       </motion.div>
       {/* Show the image only in the Workflow Chart section and only if an FAQ is open */}
       {title === "Workflow Chart" && openIndex !== null && (
-        <div className="flex justify-center my-4 sm:my-6 px-1 sm:px-2">
+        <div className="flex flex-col items-center my-4 sm:my-6 px-1 sm:px-2">
           <img 
             src="/companychrat.png" 
             alt="Company Chart" 
             className="w-full max-w-[220px] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto rounded-xl shadow-md mx-auto" 
           />
+          <button
+            className="mt-2 px-4 py-2 bg-[#D4AF37] text-[#2F3E46] font-semibold rounded-full shadow hover:bg-[#C9A227] transition-colors text-sm"
+            onClick={onViewImage}
+          >
+            View Image
+          </button>
         </div>
       )}
       <div className="divide-y divide-gray-200">

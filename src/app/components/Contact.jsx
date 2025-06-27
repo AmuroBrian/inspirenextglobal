@@ -52,7 +52,7 @@ export default function CompanyProfile() {
           <div className="mb-4">
             <span className="font-semibold">Email:</span>
             <a href="mailto:info@inspirenextglobal.com" className="ml-2 text-[#D4AF37] underline hover:text-[#2F3E46] transition">
-              info@inspirenextglobal.com
+              inspirenextglobal@gmail.com
             </a>
           </div>
           <div className="mb-4">

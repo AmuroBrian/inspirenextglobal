@@ -12,6 +12,7 @@ const structureData = {
     {
       name: "Inspire Alliance Fund Group Inc.",
       img: "/inspirealliancelogo.png",
+      url: "https://inspirealliancefundgroup.vercel.app/",
     },
     {
       name: "UnionNetBank Advisory Service",
@@ -32,10 +33,12 @@ const structureData = {
     {
       name: "Inspire Connect LLC (Japan)",
       img: "/inspire.jpg",
+      url: "https://www.inspire-connect.jp/",
     },
     {
       name: "Inspire GMS Finance Corporation",
       img: "/gmsl.png",
+      url: "https://www.global-mobility-service.com/company/",
     },
     {
       name: "GMFastCash Lending Corporation",
@@ -44,10 +47,12 @@ const structureData = {
     {
       name: "XANA LLC (Philippines)",
       img: "/xana.png",
+      url: "https://xana.net/",
     },
     {
       name: "Clinica de Bereza beauty clinic",
       img: "/beauty.png",
+      url: "https://clinicadebeleza.com/about-us/",
     },
   ],
 };
@@ -134,28 +139,30 @@ export default function CorporateStructure() {
             <h2 className="text-xl font-bold text-[#2F3E46] uppercase tracking-wider mb-4 text-center">
               Parent Company & Major Shareholder
             </h2>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              variants={fadeInUp}
-              viewport={{ once: true, amount: 0.3 }}
-              className="bg-white border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto"
-              onClick={() => setZoomedImage(structureData.parent.img)}
+            <a
+              href="https://inspireholdings.ph/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group bg-white border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto relative"
             >
-              <div className="w-52 h-52 flex-shrink-0 bg-white rounded-lg flex items-center justify-center p-2">
+              <div className="w-52 h-52 flex-shrink-0 bg-white rounded-lg flex items-center justify-center p-2 relative">
                 <img
                   src={structureData.parent.img}
                   alt={structureData.parent.name}
                   className="object-contain max-w-full max-h-full"
                 />
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-[#18191b]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                  <span className="text-[#e3b877] text-lg font-bold tracking-wide">Visit Site</span>
+                </div>
               </div>
               <div className="text-center sm:text-left">
                 <h3 className="text-2xl font-bold text-[#2F3E46]">
                   {structureData.parent.name}
                 </h3>
-                <p className="text-[#2F3E46]/70 mt-1">Click to see logo</p>
+                <p className="text-[#2F3E46]/70 mt-1">&nbsp;</p>
               </div>
-            </motion.div>
+            </a>
           </motion.section>
 
           {/* Group Companies */}
@@ -172,28 +179,64 @@ export default function CorporateStructure() {
             <div className="max-w-7xl mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {structureData.group.map((company, idx) => (
-                  <motion.div
-                    key={company.name}
-                    className="bg-white rounded-none overflow-hidden border border-gray-100 hover:border-amber-100 transition-colors duration-200"
-                    initial="offscreen"
-                    whileInView="onscreen"
-                    viewport={{ once: true, amount: 0.1 }}
-                    variants={fadeInUp}
-                  >
-                    <div className="w-full h-48 overflow-hidden flex items-center justify-center bg-white">
-                      <img
-                        src={company.img}
-                        alt={company.name}
-                        className="w-full h-full object-contain p-6"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-normal text-gray-800 mb-3">
-                        {company.name}
-                      </h3>
-                    </div>
-                  </motion.div>
+                  company.url ? (
+                    <a
+                      key={company.name}
+                      href={company.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group relative"
+                    >
+                      <motion.div
+                        className="bg-white rounded-none overflow-hidden border border-gray-100 hover:border-amber-100 transition-colors duration-200 hover:shadow-lg"
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ once: true, amount: 0.1 }}
+                        variants={fadeInUp}
+                      >
+                        <div className="w-full h-48 overflow-hidden flex items-center justify-center bg-white relative">
+                          <img
+                            src={company.img}
+                            alt={company.name}
+                            className="w-full h-full object-contain p-6"
+                            loading="lazy"
+                          />
+                          {/* Hover Overlay */}
+                          <div className="absolute inset-0 bg-[#18191b]/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <span className="text-[#e3b877] text-lg font-bold tracking-wide">Visit Site</span>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <h3 className="text-xl font-normal text-gray-800 mb-3">
+                            {company.name}
+                          </h3>
+                        </div>
+                      </motion.div>
+                    </a>
+                  ) : (
+                    <motion.div
+                      key={company.name}
+                      className="bg-white rounded-none overflow-hidden border border-gray-100 hover:border-amber-100 transition-colors duration-200"
+                      initial="offscreen"
+                      whileInView="onscreen"
+                      viewport={{ once: true, amount: 0.1 }}
+                      variants={fadeInUp}
+                    >
+                      <div className="w-full h-48 overflow-hidden flex items-center justify-center bg-white">
+                        <img
+                          src={company.img}
+                          alt={company.name}
+                          className="w-full h-full object-contain p-6"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-normal text-gray-800 mb-3">
+                          {company.name}
+                        </h3>
+                      </div>
+                    </motion.div>
+                  )
                 ))}
               </div>
             </div>

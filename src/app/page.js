@@ -19,15 +19,15 @@ const AnimatedSection = ({ children, id, className, fullWidth = false }) => {
   const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.8, 
+        duration: 0.4, 
         ease: [0.16, 1, 0.3, 1],
         when: "beforeChildren",
-        staggerChildren: 0.2
+        staggerChildren: 0.08
       }
     },
   };
@@ -251,7 +251,7 @@ export default function Page() {
           opacity: [0.8, 0.9, 0.8]
         }}
         transition={{ 
-          duration: 15, 
+          duration: 6, 
           repeat: Infinity, 
           repeatType: 'reverse', 
           ease: 'linear' 
@@ -268,7 +268,7 @@ export default function Page() {
           className="fixed inset-0 -z-20 overflow-hidden pointer-events-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.3 }}
         >
           {particles.map((particle) => (
             <motion.div
@@ -287,8 +287,8 @@ export default function Page() {
                 opacity: [0.2, 0.8, 0.4, 0],
               }}
               transition={{
-                duration: particle.duration,
-                delay: particle.delay,
+                duration: Math.max(0.7, particle.duration * 0.4),
+                delay: particle.delay * 0.4,
                 repeat: Infinity,
                 repeatType: "loop",
                 ease: "linear",
@@ -308,7 +308,7 @@ export default function Page() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover object-center z-0"
-          src="/slide.mp4"
+          src="/productslide.mp4"
           autoPlay
           loop
           muted
@@ -318,51 +318,30 @@ export default function Page() {
           poster="/video-poster.jpg"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30 z-10"></div>
-        
-        {/* Animated decorative elements - client-side only */}
-        {isClient && (
-          <motion.div
-            className="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 z-15 pointer-events-none"
-            initial={{ scale: 0.9, rotate: 0, opacity: 0.5 }}
-            animate={{ 
-              scale: [0.9, 1.1, 0.9], 
-              rotate: [0, 15, -10, 0], 
-              opacity: [0.5, 0.7, 0.5] 
-            }}
-            transition={{ 
-              duration: 8, 
-              repeat: Infinity, 
-              repeatType: "mirror", 
-              ease: "easeInOut" 
-            }}
-          >
-            <svg viewBox="0 0 400 400" className="w-full h-full">
-              <path
-                d="M200,60 Q260,80 300,150 Q340,220 270,270 Q200,320 130,270 Q60,220 100,150 Q140,80 200,60 Z"
-                fill="#D4AF37"
-                fillOpacity="0.18"
-              />
-            </svg>
-          </motion.div>
-        )}
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+        <div
+          className="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 z-15 pointer-events-none"
+        >
+          <svg viewBox="0 0 400 400" className="w-full h-full">
+            <path
+              d="M200,60 Q260,80 300,150 Q340,220 270,270 Q200,320 130,270 Q60,220 100,150 Q140,80 200,60 Z"
+              fill="#D4AF37"
+              fillOpacity="0.18"
+            />
+          </svg>
+        </div>
+        <div
           className="absolute left-0 top-1/2 -translate-y-1/2 w-full flex flex-col items-start text-left px-8 sm:px-12 md:px-16 lg:px-24 z-20"
         >
           <motion.div
             initial={{ opacity: 0 }}
             animate={isHeroInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ duration: 0.2 }}
             className="mb-6 w-20 h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#208704] rounded-full"
           />
-
           <motion.h1
             initial={false}
             animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
             className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-lg max-w-4xl text-left leading-tight"
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#D4AF37]/90">
@@ -372,25 +351,22 @@ export default function Page() {
               {displayed.length < fullText.length ? "|" : ""}
             </span>
           </motion.h1>
-
           <motion.span
             initial={false}
             animate={isHeroInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.15, delay: 0.08, ease: "easeOut" }}
             className="inline-block bg-gradient-to-r from-[#208704] to-[#1A6F03] text-white uppercase font-bold tracking-wider rounded-lg px-8 py-4 mt-4 shadow-xl text-lg sm:text-xl md:text-2xl hover:shadow-[#D4AF37]/30 hover:translate-y-[-2px] transition-all duration-300"
             style={{ letterSpacing: "0.1em" }}
           >
             BRINGING JAPAN CLOSER TO EVERY FILIPINO HOME AND BUSINESS
           </motion.span>
-
           <motion.div
             initial={{ opacity: 0 }}
             animate={isHeroInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ duration: 0.15 }}
             className="mt-12 flex gap-4"
           >
             <motion.a
-              href="#about"
               whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(212, 175, 55, 0.4)" }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-[#D4AF37] to-[#C9A227] text-gray-900 font-semibold rounded-lg shadow-md transition-all duration-300"
@@ -398,7 +374,6 @@ export default function Page() {
               Learn More
             </motion.a>
             <motion.a
-              href="#contact"
               whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(32, 135, 4, 0.4)" }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] font-semibold rounded-lg hover:bg-[#D4AF37]/10 transition-all duration-300"
@@ -406,99 +381,64 @@ export default function Page() {
               Contact Us
             </motion.a>
           </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator - client-side only */}
-        {isClient && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isHeroInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 1.5 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center"
-          >
-            <span className="text-white text-sm mb-2">Scroll Down</span>
-            <motion.div
-              animate={{ 
-                y: [0, 10, 0],
-                opacity: [0.6, 1, 0.6]
-              }}
-              transition={{ 
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop"
-              }}
-              className="w-6 h-10 border-2 border-[#D4AF37] rounded-full flex justify-center"
-            >
-              <motion.div 
-                className="w-1 h-2 bg-[#D4AF37] rounded-full mt-1"
-                animate={{ y: [0, 4, 0] }}
-                transition={{ 
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: "loop"
-                }}
-              />
-            </motion.div>
-          </motion.div>
-        )}
+        </div>
       </main>
           
       {/* ABOUT SECTION */}
-      <AnimatedSection id="about" className="bg-gray-50">
-        <About />
-      </AnimatedSection>  
-      
+     <section id="about" className="bg-gray-50">
+      <About />
+     </section>
       {/* MISSION SECTION */}
-      <AnimatedSection className="bg-white">
+      <section className="bg-white">
         <Mission />
-      </AnimatedSection>  
+      </section>  
       
       {/* OrgChart Section */}
-      <AnimatedSection className="bg-gray-50">
+      <section className="bg-gray-50">
         <OrgChart />
-      </AnimatedSection>
+      </section>
       
       {/* Message Section */}
-      <AnimatedSection className="bg-white">
+      <section className="bg-white">
         <Message />
-      </AnimatedSection>
+      </section>
       
-      <AnimatedSection className="bg-gray-50">
+      <section className="bg-gray-50">
         <Chart />
-      </AnimatedSection>
+      </section>
 
       {/* BUSINESS SECTION */}
-      <AnimatedSection className="bg-gray-50">
+      <section className="bg-gray-50">
         <Bussec />
-      </AnimatedSection>
+      </section>
 
       {/* Real Estate Section */}
-      <AnimatedSection id="realestate" className="bg-white">
+      <section className="bg-white">
         <Realestate />
-      </AnimatedSection>
+      </section>
 
       {/* COMPANY UNDER SECTION */}
-      <AnimatedSection className="bg-gray-50">
+      <section id="product" className="bg-gray-50">
         <Companyunder />
-      </AnimatedSection>
+      </section>
 
       {/* CORPORATE SECTION */}
-      <AnimatedSection className="bg-white">
+      <section className="bg-white">
         <Corporate />
-      </AnimatedSection>
+      </section>
 
-      <AnimatedSection className="bg-gray-50">
+      <section className="bg-gray-50">
         <LiveNews />
-      </AnimatedSection>
+      </section>
       
       {/* CONTACT SECTION */}
-      <AnimatedSection id="contact" className="bg-white">
+      <section id="contact" className="bg-white">
         <Contact />
-      </AnimatedSection>
+      </section>
   
-      <AnimatedSection className="bg-gray-50">
+      <section className="bg-gray-50">
         <Policy />
-      </AnimatedSection>    
+      </section>    
 
       {/* Back to top button - client-side only */}
       {isClient && (
