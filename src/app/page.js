@@ -13,6 +13,7 @@ import Corporate from "./components/Corporate";
 import Policy from "./components/Policy";
 import Chart from "./components/Chart";
 import LiveNews from "./components/LiveNews";
+import Careers from "./components/Careers";
 
 const AnimatedSection = ({ children, id, className, fullWidth = false }) => {
   const ref = useRef(null);
@@ -421,6 +422,11 @@ export default function Page() {
       <section id="product" className="bg-gray-50">
         <Companyunder />
       </section>
+
+      <section  className="bg-gray-50">
+        <Careers />
+      </section>
+
 
       {/* CORPORATE SECTION */}
       <section className="bg-white">
