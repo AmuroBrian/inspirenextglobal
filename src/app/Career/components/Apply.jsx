@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
+import { storage } from "../../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import jsPDF from "jspdf";
 
-// Job data (same as before)
+// --- JOBS DATA ---
 const jobs = [
-  // ... all jobs ...
   {
     id: 1,
     title: "Sales Agent",
@@ -20,9 +22,9 @@ const jobs = [
           <li>Earn commission on completed projects</li>
         </ul>
       </div>
-    )
+    ),
   },
- {
+  {
     id: 2,
     title: "On-the-Job Trainee (OJT)",
     type: "Internship, Training",
@@ -46,7 +48,7 @@ const jobs = [
           <li>Good communication skills</li>
         </ul>
       </div>
-    )
+    ),
   },
   {
     id: 3,
@@ -72,7 +74,7 @@ const jobs = [
           <li>Basic computer proficiency</li>
         </ul>
       </div>
-    )
+    ),
   },
   {
     id: 4,
@@ -99,14 +101,15 @@ const jobs = [
           <li>Must have own laptop for work use</li>
         </ul>
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
+// --- UI SECTIONS ---
 function HeroSection() {
   return (
     <section className="w-full py-16 px-4 bg-gradient-to-br from-[#f0f9ee] to-[#e0f3e0] text-center">
@@ -177,11 +180,9 @@ function JobDetailsModal({ job, open, onClose, onApply }) {
             <div className="text-[#8db249] text-sm font-semibold mb-3">{job.type}</div>
             <div className="text-gray-700 mb-4">{job.description}</div>
             <div className="mt-2 p-4 bg-[#f5fcf6] rounded-xl border border-[#e0f3e0] text-black">
-              {typeof job.details === "string" ? (
-                job.details.split('\n').map((line, idx) => <div key={idx}>{line}</div>)
-              ) : (
-                job.details
-              )}
+              {typeof job.details === "string"
+                ? job.details.split('\n').map((line, idx) => <div key={idx}>{line}</div>)
+                : job.details}
             </div>
             <div className="flex justify-end mt-6">
               <button
@@ -232,17 +233,183 @@ function JobCard({ job, onApply, onViewDetails }) {
   );
 }
 
-// Application Form with Google Drive link (instead of file upload)
+// --- FORM WITH FIREBASE STORAGE + EMAILJS + PDF ---
 function ApplicationForm({ job, onClose }) {
   const formRef = useRef();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resumeFile, setResumeFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
+
+  const handleFileChange = (e) => {
+    setResumeFile(e.target.files[0]);
+    setResumeUrl("");
+  };
+
+  // Upload file to Firebase Storage (returns download URL)
+  const uploadFile = async (file) => {
+    setUploading(true);
+    setError("");
+    const storageRef = ref(storage, `resumes/${Date.now()}_${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    return new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          setUploadProgress((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        },
+        (err) => {
+          setError("Resume upload failed. Please try again.");
+          setUploading(false);
+          reject(err);
+        },
+        async () => {
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
+          setResumeUrl(url);
+          setUploading(false);
+          resolve(url);
+        }
+      );
+    });
+  };
+
+  // Generate a PDF file from the application data and upload to Storage, returns download URL
+  const uploadApplicationPdf = async (data, filename) => {
+    // 1. Generate PDF with jsPDF
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("Job Application", 10, 15);
+    doc.setFontSize(12);
+    doc.text(`Position: ${data.position}`, 10, 30);
+    doc.text(`Submitted: ${data.time}`, 10, 38);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Applicant Details", 10, 50);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Name: ${data.name}`, 10, 58);
+    doc.text(`Email: ${data.email}`, 10, 66);
+    doc.text(`Phone: ${data.phone}`, 10, 74);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Cover Letter", 10, 90);
+    doc.setFont("helvetica", "normal");
+    const messageLines = doc.splitTextToSize(data.message || "(none)", 180);
+    doc.text(messageLines, 10, 98);
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Resume Link", 10, 120 + messageLines.length * 8);
+    doc.setFont("helvetica", "normal");
+    doc.text(data.resume_link, 10, 128 + messageLines.length * 8);
+
+    // 2. Convert PDF to Blob
+    const pdfBlob = doc.output("blob");
+
+    // 3. Upload PDF to Firebase Storage
+    const appRef = ref(storage, `applications/${filename}`);
+    const uploadTask = uploadBytesResumable(appRef, pdfBlob);
+    return new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        null,
+        err => reject(err),
+        async () => {
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
+          resolve(url);
+        }
+      );
+    });
+  };
 
   const sendEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!resumeFile) {
+      setError("Please select a resume file.");
+      setLoading(false);
+      return;
+    }
+
+    let url = resumeUrl;
+    if (!resumeUrl) {
+      try {
+        url = await uploadFile(resumeFile);
+      } catch {
+        setLoading(false);
+        return;
+      }
+    }
+
+    // --- Ensure resume_link hidden input is always set ---
+    let linkField = formRef.current.querySelector('input[name="resume_link"]');
+    if (!linkField) {
+      linkField = document.createElement("input");
+      linkField.type = "hidden";
+      linkField.name = "resume_link";
+      formRef.current.appendChild(linkField);
+    }
+    linkField.value = url;
+    // --- End resume_link block ---
+
+    // Prepare application data
+    const now = new Date();
+    const timeString = now.toLocaleString();
+    const appData = {
+      position: job.title,
+      time: timeString,
+      name: formRef.current.name.value,
+      email: formRef.current.email.value,
+      phone: formRef.current.phone.value,
+      message: formRef.current.message.value,
+      resume_link: url,
+    };
+    const appPdfFilename = `${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2, "0")}${now.getDate().toString().padStart(2, "0")}_${now.getHours().toString().padStart(2, "0")}${now.getMinutes().toString().padStart(2, "0")}${now.getSeconds().toString().padStart(2, "0")}_${appData.email.replace(/[^a-zA-Z0-9]/g, "_")}.pdf`;
+
+    // Upload PDF to Storage and get PDF download link
+    let pdfDownloadURL = "";
+    try {
+      pdfDownloadURL = await uploadApplicationPdf(appData, appPdfFilename);
+    } catch (err) {
+      setError("Failed to save application PDF to storage.");
+      setLoading(false);
+      return;
+    }
+
+    // Attach PDF download URL as hidden input for EmailJS
+    let pdfField = formRef.current.querySelector('input[name="pdf_download_link"]');
+    if (!pdfField) {
+      pdfField = document.createElement("input");
+      pdfField.type = "hidden";
+      pdfField.name = "pdf_download_link";
+      formRef.current.appendChild(pdfField);
+    }
+    pdfField.value = pdfDownloadURL;
+
+    // Add/ensure all fields for EmailJS
+    let posField = formRef.current.querySelector('input[name="position"]');
+    if (!posField) {
+      posField = document.createElement("input");
+      posField.type = "hidden";
+      posField.name = "position";
+      posField.value = job.title;
+      formRef.current.appendChild(posField);
+    }
+    let timeField = formRef.current.querySelector('input[name="time"]');
+    if (!timeField) {
+      timeField = document.createElement("input");
+      timeField.type = "hidden";
+      timeField.name = "time";
+      timeField.value = timeString;
+      formRef.current.appendChild(timeField);
+    }
+
+    // Send Email via EmailJS with PDF download URL and resume link
     try {
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
@@ -252,8 +419,9 @@ function ApplicationForm({ job, onClose }) {
       );
       setSubmitted(true);
     } catch (err) {
-      console.error('EmailJS error:', err);
-      setError("Failed to send application. Please try again.");
+      setError("Failed to send application via email. Your application is saved in storage.");
+      // Optionally log for debugging:
+      console.error("EmailJS error:", err);
     } finally {
       setLoading(false);
     }
@@ -281,7 +449,6 @@ function ApplicationForm({ job, onClose }) {
       className="space-y-5 p-6 text-black"
       autoComplete="off"
     >
-      {/* Hidden fields for template variables */}
       <input type="hidden" name="position" value={job.title} />
       <input type="hidden" name="time" value={new Date().toLocaleString()} />
 
@@ -319,17 +486,29 @@ function ApplicationForm({ job, onClose }) {
 
       <div>
         <label className="block text-gray-700 mb-1">
-          Google Drive Resume Link *
+          Upload Resume (PDF, DOC, DOCX) *
         </label>
         <input
-          type="url"
-          name="resume_link"
+          type="file"
+          name="resume_file"
+          accept=".pdf,.doc,.docx"
           required
-          placeholder="Paste your Google Drive/Docs public link here"
           className="w-full border rounded px-3 py-2 text-black"
+          onChange={handleFileChange}
+          disabled={uploading || loading}
         />
+        {uploading && (
+          <div className="text-sm text-gray-600 mt-1">
+            Uploading... {uploadProgress.toFixed(0)}%
+          </div>
+        )}
+        {resumeUrl && (
+          <div className="text-green-600 text-sm mt-1">
+            Resume uploaded! <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="underline">View file</a>
+          </div>
+        )}
         <p className="text-sm text-gray-500 mt-1">
-          <strong>Note:</strong> Please upload your resume to Google Drive or Google Docs and make sure the link is set to <span className="font-bold text-[#3ea96e]">Anyone with the link can view</span>.
+          <strong>Note:</strong> Please wait for the upload to complete before submitting.
         </p>
       </div>
 
@@ -346,7 +525,7 @@ function ApplicationForm({ job, onClose }) {
         <button
           type="submit"
           className="px-6 py-2 rounded-full bg-[#3ea96e] text-black font-semibold hover:text-white hover:bg-[#2c774b]"
-          disabled={loading}
+          disabled={loading || uploading || !resumeFile}
         >
           {loading ? "Submitting..." : "Submit Application"}
         </button>
@@ -362,6 +541,7 @@ function ApplicationForm({ job, onClose }) {
   );
 }
 
+// --- MAIN PAGE ---
 export default function CareersPage() {
   const [detailsJob, setDetailsJob] = useState(null);
   const [applyingJob, setApplyingJob] = useState(null);
@@ -374,7 +554,7 @@ export default function CareersPage() {
       <section className="max-w-5xl mx-auto py-10 px-4">
         <h2 className="text-3xl font-bold text-[#3ea96e] mb-8 text-center">Open Positions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {jobs.map(job => (
+          {jobs.map((job) => (
             <JobCard
               key={job.id}
               job={job}
@@ -385,7 +565,6 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Job Details Modal */}
       <JobDetailsModal
         job={detailsJob}
         open={!!detailsJob}
@@ -393,7 +572,6 @@ export default function CareersPage() {
         onApply={setApplyingJob}
       />
 
-      {/* Application Modal */}
       <AnimatePresence>
         {applyingJob && (
           <motion.div
