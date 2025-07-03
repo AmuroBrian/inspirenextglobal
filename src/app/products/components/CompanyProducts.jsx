@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const companies = [
   {
@@ -9,7 +9,12 @@ const companies = [
     desc: "Japan's leading groupware solution now available in the Philippines, offering seamless collaboration for businesses.",
     features: ["Cloud-based", "Mobile access", "Document management"],
     category: "Business Solutions",
-    origin: "Japan"
+    origin: "Japan",
+    highlights: [
+      "Ranked No. 1 in Customer Satisfaction in the groupware and business chat category by Nikkei Computer for six consecutive years (2018–2023) and by Nikkei BP Government Technology for three consecutive years (2020–2022).",
+      "Over 5 million users worldwide as of May 2025, spanning SMEs, large enterprises, government agencies, educational institutions, and local governments.",
+      "Hailed as one of the Best Software in Japan 2025, listed on the Section of the Tokyo Stock Exchange."
+    ]
   },
   {
     name: "SQRC® (Security QR Code)",
@@ -191,67 +196,47 @@ export default function ProductsPage() {
           </motion.div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {companies.map((company, idx) => {
-              const isLong = company.desc && company.desc.length > 150;
-              const showFull = expanded[company.name];
-              const shortDesc = isLong ? company.desc.slice(0, 150) + '...' : company.desc;
-              return (
-                <motion.div
-                  key={company.name}
-                  className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-all flex flex-col group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">
-                    <img 
-                      src={company.img}
-                      alt={company.name}
-                      className={`${company.name === 'Cysay' ? 'h-40 sm:h-52' : 'h-32'} object-contain max-w-full transition-transform duration-300 group-hover:scale-110`} 
-                    />
-                    {/* Origin removed as requested */}
-                    {company.category && (
-                      <div className="absolute top-4 right-4 bg-[#2F3E46] text-white text-xs px-2 py-1 rounded">
-                        {company.category}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6 flex-grow flex flex-col">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{company.name}</h3>
-                      <p className="text-gray-600 mb-4">
-                        {isLong && !showFull ? (
-                          <>
-                            {shortDesc} <button className="text-[#D4AF37] underline ml-1" onClick={() => toggleExpand(company.name)}>See more</button>
-                          </>
-                        ) : isLong && showFull ? (
-                          <>
-                            {company.desc} <button className="text-[#D4AF37] underline ml-1" onClick={() => toggleExpand(company.name)}>See less</button>
-                          </>
-                        ) : (
-                          company.desc
-                        )}
-                      </p>
-                      {/* Features removed as requested */}
+            {companies.map((company, idx) => (
+              <motion.button
+                key={company.name}
+                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 transition-all flex flex-col group text-left cursor-pointer focus:outline-none"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                onClick={() => setSelectedProduct(company)}
+              >
+                <div className="relative h-48 bg-gray-50 flex items-center justify-center p-6">
+                  <img 
+                    src={company.img}
+                    alt={company.name}
+                    className={`${company.name === 'Cysay' ? 'h-40 sm:h-52' : 'h-32'} object-contain max-w-full transition-transform duration-300 group-hover:scale-110`} 
+                  />
+                  {company.category && (
+                    <div className="absolute top-4 right-4 bg-[#2F3E46] text-white text-xs px-2 py-1 rounded">
+                      {company.category}
                     </div>
+                  )}
+                </div>
+                <div className="p-6 flex-grow flex flex-col">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{company.name}</h3>
+                    <p className="text-gray-600 mb-4">
+                      {company.desc.length > 150 ? company.desc.slice(0, 150) + '...' : company.desc}
+                    </p>
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.button>
+            ))}
           </div>
-          {/* Inquire Now Container */}
+          {/* Inquire/Info Container */}
           <div className="flex justify-center mt-12">
-            <button
-              className="px-10 py-4 bg-[#D4AF37] hover:bg-[#c19b30] text-white font-bold rounded-full shadow-lg text-xl transition-all duration-300 border-2 border-[#D4AF37] hover:border-[#c19b30]"
-              onClick={() => {
-                setSelectedProduct(null);
-                setModalOpen(true);
-              }}
-            >
-              Inquire Now
-            </button>
+            <div className="bg-white border border-[#D4AF37] rounded-xl shadow-lg px-8 py-6 text-center max-w-xl w-full">
+              <h3 className="text-xl font-bold text-[#2F3E46] mb-2">Interested in a product?</h3>
+              <p className="text-gray-700 mb-2">For product inquiries, please email us at</p>
+              <a href="mailto:inspirenextglobal@gmail.com" className="text-[#D4AF37] font-semibold underline text-lg">inspirenextglobal@gmail.com</a>
+            </div>
           </div>
         </div>
 
@@ -280,87 +265,55 @@ export default function ProductsPage() {
         </motion.div>
       </div>
 
-      {/* Inquiry Modal */}
-      {modalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div 
-            className="bg-white rounded-xl p-6 md:p-8 max-w-md w-full mx-auto"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+      {/* Single Product Modal */}
+      <AnimatePresence>
+        {selectedProduct && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {selectedProduct?.name ? `Inquire About ${selectedProduct.name}` : 'General Inquiry'}
-                </h3>
-                <p className="text-gray-600">Our team will contact you with more details</p>
-              </div>
-              <button 
-                className="text-gray-500 hover:text-gray-700"
-                onClick={() => setModalOpen(false)}
+            <motion.div
+              className="bg-white rounded-xl p-4 sm:p-6 md:p-8 max-w-full sm:max-w-lg w-full mx-auto relative overflow-y-auto max-h-[90vh]"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+            >
+              <button
+                className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl"
+                onClick={() => setSelectedProduct(null)}
+                aria-label="Close"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                &times;
               </button>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
-                <input 
-                  type="text" 
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent" 
-                  required 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email*</label>
-                <input 
-                  type="email" 
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent" 
-                  required 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                <input 
-                  type="tel" 
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent" 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea 
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows="3" 
-                  className="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
-                ></textarea>
-              </div>
-              <div className="pt-2">
-                <button 
-                  type="submit" 
-                  className="w-full bg-[#D4AF37] text-white py-3 rounded-lg font-bold hover:bg-[#c19b30] transition-colors"
-                >
-                  Submit Inquiry
-                </button>
-              </div>
-            </form>
+              <h2 className="text-2xl font-bold mb-4 text-[#2F3E46] text-center">{selectedProduct.name}</h2>
+              <img 
+                src={selectedProduct.img} 
+                alt={selectedProduct.name} 
+                className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 object-contain mx-auto mb-4" 
+              />
+              <div className="text-gray-700 mb-4 text-center">{selectedProduct.desc}</div>
+              {selectedProduct.features && (
+                <ul className="list-disc list-inside text-gray-600 mb-2">
+                  {selectedProduct.features.map((f, i) => (
+                    <li key={i}>{f}</li>
+                  ))}
+                </ul>
+              )}
+              {/* Desknet's Neo highlights */}
+              {selectedProduct.name === "Desknet's Neo" && selectedProduct.highlights && (
+                <ul className="list-disc list-inside text-[#208704] mb-2 mt-4">
+                  {selectedProduct.highlights.map((h, i) => (
+                    <li key={i}>{h}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="text-sm text-gray-500 text-center mt-4">Category: {selectedProduct.category} | Origin: {selectedProduct.origin}</div>
+            </motion.div>
           </motion.div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 }
