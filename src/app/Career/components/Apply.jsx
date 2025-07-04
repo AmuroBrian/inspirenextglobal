@@ -54,7 +54,7 @@ const jobs = [
     id: 3,
     title: "Sales Associate",
     type: "Full-time,Onsite,Marketing",
-    description: "We're offering On-the-Job Training opportunities for students looking to gain real-world experience in a professional setting. This program provides hands-on training in various departments including Admin, Sales & Marketing, Accounting and Information Technology. Trainees will work alongside experienced professionals and receive mentorship while contributing to real projects.",
+    description: "Join our dynamic sales team as a Sales Associate where you'll engage with customers, understand their needs, and promote our products/services. This role is perfect for outgoing individuals with a passion for customer service and sales. You'll be the face of our company to many of our customers, helping them find solutions that meet their needs while driving revenue for our business.",
     details: (
       <div>
         <strong>Key Responsibilities:</strong>
