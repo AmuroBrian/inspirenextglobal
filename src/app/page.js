@@ -368,6 +368,7 @@ export default function Page() {
             className="mt-12 flex gap-4"
           >
             <motion.a
+              href="#about"
               whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(212, 175, 55, 0.4)" }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-gradient-to-r from-[#D4AF37] to-[#C9A227] text-gray-900 font-semibold rounded-lg shadow-md transition-all duration-300"
@@ -375,6 +376,7 @@ export default function Page() {
               Learn More
             </motion.a>
             <motion.a
+              href="#contact"
               whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(32, 135, 4, 0.4)" }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] font-semibold rounded-lg hover:bg-[#D4AF37]/10 transition-all duration-300"
@@ -386,9 +388,9 @@ export default function Page() {
       </main>
           
       {/* ABOUT SECTION */}
-     <section id="about" className="bg-gray-50">
-      <About />
-     </section>
+      <section id="about" className="bg-gray-50">
+        <About />
+      </section>
       {/* MISSION SECTION */}
       <section className="bg-white">
         <Mission />
@@ -414,7 +416,7 @@ export default function Page() {
       </section>
 
       {/* Real Estate Section */}
-      <section className="bg-white">
+      <section className="bg-white mt-5 mb-5" >
         <Realestate />
       </section>
 
@@ -423,17 +425,16 @@ export default function Page() {
         <Companyunder />
       </section>
 
-      <section  className="bg-gray-50">
+      <section  className="bg-gray-50 mt-5 ">
         <Careers />
       </section>
-
 
       {/* CORPORATE SECTION */}
       <section className="bg-white">
         <Corporate />
       </section>
 
-      <section className="bg-gray-50">
+      <section className="bg-gray-50 mt-5 mb-5">
         <LiveNews />
       </section>
       
