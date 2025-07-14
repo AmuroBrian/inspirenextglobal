@@ -102,6 +102,7 @@ const Footer = () => {
               </span>
             )
           ))}
+          
         </div>
         <div className="text-xs text-[#b0b1b4]/70 mt-2 md:mt-0">© {new Date().getFullYear()} Inspire Next Global Inc. All rights reserved.</div>
       </div>

@@ -76,33 +76,33 @@ const jobs = [
       </div>
     ),
   },
-  {
-    id: 4,
-    title: "Admin Assistant",
-    type: "Full-time,Onsite,Admin",
-    description: "We are seeking a highly organized and proactive Administrative Assistant to provide top-tier support to our executives. In this role, you will ensure seamless office operations by managing schedules, handling compliance documentation (SEC/DTI/BIR), and maintaining efficient systems. As the professional face of our office, your attention to detail and strong communication skills will be key to keeping workflows running smoothly.",
-    details: (
-      <div>
-        <strong>Key Responsibilities:</strong>
-        <ul className="list-disc list-inside mb-2">
-          <li>Manage executive calendars, appointments, and correspondence</li>
-          <li>Prepare, organize, and file compliance documents (SEC, DTI, BIR)</li>
-          <li>Maintain an efficient filing and documentation system</li>
-          <li>Assist in office coordination and administrative tasks</li>
-          <li>Serve as a professional liaison for internal and external stakeholders</li>
-        </ul>
-        <strong>Qualifications:</strong>
-        <ul className="list-disc list-inside mb-2">
-          <li>Bachelor's degree in Human Resource Management, Office Administration, or related field (preferred)</li>
-          <li>Excellent written and verbal communication skills (English and Filipino)</li>
-          <li>Proficient in Microsoft Office Suite (Word, Excel, PowerPoint, Teams)</li>
-          <li>Knowledgeable in SEC, DTI, and BIR registration processes</li>
-          <li>Must be amenable to work on-site in BGC</li>
-          <li>Must have own laptop for work use</li>
-        </ul>
-      </div>
-    ),
-  },
+  // {
+  //   id: 4,
+  //   title: "Admin Assistant",
+  //   type: "Full-time,Onsite,Admin",
+  //   description: "We are seeking a highly organized and proactive Administrative Assistant to provide top-tier support to our executives. In this role, you will ensure seamless office operations by managing schedules, handling compliance documentation (SEC/DTI/BIR), and maintaining efficient systems. As the professional face of our office, your attention to detail and strong communication skills will be key to keeping workflows running smoothly.",
+  //   details: (
+  //     <div>
+  //       <strong>Key Responsibilities:</strong>
+  //       <ul className="list-disc list-inside mb-2">
+  //         <li>Manage executive calendars, appointments, and correspondence</li>
+  //         <li>Prepare, organize, and file compliance documents (SEC, DTI, BIR)</li>
+  //         <li>Maintain an efficient filing and documentation system</li>
+  //         <li>Assist in office coordination and administrative tasks</li>
+  //         <li>Serve as a professional liaison for internal and external stakeholders</li>
+  //       </ul>
+  //       <strong>Qualifications:</strong>
+  //       <ul className="list-disc list-inside mb-2">
+  //         <li>Bachelor's degree in Human Resource Management, Office Administration, or related field (preferred)</li>
+  //         <li>Excellent written and verbal communication skills (English and Filipino)</li>
+  //         <li>Proficient in Microsoft Office Suite (Word, Excel, PowerPoint, Teams)</li>
+  //         <li>Knowledgeable in SEC, DTI, and BIR registration processes</li>
+  //         <li>Must be amenable to work on-site in BGC</li>
+  //         <li>Must have own laptop for work use</li>
+  //       </ul>
+  //     </div>
+  //   ),
+  // },
 ];
 
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;

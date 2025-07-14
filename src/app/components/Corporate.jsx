@@ -143,7 +143,7 @@ export default function CorporateStructure() {
               href="https://inspireholdings.ph/"
               target="_blank"
               rel="noopener noreferrer"
-              className="block group bg-white border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto relative"
+              className="block-group bg-white border border-[#E0E0E0] rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-8 cursor-pointer transition-all duration-300 hover:scale-[1.02] max-w-3xl mx-auto relative"
             >
               <div className="w-52 h-52 flex-shrink-0 bg-white rounded-lg flex items-center justify-center p-2 relative">
                 <img
