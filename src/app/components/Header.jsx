@@ -9,6 +9,7 @@ const navLinks = [
   { label: "About", value: "about", href: "/#about" },
   { label: "Product", value: "product", href: "/#product" },
   { label: "Contact", value: "contact", href: "/#contact" },
+  { label: "Real Estate", value: "real-estate", href: "https://inspire-real-estate.vercel.app/", isButton: true }, // Updated href
 ];
 
 const Header = () => {
@@ -46,13 +47,13 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50">
       <nav className={`
-        bg-white lg:bg-white border-b border-[#D4AF37]/20 
+        bg-white lg:bg-white border-b border-[#D4AF37]/20
         px-4 sm:px-6 md:px-8 lg:px-10 py-3 md:py-4
         flex items-center justify-between
         transition-all duration-300
         min-h-[70px] md:min-h-[80px] lg:min-h-[90px]
       `}>
-      {/* Logo Section */}
+        {/* Logo Section */}
         <div className="flex-shrink-0 z-50">
           <Link href="/">
             <img
@@ -63,37 +64,55 @@ const Header = () => {
           </Link>
         </div>
 
-      {/* Desktop Navigation */}
+        {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8 2xl:gap-10">
-        {navLinks.map((link) => (
-          <Link
-            key={link.value}
-            href={link.href}
-            className={`
-                text-[#2F3E46] hover:text-[#D4AF37] no-underline font-semibold 
-                text-base md:text-lg xl:text-xl 
-                relative px-1 md:px-2 py-1 md:py-2
-                after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] 
-                after:bg-gradient-to-r after:from-[#D4AF37] after:to-[#2F3E46] 
-                after:transition-all after:duration-300 hover:after:w-full
-                transition-colors duration-200
-              ${
-                (link.href === '/' && pathname === '/') ||
-                  (link.href !== '/' && pathname.startsWith(link.href))
-                    ? 'font-bold text-[#D4AF37] after:w-full' 
+          {navLinks.map((link) => (
+            link.isButton ? ( // Conditionally render as a button
+              <Link key={link.value} href={link.href} passHref>
+                <motion.button
+                  className="
+                    bg-[#D4AF37] text-white font-semibold
+                    px-6 py-2 rounded-full shadow-md
+                    hover:bg-[#C2A332] hover:shadow-lg
+                    transition-all duration-300 ease-in-out
+                    text-base md:text-lg xl:text-xl
+                  "
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {link.label}
+                </motion.button>
+              </Link>
+            ) : (
+              <Link
+                key={link.value}
+                href={link.href}
+                className={`
+                  text-[#2F3E46] hover:text-[#D4AF37] no-underline font-semibold
+                  text-base md:text-lg xl:text-xl
+                  relative px-1 md:px-2 py-1 md:py-2
+                  after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px]
+                  after:bg-gradient-to-r after:from-[#D4AF37] after:to-[#2F3E46]
+                  after:transition-all after:duration-300 hover:after:w-full
+                  transition-colors duration-200
+                ${
+                  (link.href === '/' && pathname === '/') ||
+                    (link.href !== '/' && pathname.startsWith(link.href))
+                    ? 'font-bold text-[#D4AF37] after:w-full'
                     : ''
                 }
-              `}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
+                `}
+              >
+                {link.label}
+              </Link>
+            )
+          ))}
+        </div>
 
         {/* Mobile Menu Button */}
-      <button
+        <button
           className="lg:hidden focus:outline-none z-50 p-2 -mr-2"
-        aria-label="Toggle Menu"
+          aria-label="Toggle Menu"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <div className="space-y-1.5 sm:space-y-2">
@@ -124,7 +143,7 @@ const Header = () => {
               transition={{ duration: 0.3 }}
             />
           </div>
-      </button>
+        </button>
 
         {/* Mobile Menu */}
         <AnimatePresence>
@@ -135,63 +154,63 @@ const Header = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 bg-black/30 z-40"
-        onClick={() => setMenuOpen(false)}
-      />
+                onClick={() => setMenuOpen(false)}
+              />
 
-              <motion.div 
+              <motion.div
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                 className={`
-                  fixed top-0 right-0 w-4/5 max-w-sm h-full 
-                  bg-white backdrop-blur-lg shadow-2xl z-50 
+                  fixed top-0 right-0 w-4/5 max-w-sm h-full
+                  bg-white backdrop-blur-lg shadow-2xl z-50
                   flex flex-col pt-24 px-6 gap-4 rounded-l-2xl
                 `}
               >
                 <div className="absolute top-4 right-4">
-        <button
+                  <button
                     className="text-3xl text-[#2F3E46] focus:outline-none"
-          onClick={() => setMenuOpen(false)}
-          aria-label="Close Menu"
-        >
-          &times;
-        </button>
+                    onClick={() => setMenuOpen(false)}
+                    aria-label="Close Menu"
+                  >
+                    &times;
+                  </button>
                 </div>
-                
+
                 <div className="flex flex-col gap-2 mt-4">
-        {navLinks.map((link) => (
+                  {navLinks.map((link) => (
                     <motion.div
                       key={link.value}
                       initial={{ x: 20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-          <Link
-            href={link.href}
+                      <Link
+                        href={link.href}
                         className={`
-                          block text-[#2F3E46] no-underline font-semibold 
+                          block text-[#2F3E46] no-underline font-semibold
                           text-lg py-3 px-4 rounded-lg
                           transition-all duration-200 hover:bg-[#D4AF37]/10 hover:text-[#D4AF37]
-              ${
-                (link.href === '/' && pathname === '/') ||
+                        ${
+                          (link.href === '/' && pathname === '/') ||
                             (link.href !== '/' && pathname.startsWith(link.href))
-                              ? 'font-bold text-[#D4AF37] bg-[#D4AF37]/10' 
-                              : ''
-              }
-            `}
-            onClick={() => setMenuOpen(false)}
-          >
-            {link.label}
-          </Link>
+                            ? 'font-bold text-[#D4AF37] bg-[#D4AF37]/10'
+                            : ''
+                        }
+                        `}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
                     </motion.div>
-        ))}
-      </div>
+                  ))}
+                </div>
               </motion.div>
             </>
           )}
         </AnimatePresence>
-    </nav>
+      </nav>
     </header>
   );
 };

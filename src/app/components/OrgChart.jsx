@@ -209,7 +209,7 @@ export default function OrgChart() {
                                 <h2 className="text-2xl font-semibold text-[#2F3E46] mb-4 text-center">Marketing & Operations Structure</h2>
                                 <div 
                                     className="w-full aspect-[4/3] rounded-lg overflow-hidden my-3 sm:my-4 cursor-pointer bg-white flex items-center justify-center"
-                                    onClick={() => setLightboxImage('/ORGCHART1.jpg')}
+                                    onClick={() => setLightboxImage('/orga.jpg')}
                                 >
             <Image
               src="/ORGCHART1.jpg"
@@ -220,7 +220,7 @@ export default function OrgChart() {
             />
           </div>
                                 <button 
-                                    onClick={() => setLightboxImage('/ORGCHART1.jpg')} 
+                                    onClick={() => setLightboxImage('/orga.jpg')} 
                                     className="mt-auto bg-[#D4AF37] text-[#2F3E46] font-semibold px-6 py-2 rounded-full hover:bg-[#D4AF37]/90 transition-colors duration-300 shadow-lg self-center"
                                 >
                                     View Larger

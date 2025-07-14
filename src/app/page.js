@@ -434,18 +434,20 @@ export default function Page() {
         <Corporate />
       </section>
 
-      <section className="bg-gray-50 mt-5 mb-5">
-        <LiveNews />
-      </section>
-      
       {/* CONTACT SECTION */}
       <section id="contact" className="bg-white">
         <Contact />
       </section>
   
+      <section className=" mt-5 mb-5">
+        <LiveNews />
+      </section>
+
       <section className="bg-gray-50">
         <Policy />
       </section>    
+      
+       
 
       {/* Back to top button - client-side only */}
       {isClient && (
