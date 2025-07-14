@@ -212,7 +212,7 @@ export default function OrgChart() {
                                     onClick={() => setLightboxImage('/orga.jpg')}
                                 >
             <Image
-              src="/ORGCHART1.jpg"
+              src="/orga.jpg"
                                         alt="Marketing & Operations Structure" 
               width={600}
               height={450}
