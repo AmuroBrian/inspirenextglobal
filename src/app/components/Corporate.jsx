@@ -12,7 +12,7 @@ const structureData = {
     {
       name: "Inspire Alliance Fund Group Inc.",
       img: "/inspirealliancelogo.png",
-      url: "https://inspirealliancefundgroup.vercel.app/",
+      url: "https://inspire-alliance.com/", 
     },
     {
       name: "UnionNetBank Advisory Service",
