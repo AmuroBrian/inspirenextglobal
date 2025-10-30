@@ -145,15 +145,15 @@ const Companyunder = () => {
           viewport={{ once: false, margin: '-100px' }}
           variants={containerVariants}
         >
-          <div className="md:flex">
+          {/* <div className="md:flex">
             <div className="md:flex-shrink-0">
               <img
                 className="h-64 w-full object-cover md:w-64 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
                 src="/product.png"
                 alt="Desknet's Neo interface"
               />
-            </div>
-            <div className="p-8">
+            </div> */}
+            {/* <div className="p-8">
               <div className="uppercase tracking-wide text-sm font-semibold mb-1" style={{ color: '#D4AF37' }}>Product Highlight</div>
               <h2 className="text-2xl font-bold mb-2" style={{ color: '#2F3E46' }}>
                 Desknet's Neo
@@ -172,8 +172,8 @@ const Companyunder = () => {
                   </motion.button>
                 </Link>
               </div>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </motion.section>
       </div>
     </div>
