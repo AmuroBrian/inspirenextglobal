@@ -44,11 +44,11 @@ const structureData = {
       name: "GMFastCash Lending Corporation",
       img: "/gmfast.png",
     },
-    {
-      name: "XANA LLC (Philippines)",
-      img: "/xana.png",
-      url: "https://xana.net/",
-    },
+    // {
+    //   name: "XANA LLC (Philippines)",
+    //   img: "/xana.png",
+    //   url: "https://xana.net/",
+    // },
     {
       name: "Clinica de Bereza beauty clinic",
       img: "/beauty.png",
