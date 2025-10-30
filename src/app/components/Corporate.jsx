@@ -165,7 +165,7 @@ export default function CorporateStructure() {
             </a>
           </motion.section>
 
-          {/* Group Companies */}
+          
           <section className="py-16">
             {/* Minimal Header */}
             <div className="max-w-4xl mx-auto text-center px-4 mb-12">
