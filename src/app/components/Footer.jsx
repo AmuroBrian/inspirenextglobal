@@ -67,7 +67,7 @@ const Footer = () => {
           </div>
           <ul className="space-y-1 mb-4 text-left md:text-right text-sm sm:text-base break-all">
             <li>
-              <span className="font-medium text-[#e3b877]">Telephone:</span> 02-8538-5054 / 02-77509605 / +639946529009
+              <span className="font-medium text-[#e3b877]">Telephone:02-5322 1002</span>  
             </li>
             <li>
               <a href="mailto:inspirenextglobal@gmail.com" className="hover:underline text-[#e3b877]">
