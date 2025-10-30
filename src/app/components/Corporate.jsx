@@ -18,14 +18,14 @@ const structureData = {
       name: "UnionNetBank Advisory Service",
       img: "/netunion.png",
     },
-    {
-      name: "Inspire Union Advisory",
-      img: "/insunionbank.png",
-    },
-    {
-      name: "Inspire BPI Advisory",
-      img: "/bpi.png",
-    },
+    // {
+    //   name: "Inspire Union Advisory",
+    //   img: "/insunionbank.png",
+    // },
+    // {
+    //   name: "Inspire BPI Advisory",
+    //   img: "/bpi.png",
+    // },
     {
       name: "Inspire Holdings LLC (USA)",
       img: "/inspire.jpg",
@@ -165,7 +165,7 @@ export default function CorporateStructure() {
             </a>
           </motion.section>
 
-          {/* Group Companies */}
+          
           <section className="py-16">
             {/* Minimal Header */}
             <div className="max-w-4xl mx-auto text-center px-4 mb-12">
