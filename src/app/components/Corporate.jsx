@@ -18,14 +18,14 @@ const structureData = {
       name: "UnionNetBank Advisory Service",
       img: "/netunion.png",
     },
-    {
-      name: "Inspire Union Advisory",
-      img: "/insunionbank.png",
-    },
-    {
-      name: "Inspire BPI Advisory",
-      img: "/bpi.png",
-    },
+    // {
+    //   name: "Inspire Union Advisory",
+    //   img: "/insunionbank.png",
+    // },
+    // {
+    //   name: "Inspire BPI Advisory",
+    //   img: "/bpi.png",
+    // },
     {
       name: "Inspire Holdings LLC (USA)",
       img: "/inspire.jpg",
