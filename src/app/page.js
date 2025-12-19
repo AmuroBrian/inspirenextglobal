@@ -14,6 +14,7 @@ import Policy from "./components/Policy";
 import Chart from "./components/Chart";
 import LiveNews from "./components/LiveNews";
 import Careers from "./components/Careers";
+import Korpan from "./components/Korpan";
 
 const AnimatedSection = ({ children, id, className, fullWidth = false }) => {
   const ref = useRef(null);
@@ -413,6 +414,11 @@ export default function Page() {
       {/* BUSINESS SECTION */}
       <section className="bg-gray-50">
         <Bussec />
+      </section>
+
+      {/* Korpan */}
+      <section className="bg-gray-50">
+        <Korpan />
       </section>
 
       {/* Real Estate Section */}
