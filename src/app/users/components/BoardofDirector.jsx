@@ -11,18 +11,18 @@ function AboutInspireNextGlobal() {
           About <span className="text-[#2c774b]">Inspire Next Global</span> Inc.
         </h2>
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#3ea96e] tracking-tight">
-        Bringing Japan Closer to  <span className="text-[#2c774b]">Every Filipino Home and Business</span> Inc.
+          Bringing Japan Closer to  <span className="text-[#2c774b]">Every Filipino Home and Business</span> Inc.
         </h2>
         <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[#3ea96e] to-[#8db249] mx-auto mb-8" />
         <p className="text-lg text-gray-700 mb-6 leading-relaxed text-justify">
-        Guided by a visionary Board of Directors, Inspire Next Global Inc. was founded with a clear mission: to bring Japan's trusted innovation closer to the lives of Filipino families and businesses. Under the board's strategic leadership, we are driven by a deep belief that innovation should be inspiring, attainable, and life-enhancing.
+          Guided by a visionary Board of Directors, Inspire Next Global Inc. was founded with a clear mission: to bring Japan's trusted innovation closer to the lives of Filipino families and businesses. Under the board's strategic leadership, we are driven by a deep belief that innovation should be inspiring, attainable, and life-enhancing.
 
-Our directors uphold a commitment to excellence, ensuring that every product we offer—whether it's skincare backed by science, digital tools that boost productivity, or energy-saving technologies—is thoughtfully selected to meet the evolving needs of the Philippine market. Each decision reflects Japan's legacy of precision, simplicity, and durability, while staying grounded in the realities of everyday Filipino life.
+          Our directors uphold a commitment to excellence, ensuring that every product we offer—whether it's skincare backed by science, digital tools that boost productivity, or energy-saving technologies—is thoughtfully selected to meet the evolving needs of the Philippine market. Each decision reflects Japan's legacy of precision, simplicity, and durability, while staying grounded in the realities of everyday Filipino life.
         </p>
         <p className="text-lg text-gray-700 leading-relaxed text-justify">
-        More than overseeing operations, our board sets the tone for a company culture built on trust, fairness, and purpose. They champion our mission to provide not just products, but solutions that make a difference—empowering individuals to feel confident, enabling businesses to grow smarter, and supporting a more sustainable future for all.
+          More than overseeing operations, our board sets the tone for a company culture built on trust, fairness, and purpose. They champion our mission to provide not just products, but solutions that make a difference—empowering individuals to feel confident, enabling businesses to grow smarter, and supporting a more sustainable future for all.
 
-At Inspire Next, premium meets practical. Under the guidance of our board, we continue to deliver purposeful innovation—where Japan's global excellence finds a meaningful home in the Philippines.
+          At Inspire Next, premium meets practical. Under the guidance of our board, we continue to deliver purposeful innovation—where Japan's global excellence finds a meaningful home in the Philippines.
 
 
         </p>
@@ -112,9 +112,9 @@ function TeamSection({ title, members, expandedIndex, setExpandedIndex, cols = "
   };
   return (
     <div className="max-w-7xl mx-auto mb-16 px-0">
-      <h3 
+      <h3
         className="text-2xl font-semibold mb-8 pb-2 border-b text-center"
-        style={{ 
+        style={{
           color: accentColor,
           borderColor: `${accentColor}30`
         }}
@@ -146,26 +146,7 @@ const president = {
   accentColor: "#3ea96e"
 };
 
-const otherExecutives = [
-  {
-    name: "Rhia Alberto",
-    position: "Vice President",
-    img: "/3.png",
-    description: "As Vice President, Rhia Alberto supports the President in implementing corporate strategies and managing key initiatives. She plays a pivotal role in operational oversight, strategic planning, and cross-departmental coordination to drive organizational success.",
-    cardBg: "linear-gradient(135deg, rgba(215,251,232,0.9) 0%, rgba(185,231,206,0.95) 100%)",
-    imgBg: "url('/eco-bg.png'), linear-gradient(135deg, #b5e1c6 60%, #3ea96e 100%)",
-    accentColor: "#3ea96e"
-  },
-  {
-    name: "Andrei Bergano",
-    position: "Executive Director",
-    img: "/5.png",
-    description: "As Executive Director, Andrei Bergano leads key executive projects, ensures effective implementation of corporate policies, and collaborates with other executives to promote organizational efficiency and performance.",
-    cardBg: "linear-gradient(135deg, rgba(215,251,232,0.9) 0%, rgba(185,231,206,0.95) 100%)",
-    imgBg: "url('/eco-bg.png'), linear-gradient(135deg, #b5e1c6 60%, #3ea96e 100%)",
-    accentColor: "#3ea96e"
-  }
-];
+const otherExecutives = [];
 
 const nonExecutiveDirectors = [
   {
@@ -207,13 +188,6 @@ const corporateOperationOffice = [
     accentColor: "#8a6bbd"
   },
   {
-    name: "Anne Colinares",
-    position: "HR Assistant",
-    img: "/11.png",
-    description: "As HR Assistant, Anne Colinares provides essential support in HR operations, assisting with records management, employee onboarding, and daily administrative tasks.",
-    accentColor: "#8a6bbd"
-  },
-  {
     name: "Brian Perez",
     position: "Chief of Technology Officer",
     img: "/7.png",
@@ -228,13 +202,6 @@ const secretaryTeam = [
     position: "Secretary",
     img: "/17.png",
     description: "As Secretary, Shelah Reynaldo manages all corporate secretarial functions, including meeting documentation, legal filings, and effective communication between the board and stakeholders.",
-    accentColor: "#d67e5b"
-  },
-  {
-    name: "Joanne Hermosura",
-    position: "Secretary",
-    img: "/19.png",
-    description: "As Secretary, Joanne Hermosura assists in maintaining meticulous records, coordinating meetings, and supporting the organization's administrative needs.",
     accentColor: "#d67e5b"
   }
 ];
@@ -274,7 +241,7 @@ export default function BoardofDirector() {
       <div className="w-full flex items-center justify-center relative overflow-hidden min-h-[320px] bg-gradient-to-br from-[#3ea96e] to-[#8db249] mb-10">
         <div className="w-full max-w-6xl mx-auto text-center py-16 px-4 relative">
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-           Inspire Insights
+            Inspire Insights
           </h1>
           <div className="w-24 h-1.5 bg-white/80 mt-10 mx-auto mb-2 rounded-full" />
           <p className="text-xl text-white/90 mt-15 max-w-2xl mx-auto">
@@ -285,8 +252,8 @@ export default function BoardofDirector() {
 
       <AboutInspireNextGlobal />
 
-      <SectionHeader 
-        title="Meet Our Leadership Team" 
+      <SectionHeader
+        title="Meet Our Leadership Team"
         subtitle="Dedicated professionals guiding Inspire Next Global to new heights"
         color="#3ea96e"
         className="mt-10"
