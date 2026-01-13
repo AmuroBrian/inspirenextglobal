@@ -208,6 +208,117 @@ const Pricing = () => {
             </motion.div>
           </div>
 
+          {/* Additional Storage Section */}
+          <motion.div
+            className="mt-20 mb-16"
+            variants={itemVariants}
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4" style={{ letterSpacing: '-0.03em' }}>
+              Additional Strorage
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Expand your storage capacity with our flexible pricing options
+              </p>
+            </div>
+
+            {/* Enhanced Pricing Table */}
+            <motion.div
+              variants={itemVariants}
+              className="bg-white rounded-3xl shadow-2xl border-2 border-gray-200 overflow-hidden hover:shadow-3xl transition-all duration-300"
+            >
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  {/* Header Row */}
+                  <thead>
+                    <tr className="bg-gradient-to-r from-blue-50 to-[#0A3D74]/10">
+                      <th className="px-8 py-6 text-left font-bold text-xl text-[#0A3D74]">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-[#0A3D74] to-[#083058] rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                          </div>
+                          <span>PER COMPANY</span>
+                        </div>
+                      </th>
+                      <th className="px-8 py-6 text-left font-bold text-xl text-[#0A3D74]">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-[#0A3D74] to-[#083058] rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                          </div>
+                          <span>PER USER</span>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  {/* Content Row */}
+                  <tbody>
+                    <tr className="bg-white">
+                      <td className="px-8 py-10 border-r-2 border-gray-100">
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-[#0A3D74]/10 to-[#083058]/10 rounded-xl flex items-center justify-center">
+                              <svg className="w-6 h-6 text-[#0A3D74]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                              </svg>
+                            </div>
+                            <div>
+                              <p className="text-3xl font-extrabold text-gray-900">10 GB</p>
+                              <p className="text-sm text-gray-600 font-medium">Additional Storage</p>
+                            </div>
+                          </div>
+                          <div className="space-y-4 pt-4">
+                            <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                              <p className="text-2xl font-bold text-gray-900">PHP 149.99</p>
+                              <p className="text-sm text-gray-600 mt-1">per month</p>
+                            </div>
+                            <div className="bg-gradient-to-br from-[#0A3D74]/5 to-[#083058]/5 rounded-xl p-4 border-2 border-[#0A3D74]/20 relative overflow-hidden">
+                              <div className="absolute top-2 right-2">
+                                <span className="bg-[#0A3D74] text-white text-xs font-bold px-2 py-1 rounded-full">BEST VALUE</span>
+                              </div>
+                              <p className="text-2xl font-bold text-gray-900 mt-2">PHP 1564.50</p>
+                              <p className="text-sm text-gray-600 mt-1">per annual</p>
+                              <p className="text-xs text-[#0A3D74] font-semibold mt-2 flex items-center gap-1">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                Includes free 3 months
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-8 py-10">
+                        <div className="space-y-6">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-[#0A3D74]/10 to-[#083058]/10 rounded-xl flex items-center justify-center">
+                              <svg className="w-6 h-6 text-[#0A3D74]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                              </svg>
+                            </div>
+                            <div>
+                              <p className="text-3xl font-extrabold text-gray-900">1 GB</p>
+                              <p className="text-sm text-gray-600 font-medium">Additional Storage</p>
+                            </div>
+                          </div>
+                          <div className="pt-4">
+                            <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                              <p className="text-2xl font-bold text-gray-900">PHP 59.99</p>
+                              <p className="text-sm text-gray-600 mt-1">per month</p>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </motion.div>
+          </motion.div>
+
           {/* Additional Information */}
           <motion.div
             className="mt-16 text-center"
