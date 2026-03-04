@@ -1,6 +1,9 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const Globe3D = dynamic(() => import('./Globe3D'), { ssr: false });
 
 const Korpan = () => {
   const containerVariants = {
@@ -67,18 +70,13 @@ const Korpan = () => {
               {/* Decorative background blur */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/20 to-[#2F3E46]/20 rounded-full blur-3xl -z-10" />
               
-              {/* Flag Image Container */}
+              {/* Globe */}
               <motion.div
-                className="relative w-full h-auto rounded-2xl overflow-hidden shadow-2xl border-2 border-[#D4AF37]/30 bg-white/10 backdrop-blur-sm"
+                className="relative w-full h-auto flex items-center justify-center"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <img
-                  src="/flag.png"
-                  alt="Japanese and Korean Flags"
-                  className="w-full h-auto object-contain"
-                  loading="lazy"
-                />
+                <Globe3D />
               </motion.div>
             </div>
           </motion.div>
@@ -99,13 +97,13 @@ const Korpan = () => {
               </motion.div>
 
               {/* Title */}
-              <motion.h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight px-2 sm:px-0"
-                style={{ color: '#2F3E46' }}
-                variants={itemVariants}
-              >
-                Elite Japanese & Korean Professionals Supporting You
-              </motion.h2>
+               <motion.h2
+                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight px-2 sm:px-0"
+                 style={{ color: '#2F3E46' }}
+                 variants={itemVariants}
+               >
+                 Elite Global Professionals Supporting You
+               </motion.h2>
 
               {/* Decorative Line */}
               <motion.div
@@ -120,7 +118,7 @@ const Korpan = () => {
                 variants={itemVariants}
               >
                 <p className="font-medium">
-                  Our Japanese and Korean staff are available to support you.
+                  Our international team is available to support you worldwide.
                 </p>
                 <p className="font-medium">
                   Our team includes experienced professionals such as former bankers, individuals with backgrounds at major securities firms, and those who have held executive positions at leading hotels.
@@ -136,7 +134,7 @@ const Korpan = () => {
                 variants={itemVariants}
               >
                 <p className="text-base sm:text-lg md:text-xl font-semibold" style={{ color: '#2F3E46' }}>
-                  At the same time, we are actively recruiting Japanese and Korean staff.
+                  At the same time, we are actively recruiting talented professionals worldwide.
                 </p>
               </motion.div>
 
